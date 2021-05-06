@@ -1,0 +1,71 @@
+<div class="grid-container" style="border-style: solid; word-wrap: break-word; color: black; border-radius: 25px; background-color: white">
+    <div class="grid-y">
+        <div class="cell small-2">
+            <app-notice [notice]="liveData.currentNotice" [team1]="liveData.team1" [team2]="liveData.team2" [fightEntries]="liveData.fightEntries"></app-notice>
+        </div>
+        <div class="cell small-2">
+            <app-teamfightimages [liveData]="liveData"></app-teamfightimages>
+        </div>
+        <div class="cell small-2">
+            <app-teaminfo [loading]="liveData.loading" [liveData]="liveData"></app-teaminfo>
+        </div>
+        <div class="cell small-2">
+            <div class="grid-y">
+                <div class="cell small-4">
+                    <div class="grid-x">
+                        <div class="cell small-3"></div>
+                        <div class="cell small-6 text-center">
+                            <app-song [musicEvent]="liveData.musicEvent"></app-song>
+                            <br />
+                            <app-skilldrop [skillDropEvent]="liveData.skillDropEvent"></app-skilldrop>
+                        </div>
+                        <div class="cell small-3"></div>
+                    </div>
+                </div>
+                <div class="cell small-4">
+                    <div class="grid-x">
+                        <div class="cell small-4"></div>
+                        <div class="cell small-4 text-center">
+                            <app-map-number [matchInfoEvent]="liveData.matchInfo"></app-map-number>
+                        </div>
+                        <div class="cell small-4"></div>
+                    </div>
+                </div>
+                <div class="cell small-4">
+                    <div class="grid-x">
+                        <div class="cell small-1"></div>
+                        <div class="cell small-1 text-left">
+                            <app-matchcounts 
+                                [loading]="liveData.loading"
+                                [mode]="liveData.gridMode"
+                                [myTeamBetEntries]="liveData.team1BetEntries"
+                                [otherTeamBetEntries]="liveData.team2BetEntries"
+                                [team]="liveData.team1"
+                                [side]="leftSide"></app-matchcounts>
+                        </div>
+                        <div class="cell small-2"></div>
+                        <div class="cell small-4 text-center">
+                            <app-map-image [matchInfoEvent]="liveData.matchInfo"></app-map-image>
+                        </div>
+                        <div class="cell small-2"></div>
+                        <div class="cell small-1 text-right">
+                        <app-matchcounts 
+                                [loading]="liveData.loading"
+                                [mode]="liveData.gridMode"
+                                [myTeamBetEntries]="liveData.team2BetEntries"
+                                [otherTeamBetEntries]="liveData.team1BetEntries"
+                                [team]="liveData.team2"
+                                [side]="rightSide"></app-matchcounts>
+                        </div>
+                        <div class="cell small-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell small-2">
+            <div class="grid-x">
+            
+            </div>
+        </div>
+    </div>
+</div>

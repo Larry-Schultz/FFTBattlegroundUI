@@ -1,0 +1,2 @@
+<span> The current track is: </span><span *ngIf="musicEvent" id="trackName">{{musicEvent.songName}}</span>
+<img *ngIf="!musicEvent" id="trackImage" class="mapPlayerLoadingImage" src="assets/Pulse-1s-200px.gif" />

@@ -1,0 +1,54 @@
+<div class="grid-y">
+    <div class="cell small-2"></div>
+    <div class="cell small-2">
+        <div class="grid-x">
+            <div class="cell small-1"></div>
+            <div class="cell small-4 text-left">
+                <app-unitinfo [loading]="loading" [teamInfo]="liveData.getTeam1TeamInfo(0)" [unitInfo]="liveData.getTeam1UnitInfo(0)"></app-unitinfo>
+            </div>
+            <div class="cell small-2"></div>
+            <div class="cell small-4 text-right">
+                <app-unitinfo [loading]="loading" [teamInfo]="liveData.getTeam2TeamInfo(0)" [unitInfo]="liveData.getTeam2UnitInfo(0)"></app-unitinfo>
+            </div>
+            <div class="cell small-1"></div>
+        </div>
+    </div>
+    <div class="cell small-2">
+        <div class="grid-x">
+            <div class="cell small-1"></div>
+            <div class="cell small-4 text-left">
+                <app-unitinfo [loading]="loading" [teamInfo]="liveData.getTeam1TeamInfo(1)" [unitInfo]="liveData.getTeam1UnitInfo(1)"></app-unitinfo>
+            </div>
+            <div class="cell small-2"></div>
+            <div class="cell small-4 text-right">
+                <app-unitinfo [loading]="loading" [teamInfo]="liveData.getTeam2TeamInfo(1)" [unitInfo]="liveData.getTeam2UnitInfo(1)"></app-unitinfo>
+        </div>
+    </div>
+    <div class="cell small-2">
+        <div class="grid-x">
+            <div class="cell small-1"></div>
+            <div class="cell small-4 text-left">
+                <app-unitinfo [loading]="loading" [teamInfo]="liveData.getTeam1TeamInfo(2)" [unitInfo]="liveData.getTeam1UnitInfo(2)"></app-unitinfo>
+            </div>
+            <div class="cell small-2"></div>
+            <div class="cell small-4 text-right">
+                <app-unitinfo [loading]="loading" [teamInfo]="liveData.getTeam2TeamInfo(2)" [unitInfo]="liveData.getTeam2UnitInfo(2)"></app-unitinfo>
+            </div>
+            <div class="cell small-1"></div>
+        </div>
+    </div>
+    <div class="cell small-2">
+        <div class="grid-x">
+            <div class="cell small-1"></div>
+            <div class="cell small-4 text-left">
+                <app-unitinfo [loading]="loading" [teamInfo]="liveData.getTeam1TeamInfo(3)" [unitInfo]="liveData.getTeam1UnitInfo(3)"></app-unitinfo>
+            </div>
+            <div class="cell small-2"></div>
+            <div class="cell small-4 text-right">
+                <app-unitinfo [loading]="loading" [teamInfo]="liveData.getTeam2TeamInfo(3)" [unitInfo]="liveData.getTeam2UnitInfo(3)"></app-unitinfo>
+            </div>
+            <div class="cell small-1"></div>
+        </div>
+    </div>
+    <div class="cell small-2"></div>
+</div>

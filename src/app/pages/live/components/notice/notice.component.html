@@ -1,0 +1,21 @@
+<div class="grid-x">
+    <div class="cell small-1"></div>
+    <div  class="cell small-2 text-left">
+        <span *ngIf="team1" class="fightData" id="team1Name" [style.color]="getTeamColor(team1)">{{team1.toString() | titlecase}}</span><img *ngIf="!team1" class="fightLoading textLoading teamNameLoading" src="assets/Pulse-1s-200px.gif" /></div>
+    <div class="cell small-1"></div>
+    <div class="cell small-4 text-center">
+        <span *ngIf="isLoadingNotice(notice)" id="loadingNotice" class="notice" title="FFTBViewer uses data from IRC to track the current tournament's progress.  Once the stream's bot announces a new match, the application will know which two teams are fighting.">Please wait.  Viewer will sync with stream during the beginning of the next !bet or !fight phase.</span>
+        <span *ngIf="isMatchNotice(notice)" id="matchNotice" class="notice" title="Current phase is Match">Match</span>
+        <div *ngIf="isFightNotice(notice)" id="fightNotice" class="notice" title="Current phase is !fight">
+            <span>Fight</span>
+            <br />
+            <span id="fightEntryCounter">{{fightEntryCount}}</span><span> fight entries</span>
+        </div>
+        <span *ngIf="isBettingNotice(notice)" id="bettingNotice" class="notice" title="Current phase is !bet">Betting</span>
+        <span *ngIf="isResultsNotice(notice)" id="resultsNotice" class="notice" title="Current phase is results.  Next !bet or !fight phase is upcoming">Results</span>
+    </div>
+    <div class="cell small-1"></div>
+    <div class="cell small-2 text-right">
+        <span *ngIf="team2" class="fightData" id="team2Name" [style.color]="getTeamColor(team2)">{{team2.toString() | titlecase}}</span><img *ngIf="!team2" class="fightLoading textLoading teamNameLoading" src="assets/Pulse-1s-200px.gif" /></div>
+    <div class="cell small-2"></div>
+</div>

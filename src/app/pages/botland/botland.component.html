@@ -1,0 +1,63 @@
+<app-menu></app-menu>
+<div class="grid-y fluid" *ngIf="readyToRenderModal">
+    <div class="cell small-3">
+        <br />
+    </div>
+    <div class="cell small-6">
+        <div class="grid-x fluid">
+            <div class="cell small-2"></div>
+            <div class="cell small-8">
+                <h3>Botland</h3>
+                <p>Current state of my internal botland used to power <span id="accountName">{{botlandData.primaryBotAccountName}}</span></p>
+                <p><b>Current Primary Bot: </b><span id="primaryBotName">{{botlandData.primaryBotName}}</span></p>
+                <p><b>Gil History for the bot:</b></p>
+                <div id="accountChartDiv" style="max-height:350px; max-width:700px;">
+                    <app-mychartcomponent [chartData]="chartData" [width]="700" [height]="350"></app-mychartcomponent>
+                </div>
+                <br />
+                <table class="hover">
+                    <thead>
+                        <tr>
+                            <th>Bot</th>
+                            <th>Balance</th>
+                            <th>HighScore</th>
+                            <th>Wins</th>
+                            <th>Losses</th>
+                            <th>Win %</th>
+                        </tr>	
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let bot of botlandData.botData">
+                            <td [id]="bot.player + 'Name'" (click)="showModal(bot.player)" class="botName">{{bot.player}}</td>
+                            <td [id]="bot.player + 'Balance'">{{bot.balance}}</td>
+                            <td [id]="bot.player + 'HighScore'">{{bot.highestKnownValue}}</td>
+                            <td [id]="bot.player + 'Wins'">{{bot.wins}}</td>
+                            <td [id]="bot.player + 'Losses'">{{bot.losses}}</td>
+                            <td [id]="bot.player + 'WinPercentage'">{{bot.winPercentage + '%'}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Bot</th>
+                            <th>Balance</th>
+                            <th>HighScore</th>
+                            <th>Wins</th>
+                            <th>Losses</th>
+                            <th>Win %</th>
+                        </tr>	
+                    </tfoot>
+                </table>
+            </div>
+            <div id="dataLocation"></div>
+            <div class="cell small-2">
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="cell small-3"></div>
+</div>
+<div *ngIf="botlandData != null && botlandData !== undefined && queryListSubscribed">
+    <div *ngFor="let bot of botlandData.botData">
+        <app-botlandmodal [bot]="bot" [botConfigData]="botlandData.botConfigData.get(bot.player)" [botHourlyData]="botlandData.botHourlyDataMap.get(bot.player)"></app-botlandmodal>
+    </div>
+</div>

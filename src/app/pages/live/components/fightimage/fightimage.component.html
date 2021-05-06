@@ -1,0 +1,4 @@
+<span *ngIf="unitInfo" class="playerImage fightData">
+    <img [title]="imageTitle" [src]="imageUrl"/>
+</span>
+<img *ngIf="!unitInfo" class="fightLoading rightPlayerImageLoading" src="assets/Spinner-1s-200px.gif" />

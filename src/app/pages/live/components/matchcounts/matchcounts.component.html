@@ -1,0 +1,11 @@
+<div *ngIf="!showLoadingBar()" [style.color]="getColorForTeam(team)">
+    <span class="fightData" [id]="sideName + 'TeambetCount'" [title]="teamName + ' Team bet count'">{{teamBetCount}}</span><span class="fightData" [id]="sideName + 'TeamBetCountIndicator'"> bets</span>
+    <br />
+    <span class="fightData" [id]="sideName + 'TeamAmount'" [title]="teamName + ' Team total gil'">{{teamAmount.toLocaleString()}}</span><span class="fightData" [id]="sideName + 'teamAmountIndicator'">G</span>
+    <!-- <img href="assets/gil_icon.png" height="16px" /> -->
+    <br />
+    <span class="fightData" [id]="sideName + 'TeamPercentage'" [title]="teamName + 'Team Percentage of Bets'">{{teamPercentage}}</span><span class="fightData" [id]="sideName + 'PercentageSign'" title="Left Team Percentage of bets">%</span>
+    <br />
+    <span class="fightData" [id]="sideName + 'TeamOddsSign'">x</span><span class="fightData" [id]="sideName + 'Odds'" title="teamName + ' Team betting odds'">{{teamOdds}}</span>
+</div>
+<img *ngIf="showLoadingBar()" class="fightLoading textLoading teamNameLoading" src="assets/Pulse-1s-200px.gif" />

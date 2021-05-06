@@ -1,0 +1,6 @@
+<span *ngIf="matchInfoEvent" class="fightData" id="mapIconSpan">
+    <a id="mapIconLink" [href]="mapUrl" target="_blank">
+        <img id="mapIcon" title="click to go to ffhacktics" [src]="mapIconSrc" style="height: 125px" />
+    </a>
+</span>
+<img *ngIf="!matchInfoEvent" id="mapPlayerLoadingImage" class="fightLoading imageLoading mapLoading" src="assets/Spinner-1s-200px.gif" />

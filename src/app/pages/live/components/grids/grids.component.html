@@ -1,0 +1,26 @@
+<div *ngIf="isBetMode()" class="grid-container" id="betGridContainer">
+    <div class="grid-x">
+        <div class="cell small-5" >
+            <div>
+                <app-bet-grid [allegiance]="team1" [betEntries]="team1BetEntries" [otherTeamBetEntries]="team2BetEntries"></app-bet-grid>
+            </div>
+        </div>
+        <div class="cell small-2"></div>
+        <div  class="cell small-5" >
+            <div>
+                <app-bet-grid [allegiance]="team2" [betEntries]="team2BetEntries" [otherTeamBetEntries]="team1BetEntries"></app-bet-grid>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="isFightMode()" class="grid-container" id="fightGridContainer">
+    <div class="grid-x">
+        <div class="cell small-3"></div>
+        <div class="cell small-6">
+            <div >
+                <app-fight-grid [fightEntries]="fightEntries"></app-fight-grid>
+            </div>
+        </div>
+        <div class="cell small-3"></div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Gil Count</th>
+            <th>Player Count</th>
+            <th>Gil Per Player</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="globalGilCountData != null && globalGilCountData !== undefined">
+        <tr *ngFor="let globalGilCount of globalGilCountData">
+            <td>{{globalGilCount.dateWebFormat}}</td>
+            <td>{{globalGilCount.globalGilCountWebFormat}}</td>
+            <td>{{globalGilCount.playerCountWebFormat}}</td>
+            <td>{{globalGilCount.gilPerPlayerWebFormat}}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Date</th>
+            <th>Gil Count</th>
+            <th>Player Count</th>
+            <th>Gil Per Player</th>
+        </tr>
+    </tfoot>
+</table>
+<br />
+<app-mychartcomponent [chartData]="chartData"></app-mychartcomponent>

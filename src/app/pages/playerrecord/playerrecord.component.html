@@ -1,0 +1,125 @@
+<app-menu></app-menu>
+<div class="grid-container fluid grid-frame">
+	<div class="grid-y">
+		<div class="cell small-1"><br /></div>
+		<div class="cell small-3">
+			<div class="grid-x fluid grid-padding-x">
+				<div class="cell small-2">
+					<div class="input-group-button">
+						<label for="playerNamesInput">Player Name:</label>
+						<div class="ng-autocomplete">
+							<ng2-completer [(ngModel)]="currentSelectBoxSelection" [datasource]="playerList" [minSearchLength]="4" size="25" style="width: 150px;"></ng2-completer>
+						</div>
+						<button id="playerSearchButton" class="button" value="Submit" (click)="playerSearch();" >Submit</button>
+					</div>
+					<div *ngIf="playerData != null && playerData.notFound">
+						<br />
+						<h3>Player {{playerData.playerRecord.player}} not found</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="cell small-3">
+			<br />
+			<br />
+		</div>
+		<div class="cell small-4">
+			<div class="grid-x fluid">
+				<div class="cell small 5"></div>
+				<div class="cell small 2">
+					<div class="grid-y" *ngIf="playerData != null && !playerData.notFound" style="border-style: solid; word-wrap: break-word; color: black; border-radius: 25px; background-color: white; width: 1200px">
+						<div class="cell small-3"></div>
+						<div class="cell small-3">
+							<div class="grid-x">
+								<div class="cell small-3"></div>
+								<div class="cell small-2">
+									<div class="grid-y">
+										<div class="cell small-2">
+											<span id="playerName" style="font-weight: bold;" >{{playerData.playerRecord.player}}</span><span *ngIf="playerData.bot" style="color: red"> (bot)</span>
+										</div>
+										<div class="cell small-6">
+											<img src="{{getFullImageUrl(playerData.portraitUrl)}}" style="height: 250px" />
+										</div>
+										<div class="cell small-4"></div>
+									</div>
+								</div>
+								<div class="cell small-1"></div>
+								<div class="cell small-5">
+									<div class="grid-y">
+										<div class="cell small-2">
+											<br />
+										</div>
+										<div class="cell small-2">
+										<span style="font-weight: bold;">Betting</span><br />
+										<span>Wins: </span><span id="winSpan" >{{playerData.playerRecord.wins}}</span> <span> Losses: </span><span id="lossSpan" >{{playerData.playerRecord.losses}}</span><span> Ratio: </span><span id="ratioSpan" >{{playerData.betRatio}}</span>
+										<span> Percentile: </span><span id="betPercentile" *ngIf="playerData.betPercentile != null">{{playerData.betPercentile + 'th'}}</span><span id="betPercentile" *ngIf="playerData.betPercentile == null" title="Percentiles are only calculated for players who have been active in the last 30 days">None</span>
+										</div>
+										<br />
+										<div class="cell small-2">
+										<span style="font-weight: bold;">Fighting</span><br />
+										<span>Wins: </span><span id="fightWinSpan" >{{playerData.playerRecord.fightWins}}</span> <span> Losses: </span><span id="fightLossSpan" >{{playerData.playerRecord.fightLosses}}</span> <span> Ratio: </span><span id="fightRatioSpan" >{{playerData.fightRatio}}</span>
+										<span> Percentile: </span><span id="fightPercentile" *ngIf="playerData.fightPercentile != null" >{{playerData.fightPercentile + 'th'}}</span><span id="fightPercentile" *ngIf="playerData.fightPercentile == null" title="Percentiles are only calculated for players who have been active in the last 30 days">None</span>
+										</div>
+										<br />
+										<div class="cell small-2">
+										<span style="font-weight: bold;">Other Data:</span><br />
+										<span>Estimated Balance: </span><span id="estimatedBalanceSpan" >{{playerData.playerRecord.lastKnownAmount}}</span> <span> Highest Known Amount: </span><span id="highestKnownAmount" >{{playerData.playerRecord.highestKnownAmount}}</span><br />
+										<span>Estimated Level: </span><span id="estimatedLevelSpan" >{{playerData.playerRecord.lastKnownLevel}}</span><span> Estimated Remaining Exp: </span><span id="estimatedRemainingExp" >{{playerData.playerRecord.lastKnownRemainingExp}}</span><br />
+										<span>Allegiance: </span><span id="allegiance" [style.color]="allegianceColor(playerData.playerRecord.allegiance)" >{{playerData.playerRecord.allegiance | uppercase}}</span><span> Prestige Level: </span><span id="prestigeLevel" >{{playerData.prestigeLevel}}</span><br />
+										<span>Last Active: </span><span id="lastActive" >{{playerData.timezoneFormattedDateString}}</span><span> Percentage of Global Gil: </span><span id="percentageOfGlobalGil" >{{playerData.percentageOfGlobalGil}}%</span><br />
+										<span>Leaderboard Rank: #</span><span id="rank" *ngIf="playerData.leaderboardPosition != null">{{playerData.leaderboardPosition}}</span><span id="rank" *ngIf="playerData.leaderboardPosition == null" title="Leaderboard ranks are only calculated for players who have been active in the last 30 days" >None</span>
+										<span> Exp Rank: #</span><span id="expRank" *ngIf="playerData.expRank != null" >{{playerData.expRank}}</span><span id="expRank" *ngIf="playerData.leaderboardPosition == null" title="Leaderboard ranks are only calculated for players who have been active in the last 30 days" >None</span><br />
+										</div>
+										<div class="cell small-2">
+										<br />
+										</div>
+										<div class="cell small-2"></div>
+									</div>
+								</div>
+								<div class="cell small-3"></div>
+							</div>
+						</div>
+						<div class="cell small-2">
+							<div class="grid-x">
+								<div class="cell small-3"></div>
+								<div class="cell small-7">
+									<app-mychartcomponent [chartData]="chartData" [height]="350" [width]="700"></app-mychartcomponent>
+									<br />
+								</div>
+								<div class="cell small-2"></div>
+							</div>
+						</div>
+						<div class="cell small-3">
+							<div class="grid-x">
+								<div class="cell small-3"></div>
+								<div class="cell small-7">
+									<span style="font-weight: bold;">Skills:</span>
+									<br />
+									<span *ngFor="let skill of playerData.playerRecord.playerSkills">
+										<span *ngIf="isSkillTypeUser(skill.skillType) && skill.skill.length > 0"  >
+											<span title="{{skill.metadata}}">{{skill.skill}}</span><span> - </span>
+										</span>
+									</span>
+									<br />
+									<div *ngIf="playerData.containsPrestige">
+										<span style="font-weight: bold;">Prestige Skills:</span>
+										<br />
+										<span *ngFor="let skill of playerData.playerRecord.playerSkills">
+											<span *ngIf="!isSkillTypeUser(skill.skillType) && skill.skill.length > 0">
+												<span title="{{skill.metadata}}" >{{skill.skill}}</span><span> - </span>
+											</span>
+										</span>
+									</div>
+								</div>
+								<div class="cell small-2"></div>
+							</div>
+						</div>
+						<div class="cell small-1"></div>
+					</div>
+				</div>
+				<div class="cell small 5"></div>
+			</div>
+		</div>
+		<div class="cell small-4"></div>
+	</div>
+</div>

@@ -1,0 +1,65 @@
+<app-menu></app-menu>
+<div class="grid-y fluid">
+    <div class="cell small-2">
+        <br />
+    </div>
+    <div class="cell small-3">
+        <div class="grid-x fluid">
+            <div class="cell small-3"></div>
+            <div class="cell small-6">
+                <h3>Exp Leaderboard</h3>
+                <table class="hover">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Level</th>
+                            <th>Exp</th>
+                            <th>Prestige Level*</th>
+                            <th>Allegiance</th>
+                            <th>Last Active</th>
+                        </tr>	
+                    </thead>
+                    <tbody >
+                        <tr *ngFor="let player of leaderboard">
+                            <td [id]="player.player + 'Rank'">{{player.rank}}</td>
+                            <td [id]="player.player + 'NameCell'">
+                                <a [id]="player.player + 'Link'" [href]="'/player/' + player.player" target="_blank" style="color: inherit;" >
+                                    <span style="text-decoration: underline;" [id]="player.player + 'Name'" >{{player.player}}</span>
+                                </a>
+                            </td>
+                            <td [id]="player.player + 'Level'" >{{player.level}}</td>
+                            <td [id]="player.player + 'Exp'" >{{player.exp}}</td>
+                            <td [id]="player.player + 'PrestigeLevel'" >{{player.prestigeLevel}}</td>
+                            <td [id]="player.player + 'Allegiance'" class="allegianceEntry" [style.color]="getColorForLeaderboardEntry(player)">{{player.team | uppercase}}</td>
+                            <td [id]="player.player + 'LastActive'" >{{player.lastActive}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Level</th>
+                            <th>Exp</th>
+                            <th>Prestige Level*</th>
+                            <th>Allegiance</th>
+                            <th>Last Active</th>
+                        </tr>	
+                    </tfoot>
+                </table>
+            </div>
+            <div class="cell small-3">
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="cell small-2">
+        <div class="grid-x fluid">
+            <div class="cell small-3"></div>
+            <div class="cell small-6">
+                <span>This leaderboard was generated: {{generationDateString}}</span>
+            </div>
+            <div class="cell small-3"></div>
+        </div>
+    </div>
+</div>

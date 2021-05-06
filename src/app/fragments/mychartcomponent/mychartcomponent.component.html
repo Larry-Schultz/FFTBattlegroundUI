@@ -1,0 +1,15 @@
+<div style="display: block;" *ngIf="chartData != null && chartData !== undefined && chartData.chartData != null && chartData.chartData !== undefined && chartData.chartData.length > 0">
+  <canvas baseChart 
+    [datasets]="chartData.chartData"
+    [labels]="chartData.chartLabels"
+    [options]="chartData.chartOptions"
+    [colors]="chartData.chartColors"
+    [legend]="chartData.chartLegend"
+    [chartType]="chartData.chartType"
+    [plugins]="chartData.chartPlugins"
+
+    [width]="width != null && width !== undefined ? width : null"
+    [height]="height != null && height !== undefined ? height : null"
+    >
+  </canvas>
+</div>

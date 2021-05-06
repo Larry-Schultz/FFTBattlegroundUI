@@ -1,0 +1,33 @@
+.statLabel {
+    font-weight: bold;
+}
+
+.topOnePlayer {
+    font-weight: bold;
+}
+
+.allegiancNameColumn {
+    width: 10%;	
+}
+
+.topPlayerColumn {
+    width: 25%;
+}
+
+.statsColumn {
+    width: 65%;
+}
+
+table{
+    table-layout:fixed;
+    border-collapse:collapse;
+    border:1px solid black;
+}
+
+table th{
+    border:1px solid black;
+}
+
+table td{
+    border:1px solid black;
+}

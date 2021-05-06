@@ -1,0 +1,10 @@
+<li id="{{betEntry.player + 'Record'}}">
+    <span id="{{betEntry.player + 'Name'}}" class="player" title="{{betEntry.titleString()}}">
+        <a id="{{betEntry.player + 'DataLink'}}" href="{{'/player/' + betEntry.player}}" target="_blank" style="color: inherit;">{{betEntry.player}}</a>
+    </span>
+    <span>-</span>
+    <span id="{{betEntry.player + 'BetAmount'}}" class="betAmount" title="{{betEntry.betText}}" >{{betEntry.betAmount}}</span>
+    <span *ngIf="isSpecial()">
+    <span [title]="betEntry.betType.toString() | titlecase">{{betEntry.betType.toLocaleLowerCase() != 'value' ? '*' : ''}}</span>
+    </span>
+</li>

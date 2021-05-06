@@ -1,0 +1,28 @@
+<li [id]="fightEntry.player + 'Entry'" style="color: inherit;">
+    <a [id]="fightEntry.player + 'DataLink'" [href]="'/player/' + fightEntry.player" target="_blank" style="color: inherit;" class="player" [title]="fightEntry.ratioString">{{fightEntry.player}}</a>
+    <span>: </span>
+    <span>
+        !fight 
+        <span   *ngIf="fightEntry.className" 
+                [id]="fightEntry.player + 'FightEntryClassNameTag'" 
+                [title]="fightEntry.classDescription ? fightEntry.classDescription : null" 
+                [style.color]="fightEntry.classColor ? fightEntry.classColor : null">
+            {{fightEntry.className}}
+        </span> 
+
+        <span   *ngIf="fightEntry.skill" 
+                [id]="fightEntry.player + 'FightEntrySkillTag'" 
+                [title]="fightEntry.skillDescription ? fightEntry.skillDescription : null" 
+                [style.color]="fightEntry.skillColor ? fightEntry.skillColor : null">
+            {{fightEntry.skill}}
+        </span>
+
+        <span   *ngIf="fightEntry.exclusionSkill" 
+                [id]="fightEntry.player + 'FightEntryExclusionSkillTag'" 
+                [title]="fightEntry.exclusionSkillDescription ? fightEntry.exclusionSkillDescription : null" 
+                [style.color]="fightEntry.exclusionSkillColor? fightEntry.exclusionSkillColor : null">
+            {{fightEntry.exclusionSkill}}
+        </span>
+
+    </span>
+</li>

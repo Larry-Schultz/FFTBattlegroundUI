@@ -1,0 +1,9 @@
+<span *ngIf="unitInfo && teamInfo" class="fightData" [style.color]="getTeamColor(unitInfo.team)">
+    <a id="fightLeftPlayer1Link" [href]="'/player/' + unitInfo.player" target="_blank" style="color: inherit;">
+    <span class="fightPlayerName" [title]="teamInfo.playerDataString">{{unitInfo.player}}</span>
+    </a>
+    <span> the </span>
+    <span [title]="unitInfo.unitInfoString">{{unitInfo.unit.Class}}</span>
+    <span *ngIf="unitInfo.isRaidBoss" title="Raid Boss" class="raidBoss">[!]</span>
+</span>
+<img *ngIf="!unitInfo" class="fightLoading leftPlayerNameLoading" src="assets/Pulse-1s-200px.gif" />

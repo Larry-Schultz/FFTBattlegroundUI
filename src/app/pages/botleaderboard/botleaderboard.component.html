@@ -1,0 +1,59 @@
+<app-menu></app-menu>
+<div class="grid-y fluid">
+    <div class="cell small-2">
+        <br />
+    </div>
+    <div class="cell small-3">
+        <div class="grid-x fluid">
+            <div class="cell small-3"></div>
+            <div class="cell small-6">
+                <table class="hover">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Balance</th>
+                            <th>Percentage of Global Gil</th>
+                            <th>Last Active</th>
+                        </tr>	
+                    </thead>
+                    <tbody *ngIf="leaderboard != null && leaderboard !== undefined">
+                        <tr *ngFor="let bot of leaderboard">
+                            <td [id]="bot.name + 'Rank'">{{bot.rank}}</td>
+                            <td [id]="bot.name + 'NameCell'">
+                                <a [id]="bot.name + 'Link'" [href]="'/player/' + bot.name" target="_blank" style="color: inherit;" >
+                                    <span style="text-decoration: underline;" [id]="bot.name + 'Name'">{{bot.name}}</span>
+                                </a>
+                            </td>
+                            <td [id]="bot.name + 'Amount'">{{bot.gil}}</td>
+                            <td [id]="bot.name + 'PercentageOfGlobalGil'">{{bot.percentageOfGlobalGil + '%'}}</td>
+                            <td [id]="bot.name + 'LastActive'">{{bot.lastActiveDate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cell small-3">
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="cell small-5">
+        <div class="grid-x">
+            <div class="cell small-3"></div>
+            <div class="cell small-6">
+                <app-mychartcomponent [chartData]="chartData"></app-mychartcomponent>
+                <br />
+            </div>
+            <div class="cell small-3"></div>
+        </div>
+    </div>
+    <div class="cell small-2">
+        <div class="grid-x fluid">
+            <div class="cell small-3"></div>
+            <div class="cell small-6">
+                <span>This leaderboard was generated: {{generationDateString}}"</span>
+            </div>
+            <div class="cell small-3"></div>
+        </div>
+    </div>
+</div>

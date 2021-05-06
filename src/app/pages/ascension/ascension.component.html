@@ -1,0 +1,55 @@
+<app-menu></app-menu>
+<div class="grid-y fluid">
+    <div class="cell small-2"></div>
+    <div class="cell small-5">
+        <div class="grid-x">
+            <div class="cell small-3"></div>
+            <div class="cell small-6">
+                <br />
+                <h3 id="Ascended">The Ascended</h3>
+                <table class="hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Prestige Level</th>
+                            <th>Allegiance</th>
+                            <th>Last Active</th>
+                        </tr>	
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let player of prestigeTable">
+                            <td [id]="player.name + 'NameCell'">
+                                <a [id]="player.name + 'Link'" [href]="'/player' + player.name" target="_blank" style="color: inherit;">
+                                    <span style="text-decoration: underline;" [id]="player.name + 'Name'">{{player.name}}</span>
+                                </a>
+                            </td>
+                            <td [id]="player.name + 'PrestigeLevel'" >{{player.prestigeLevel}}</td>
+                            <td [id]="player.name + 'Allegiance'" class="allegianceEntry" [style.color]="getColorForPrestige(player)" >{{player.allegiance | uppercase}}</td>
+                            <td [id]="player.name + 'LastActive'" >{{player.lastActive}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Prestige Level</th>
+                            <th>Allegiance</th>
+                            <th>Last Active</th>
+                        </tr>	
+                    </tfoot>
+                </table>
+            </div>
+            <div class="cell small-3"></div>
+        </div>
+    </div>
+    <div class="cell small-1"></div>
+    <div class="cell small-2">
+        <div class="grid-x fluid">
+            <div class="cell small-3"></div>
+            <div class="cell small-6">
+                <span>This leaderboard was generated: {{generationDateString}}</span>
+            </div>
+            <div class="cell small-3"></div>
+        </div>
+    </div>
+    <div class="cell small-2"></div>
+</div>

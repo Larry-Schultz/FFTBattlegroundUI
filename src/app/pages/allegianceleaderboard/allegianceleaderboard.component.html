@@ -1,0 +1,161 @@
+<app-menu></app-menu>
+<div class="grid-y fluid">
+    <div class="cell small-2">
+    </div>
+    <div class="cell small-10">
+        <div class="grid-x fluid">
+            <div class="cell small-3"></div>
+            <div class="cell small-6">
+                <div class="grid-y fluid" >
+                    <div class="cell large-1">
+                        <br />
+                        <h2>Allegiance Leaderboard</h2>
+                        <p>Includes only active players that are neither in the <a href="/playerLeaderboard">Top 10 Players</a> or <a href="/botleaderboard">bots</a></p>
+                    </div>
+                    <div *ngIf="allegianceLeaderboard != null && allegianceLeaderboard !== undefined">
+                        <div *ngFor="let allegianceBoard of allegianceLeaderboard" [id]="allegianceBoard.team.toString() + '_grid'" class="cell large-1">
+                            <br />
+                            <table>
+                                <thead>
+                                    <th class="allegiancNameColumn" [id]="allegianceBoard.team + '_nameLabel'" [style.border]="getBorderColor(allegianceBoard)">
+                                        <span class="teamName" [id]="allegianceBoard.team + '_name'" [style.color]="getElementColor(allegianceBoard)">{{allegianceBoard.position + ') ' + getProperTeamName(allegianceBoard)}}</span>
+                                    </th>
+                                    <th class="topPlayerColumn" [id]="allegianceBoard.team + '_topPlayersLabel'" [style.border]="getBorderColor(allegianceBoard)">Top Players</th>
+                                    <th class="statsColumn" [id]="allegianceBoard.team + '_statsLabel'" [style.border]="getBorderColor(allegianceBoard)">Stats</th>
+                                    <!-- <th>Gil Balance History</th> -->
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="allegiancNameColumn" [id]="allegianceBoard.team + '_nameData'" [style.border]="getBorderColor(allegianceBoard)">
+                                            <img [src]="getFormattedPortraitUrl(allegianceBoard)" [title]="getPortraitName(allegianceBoard)" [alt]="getPortraitName(allegianceBoard)" style="display:block;" width="100%" height="100%"/>
+                                        </td>
+                                        <td class="topPlayerColumn" [id]="allegianceBoard.team + '_topPlayersData'" [style.border]="getBorderColor(allegianceBoard)">
+                                            <div class="grid-y fluid">
+                                                <div class="cell small-1"><br /></div>
+                                                <div class="cell small-2" >
+                                                    <span>
+                                                        <span>{{getFormattedPosition(allegianceBoard.leaderboard[0])}}</span><span>) </span><a class="topOnePlayer" [href]="'/player/' + allegianceBoard.leaderboard[0].name" target="_blank" style="color: inherit;">{{allegianceBoard.leaderboard[0].name}}</a>
+                                                        <span> - </span><span >{{getFormattedBalance(allegianceBoard.leaderboard[0])}}</span>
+                                                    </span>
+                                                </div>
+                                                <div class="cell small-1"><br /></div>
+                                                <div *ngFor = "let allegianceTopPlayer of allegianceBoard.leaderboard | slice:1:5">
+                                                    <div class="cell small-1" >
+                                                        <span>
+                                                            <span>{{getFormattedPosition(allegianceTopPlayer)}}</span><span>) </span><a [href]="'/player/' + allegianceTopPlayer.name" target="_blank" style="color: inherit;">{{allegianceTopPlayer.name}}</a>
+                                                            <span> - </span><span>{{getFormattedBalance(allegianceTopPlayer)}}</span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="cell small-1"><br /></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="statsColumn" th:id="${allegianceBoard.team + '_statsData'}" [style.border]="getBorderColor(allegianceBoard)">
+                                            <div class="grid-container">
+                                                <div class="grid-y fluid">
+                                                    <div class="cell small-1">
+                                                        <div class="grid-x fluid">
+                                                            <div class="cell small-4">
+                                                            <span class="statLabel">Total Gil: </span><span>{{getFormattedTotalGil(allegianceBoard)}}</span>
+                                                            </div>
+                                                            <div class="cell small-4">
+                                                            <span class="statLabel">Total Active Players: </span><span>{{getFormattedPlayerCount(allegianceBoard)}}</span>
+                                                            </div>
+                                                            <div class="cell small-4">
+                                                            <span class="statLabel">Gil Per Player: </span><span>{{getFormattedGilPerPlayer(allegianceBoard)}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cell small-1"><br /></div>
+                                                    <div class="cell small-1">
+                                                        <div class="grid-x fluid">
+                                                            <div class="cell small-4">
+                                                            <span class="statLabel">Bet Wins: </span><span>{{getFormattedBetWins(allegianceBoard)}}</span>
+                                                            </div>
+                                                            <div class="cell small-4">
+                                                            <span class="statLabel">Bet Losses: </span><span>{{getFormattedBetLosses(allegianceBoard)}}</span>
+                                                            </div>
+                                                            <div class="cell small-4">
+                                                            <span class="statLabel">Bet Ratio: </span><span>{{getFormattedBetRatio(allegianceBoard)}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cell small-1"><br /></div>
+                                                    <div class="cell small-1">
+                                                        <div class="grid-x fluid">
+                                                            <div class="cell small-4">
+                                                            <span class="statLabel">Fight Wins: </span><span>{{getFormattedFightWins(allegianceBoard)}}</span>
+                                                            </div>
+                                                            <div class="cell small-4">
+                                                            <span class="statLabel">Fight Losses: </span><span>{{getFormattedFightLosses(allegianceBoard)}}</span>
+                                                            </div>
+                                                            <div class="cell small-4">
+                                                            <span class="statLabel">Fight Ratio: </span><span>{{getFormattedFightRatio(allegianceBoard)}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cell small-1"><br /></div>
+                                                    <div class="cell small-1">
+                                                        <div class="grid-x fluid">
+                                                            <div class="cell small-4">
+                                                            <span class="statLabel">Bet Quantile: </span><span class="quantile" [id]="allegianceBoard.team.toString() + '_betQuantile'">{{getFormattedBetQuantile(allegianceBoard)}}</span>
+                                                            </div>
+                                                            <div class="cell small-4">
+                                                            <span class="statLabel">Fight Quantile: </span><span class="quantile" [id]="allegianceBoard.team.toString() + '_fightQuantile'">{{getFormattedFightQuantile(allegianceBoard)}}</span>
+                                                            </div>
+                                                            <div class="cell small-4"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cell small-1"><br /></div>
+                                                    <div class="cell small-1">
+                                                        <div class="grid-x fluid">
+                                                            <div class="cell small-4">
+                                                            <span class="statLabel">Total Levels: </span><span>{{getFormattedTotalLevels(allegianceBoard)}}</span>
+                                                            </div>
+                                                            <div class="cell small-4">
+                                                            <span class="statLabel">Levels per Player: </span><span>{{getFormattedLevelsPerPlayer(allegianceBoard)}}</span>
+                                                            </div>
+                                                            <div class="cell small-4">
+                                                                <span class="statLabel">Total Prestiges: </span><span>{{getFormattedTotalPrestiges(allegianceBoard)}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cell small-1"><br /></div>
+                                                    <div class="cell small-1">
+                                                        <div class="grid-x fluid">
+                                                            <div class="cell small-6">
+                                                                <span class="statLabel">Champion Wins for Season: </span><span>{{getFormattedCurrentSeasonFightWinsAsChampion(allegianceBoard)}}</span>
+                                                            </div>
+                                                            <div class="cell small-3"></div>
+                                                            <div class="cell small-3"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cell small-1"><br /></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="cell large-2">
+                        <br />
+                    </div>
+                    <div class="cell large-1">
+                        <div class="grid-x fluid">
+                            <div class="cell large-2"></div>
+                            <div class="cell large-7">
+                                <span *ngIf="generationDate != null && generationDate !== undefined">This leaderboard was generated: {{getFormattedGenerationString()}}</span>
+                            </div>
+                            <div class="cell large-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cell small-3">
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

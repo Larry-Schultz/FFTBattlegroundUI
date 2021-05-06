@@ -1,0 +1,10 @@
+<div class="betEntry" [style.color]="getGridColor()" >
+    <ul *ngIf="betEntries" class="betList">
+        <app-betentry *ngFor="let betEntry of betEntries; trackBy: betEntryTrackByFunction" 
+            [betEntry]="betEntry">
+        </app-betentry>
+    </ul>
+    <div *ngIf="betEntries && otherTeamBetEntries && betEntries.length < otherTeamBetEntries.length" >
+        <br *ngFor="let empty of generateEmptyArray(getDifferenceInSizeBetweenBetEntries())" />
+    </div>
+</div>

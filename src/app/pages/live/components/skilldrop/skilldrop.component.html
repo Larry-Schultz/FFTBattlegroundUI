@@ -1,0 +1,3 @@
+<span class="skilldropIntro">The current skilldrop is: </span>
+<span *ngIf="skillDropEvent" id="skilldropName" [title]="skillDropEvent.skillDescription ? skillDropEvent.skillDescription : null">{{skillDropEvent.skill}}</span>
+<img *ngIf="!skillDropEvent" id="skillImage" class="mapPlayerLoadingImage" src="assets/Pulse-1s-200px.gif" />

@@ -1,0 +1,7 @@
+<div style="border-style: solid; word-wrap: break-word; color: black; border-radius: 25px; background-color: white;">
+    <ul id="fightGrid" style="list-style-type: none;">
+        <app-fightentry *ngFor="let fightEntry of fightEntries;" 
+            [fightEntry]="fightEntry">
+        </app-fightentry>
+    </ul>
+</div>
