@@ -3,12 +3,15 @@ import { MusicEvent, SkillDropEvent, MatchInfoEvent } from './matchevents';
 import { Notice } from '../components/notice/notice.component';
 import { GridMode } from '../components/grids/grids.component';
 import { FightEntry } from '../components/fightentry/fightentry.component';
-import { TeamInfoEvent, UnitInfoEvent } from './teamevents';
+import { UnitInfoEvent } from './teamevents';
 import { Allegiance } from 'src/app/model/playerRecord';
 import { BadBetEvent } from './betevents';
 import { BadFightEvent } from './fightevents';
 import { TeamInfoEntry } from '../components/teaminfo/teaminfo.component';
-import { cloneDeep } from 'lodash';
+
+import { TournamentTracker,
+     TournamentTrackerBlank,
+     TournamentTrackerData } from '../components/tournamenttracker/tournamenttracker.component';
 
 const TEAM_INFO_COUNT = 4;
 
@@ -24,6 +27,7 @@ export class LiveData {
     public currentNotice = Notice.LOADING_NOTICE;
     public matchInfo: MatchInfoEvent;
     public gridMode: GridMode = GridMode.BET;
+    public tournamentData: TournamentTracker = new TournamentTrackerBlank();
 
     private team1TeamInfo: TeamInfoEntry[];
     private team2TeamInfo: TeamInfoEntry[];
@@ -168,4 +172,13 @@ export class LiveData {
     public getTeam2UnitInfo(index: number): UnitInfoEvent {
         return this.team2UnitInfo[index];
     }
+
+    public blankOutTournamentData(): void {
+        this.tournamentData = new TournamentTrackerBlank();
+    }
+
+    public setTournamentData(tournamentData: TournamentTrackerData) {
+        this.tournamentData = tournamentData;
+    }
+
 }

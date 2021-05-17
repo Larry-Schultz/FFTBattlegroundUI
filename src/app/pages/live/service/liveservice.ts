@@ -10,7 +10,7 @@ import { GenericResponse, GenericElementOrdering } from 'src/app/util/genericres
 import { BattleGroundEventType, BattleGroundEvent} from '../model/battlegroundevent';
 import { BettingBeginsEvent, BetEvent, BetInfoEvent, BadBetEvent, ResultsEvent, BettingEndsEvent } from '../model/betevents';
 import { BadFightEvent, FightEntryEvent, FightBeginsEvent } from '../model/fightevents';
-import { TeamInfoEvent, UnitInfoEvent } from '../model/teamevents';
+import { TeamInfoEvent, UnitInfoEvent, TournamentUpdateEvent } from '../model/teamevents';
 import { BetEntry, BetEntryFactory } from '../components/betentry/betentry.component';
 import { LiveData } from '../model/livedata';
 import { MusicEvent, SkillDropEvent, MatchInfoEvent } from '../model/matchevents';
@@ -18,6 +18,7 @@ import { Notice } from '../components/notice/notice.component';
 import { FightEntry } from '../components/fightentry/fightentry.component';
 import { TeamInfoEntry } from '../components/teaminfo/teaminfo.component';
 import { GridMode } from '../components/grids/grids.component';
+import { TournamentTrackerData } from '../components/tournamenttracker/tournamenttracker.component';
 
 @Injectable({
   providedIn: 'root'
@@ -96,6 +97,10 @@ export class LiveService {
 				const matchInfoEvent = event as MatchInfoEvent;
 				classRef.populateMatchInfo(matchInfoEvent);
 				break;
+			case BattleGroundEventType.TOURNAMENT_STATUS_UPDATE_EVENT:
+				const tournamentStatusUpdateEvent: TournamentUpdateEvent = event as TournamentUpdateEvent;
+				classRef.handleTournamentStatusUpdateEvent(tournamentStatusUpdateEvent);
+				break;
 			case BattleGroundEventType.SKILL_DROP:
 				const skillDropEvent = event as SkillDropEvent;
 				classRef.populateSkillDrop(skillDropEvent);
@@ -126,6 +131,7 @@ export class LiveService {
 		this.liveData.gridMode = GridMode.FIGHT;
 		this.liveData.team1 = null;
 		this.liveData.team2 = null;
+		this.liveData.blankOutTournamentData();
 	}
 
 	protected handleResultsEvent(event: ResultsEvent): void {
@@ -209,12 +215,16 @@ export class LiveService {
 		}
 	}
 
-	handleUnitInfo(event: UnitInfoEvent) {
+	protected handleUnitInfo(event: UnitInfoEvent) {
 		if (event.team === this.liveData.team1) {
 			this.liveData.addUnitInfo(Allegiance.LEFT, event);
 		} else if (event.team === this.liveData.team2) {
 			this.liveData.addUnitInfo(Allegiance.RIGHT, event);
 		}
+	}
+
+	protected handleTournamentStatusUpdateEvent(event: TournamentUpdateEvent) {
+		this.liveData.setTournamentData(new TournamentTrackerData(event));
 	}
 
 	resetMatchBlock() {

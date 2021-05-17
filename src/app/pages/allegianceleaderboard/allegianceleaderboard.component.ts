@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser'
 
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { intToString, generateOrdinal, capitalize } from 'src/app/util/util';
@@ -22,7 +23,7 @@ export class AllegianceLeaderboardComponent implements OnInit {
   allegianceLeaderboard: AllegianceLeaderboard[];
   generationDate: Date;
 
-  constructor(private allegianceLeaderboardDataService: AllegianceLeaderboardDataService) { }
+  constructor(private allegianceLeaderboardDataService: AllegianceLeaderboardDataService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.allegianceLeaderboardDataService.find().subscribe((genericResponse: GenericResponse<AllegianceLeaderboardWrapper>): void => {
@@ -36,9 +37,9 @@ export class AllegianceLeaderboardComponent implements OnInit {
     return result;
   }
 
-  public getBorderColor(allegianceLeaderboard: AllegianceLeaderboard): string {
+  public getBorderColor(allegianceLeaderboard: AllegianceLeaderboard): SafeStyle {
     const prefix = '1px solid ';
-    const borderColor: string = prefix + getColor(allegianceLeaderboard.team);
+    const borderColor: SafeStyle = this.sanitizer.bypassSecurityTrustStyle(prefix + getColor(allegianceLeaderboard.team));
     return borderColor;
   }
 

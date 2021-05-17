@@ -6,4 +6,8 @@
     <span [title]="unitInfo.unitInfoString">{{unitInfo.unit.Class}}</span>
     <span *ngIf="unitInfo.isRaidBoss" title="Raid Boss" class="raidBoss">[!]</span>
 </span>
-<img *ngIf="!unitInfo" class="fightLoading leftPlayerNameLoading" src="assets/Pulse-1s-200px.gif" />
+<span *ngIf="!unitInfo">
+    <img  class="fightLoading leftPlayerNameLoading" src="assets/Pulse-1s-200px.gif" />
+    <span> the </span>
+    <img  class="fightLoading leftPlayerNameLoading" src="assets/Pulse-1s-200px.gif" />
+</span>

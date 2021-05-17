@@ -35,3 +35,9 @@ export interface Unit {
 	ClassSkills: string[];
 	ExtraSkills: string[];
 }
+
+export interface TournamentUpdateEvent extends BattleGroundEvent {
+	teamStillActiveMap: GenericPairing<Allegiance, boolean>[] ;
+	teamInfoMap: GenericPairing<Allegiance, TeamInfoEvent>[] ;
+	playerUnitInfoMap: GenericPairing<Allegiance, UnitInfoEvent[]>[]
+}

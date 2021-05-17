@@ -16,9 +16,11 @@ import { BotlandComponent } from '../pages/botland/botland.component';
 const routes: Routes = [
     { path: '', component: LivePageComponent },
     { path: 'player', component: PlayerRecordComponent },
+    { path: 'player/', component: PlayerRecordComponent },
     { path: 'player/:player', component: PlayerRecordComponent },
     { path: 'music', component: MusicListComponent },
     { path: 'api', component: ApiComponent },
+    { path: 'apidocs', component: ApiComponent },
     { path: 'ascension', component: AscensionComponent },
     { path: 'expLeaderboard', component: ExpLeaderboardComponent },
     { path: 'leaderboard', component: PlayerLeaderboardComponent },

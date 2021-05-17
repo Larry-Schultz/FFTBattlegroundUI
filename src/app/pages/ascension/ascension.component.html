@@ -19,7 +19,7 @@
                     <tbody>
                         <tr *ngFor="let player of prestigeTable">
                             <td [id]="player.name + 'NameCell'">
-                                <a [id]="player.name + 'Link'" [href]="'/player' + player.name" target="_blank" style="color: inherit;">
+                                <a [id]="player.name + 'Link'" [href]="'/player/' + player.name" target="_blank" style="color: inherit;">
                                     <span style="text-decoration: underline;" [id]="player.name + 'Name'">{{player.name}}</span>
                                 </a>
                             </td>

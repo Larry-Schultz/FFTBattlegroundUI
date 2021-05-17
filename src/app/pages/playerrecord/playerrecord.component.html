@@ -8,7 +8,7 @@
 					<div class="input-group-button">
 						<label for="playerNamesInput">Player Name:</label>
 						<div class="ng-autocomplete">
-							<ng2-completer [(ngModel)]="currentSelectBoxSelection" [datasource]="playerList" [minSearchLength]="4" size="25" style="width: 150px;"></ng2-completer>
+							<ng2-completer [(ngModel)]="currentSelectBoxSelection" [datasource]="playerList" [minSearchLength]="4" size="25" style="width: 250px;"></ng2-completer>
 						</div>
 						<button id="playerSearchButton" class="button" value="Submit" (click)="playerSearch();" >Submit</button>
 					</div>
@@ -50,28 +50,40 @@
 											<br />
 										</div>
 										<div class="cell small-2">
-										<span style="font-weight: bold;">Betting</span><br />
-										<span>Wins: </span><span id="winSpan" >{{playerData.playerRecord.wins}}</span> <span> Losses: </span><span id="lossSpan" >{{playerData.playerRecord.losses}}</span><span> Ratio: </span><span id="ratioSpan" >{{playerData.betRatio}}</span>
-										<span> Percentile: </span><span id="betPercentile" *ngIf="playerData.betPercentile != null">{{playerData.betPercentile + 'th'}}</span><span id="betPercentile" *ngIf="playerData.betPercentile == null" title="Percentiles are only calculated for players who have been active in the last 30 days">None</span>
+											<span style="font-weight: bold;">Betting</span><br />
+											<span>Wins: </span><span id="winSpan" >{{playerData.playerRecord.wins}}</span> <span> Losses: </span><span id="lossSpan" >{{playerData.playerRecord.losses}}</span><span> Ratio: </span><span id="ratioSpan" >{{playerData.betRatio}}</span>
+											<span> Percentile: </span><span id="betPercentile" *ngIf="playerData.betPercentile != null">{{playerData.betPercentile + 'th'}}</span><span id="betPercentile" *ngIf="playerData.betPercentile == null" title="Percentiles are only calculated for players who have been active in the last 30 days">None</span>
+											<br />
+											<span>Estimated Balance: </span><span id="estimatedBalanceSpan" >{{playerData.playerRecord.lastKnownAmount.toLocaleString() + 'G'}}</span> <span> Highest Known Amount: </span><span id="highestKnownAmount" >{{playerData.playerRecord.highestKnownAmount.toLocaleString() + 'G'}}</span><br />
 										</div>
 										<br />
 										<div class="cell small-2">
-										<span style="font-weight: bold;">Fighting</span><br />
-										<span>Wins: </span><span id="fightWinSpan" >{{playerData.playerRecord.fightWins}}</span> <span> Losses: </span><span id="fightLossSpan" >{{playerData.playerRecord.fightLosses}}</span> <span> Ratio: </span><span id="fightRatioSpan" >{{playerData.fightRatio}}</span>
-										<span> Percentile: </span><span id="fightPercentile" *ngIf="playerData.fightPercentile != null" >{{playerData.fightPercentile + 'th'}}</span><span id="fightPercentile" *ngIf="playerData.fightPercentile == null" title="Percentiles are only calculated for players who have been active in the last 30 days">None</span>
+											<span style="font-weight: bold;">Fighting</span><br />
+											<span>Wins: </span><span id="fightWinSpan" >{{playerData.playerRecord.fightWins}}</span> <span> Losses: </span><span id="fightLossSpan" >{{playerData.playerRecord.fightLosses}}</span> <span> Ratio: </span><span id="fightRatioSpan" >{{playerData.fightRatio}}</span>
+											<span> Percentile: </span><span id="fightPercentile" *ngIf="playerData.fightPercentile != null" >{{playerData.fightPercentile + 'th'}}</span><span id="fightPercentile" *ngIf="playerData.fightPercentile == null" title="Percentiles are only calculated for players who have been active in the last 30 days">None</span>
+											<br />
+											<span>Snub Streak: </span><span>{{playerData.playerRecord.snubStreak}}</span><span> tries</span>
 										</div>
 										<br />
 										<div class="cell small-2">
-										<span style="font-weight: bold;">Other Data:</span><br />
-										<span>Estimated Balance: </span><span id="estimatedBalanceSpan" >{{playerData.playerRecord.lastKnownAmount}}</span> <span> Highest Known Amount: </span><span id="highestKnownAmount" >{{playerData.playerRecord.highestKnownAmount}}</span><br />
-										<span>Estimated Level: </span><span id="estimatedLevelSpan" >{{playerData.playerRecord.lastKnownLevel}}</span><span> Estimated Remaining Exp: </span><span id="estimatedRemainingExp" >{{playerData.playerRecord.lastKnownRemainingExp}}</span><br />
-										<span>Allegiance: </span><span id="allegiance" [style.color]="allegianceColor(playerData.playerRecord.allegiance)" >{{playerData.playerRecord.allegiance | uppercase}}</span><span> Prestige Level: </span><span id="prestigeLevel" >{{playerData.prestigeLevel}}</span><br />
-										<span>Last Active: </span><span id="lastActive" >{{playerData.timezoneFormattedDateString}}</span><span> Percentage of Global Gil: </span><span id="percentageOfGlobalGil" >{{playerData.percentageOfGlobalGil}}%</span><br />
-										<span>Leaderboard Rank: #</span><span id="rank" *ngIf="playerData.leaderboardPosition != null">{{playerData.leaderboardPosition}}</span><span id="rank" *ngIf="playerData.leaderboardPosition == null" title="Leaderboard ranks are only calculated for players who have been active in the last 30 days" >None</span>
-										<span> Exp Rank: #</span><span id="expRank" *ngIf="playerData.expRank != null" >{{playerData.expRank}}</span><span id="expRank" *ngIf="playerData.leaderboardPosition == null" title="Leaderboard ranks are only calculated for players who have been active in the last 30 days" >None</span><br />
+											<span style="font-weight: bold;">Other Data:</span><br />
+											<span>Estimated Level: </span><span id="estimatedLevelSpan" >{{playerData.playerRecord.lastKnownLevel}}</span><span> Estimated Remaining Exp: </span><span id="estimatedRemainingExp" >{{playerData.playerRecord.lastKnownRemainingExp}}</span>
+											<br />
+											<span>Allegiance: </span><span id="allegiance" [style.color]="allegianceColor(playerData.playerRecord.allegiance)" >{{playerData.playerRecord.allegiance | uppercase}}</span><span> Prestige Level: </span><span id="prestigeLevel" >{{playerData.prestigeLevel}}</span>
+											<br />
+											<span>Last Active: </span><span id="lastActive" >{{playerData.timezoneFormattedDateString}}</span>
+											<span *ngIf="playerData.timezoneFormattedLastFightActiveDateString">
+												<span> Last Fight Active: </span><span>{{playerData.timezoneFormattedLastFightActiveDateString}}</span>
+											</span>
+											<br />
+											<span> Percentage of Global Gil: </span><span id="percentageOfGlobalGil" >{{playerData.percentageOfGlobalGil}}%</span>
+											<br />
+											<span>Leaderboard Rank: #</span><span id="rank" *ngIf="playerData.leaderboardPosition != null">{{playerData.leaderboardPosition}}</span><span id="rank" *ngIf="playerData.leaderboardPosition == null" title="Leaderboard ranks are only calculated for players who have been active in the last 30 days" >None</span>
+											<span> Exp Rank: #</span><span id="expRank" *ngIf="playerData.expRank != null" >{{playerData.expRank}}</span><span id="expRank" *ngIf="playerData.leaderboardPosition == null" title="Leaderboard ranks are only calculated for players who have been active in the last 30 days" >None</span>
+											<br />
 										</div>
 										<div class="cell small-2">
-										<br />
+											<br />
 										</div>
 										<div class="cell small-2"></div>
 									</div>
@@ -92,24 +104,56 @@
 						<div class="cell small-3">
 							<div class="grid-x">
 								<div class="cell small-3"></div>
-								<div class="cell small-7">
-									<span style="font-weight: bold;">Skills:</span>
-									<br />
-									<span *ngFor="let skill of playerData.playerRecord.playerSkills">
-										<span *ngIf="isSkillTypeUser(skill.skillType) && skill.skill.length > 0"  >
-											<span title="{{skill.metadata}}">{{skill.skill}}</span><span> - </span>
-										</span>
-									</span>
-									<br />
-									<div *ngIf="playerData.containsPrestige">
-										<span style="font-weight: bold;">Prestige Skills:</span>
+								<div class="cell small-8">
+									<div *ngIf="playerData.classBonuses && playerData.classBonuses.length > 0">
+										<span style="font-weight: bold;">Class Bonus:</span>
 										<br />
-										<span *ngFor="let skill of playerData.playerRecord.playerSkills">
-											<span *ngIf="!isSkillTypeUser(skill.skillType) && skill.skill.length > 0">
-												<span title="{{skill.metadata}}" >{{skill.skill}}</span><span> - </span>
+										<span *ngFor="let classBonus of playerData.classBonuses; let i = index; let size = count">
+											<span *ngIf="classBonus && classBonus.length > 0">
+												<span [title]="classBonus" >{{classBonus}}</span>
+												<span *ngIf="i !== size -1" class="listDash" [id]="'classBonusDash' + i.toString()"> - </span>
 											</span>
 										</span>
 									</div>
+									<div *ngIf="playerData.skillBonuses && playerData.skillBonuses.length > 0">
+										<span style="font-weight: bold;">Skill Bonus:</span>
+										<br />
+										<span *ngFor="let skillBonus of playerData.skillBonuses; let i = index; let size = count">
+											<span *ngIf="skillBonus && skillBonus.length > 0">
+												<span [title]="getSkillBonusDescriptionFromExistingSkills(skillBonus)">{{skillBonus}}</span>
+												<span *ngIf="i !== size -1" class="listDash" [id]="'skillBonusDash' + i.toString()" [style.color]="getColorForSkillByName(skillBonus)"> - </span>
+											</span>
+										</span>
+									</div>
+									<div *ngIf="playerData.playerRecord.playerSkills && hasSkillCooldowns()">
+										<span style="font-weight: bold;">Skill Cooldowns:</span>
+										<br />
+										<span *ngFor="let skillWithCooldown of getCooldownPlayerSkillsList(playerData.playerRecord.playerSkills); let i = index; let size = count">
+											<span>
+												<span [title]="skillWithCooldown.metadata" [style.color]="getColorForSkill(skillWithCooldown)">{{skillWithCooldown.skill}}</span><sup title="cooldown">{{skillWithCooldown.cooldown}}</sup><span [title]="'cooldown: ' + skillWithCooldown.cooldown">{{' ' + getCooldownString(skillWithCooldown)}}</span> 
+												<span *ngIf="i !== size -1" class="listDash" [id]="'userSkillsCooldownDash' + i.toString()"> - </span>
+											</span>
+										</span>
+									</div>
+									<div *ngIf="playerData.containsPrestige">
+										<span style="font-weight: bold;">Prestige Skills:</span>
+										<br />
+										<span *ngFor="let skill of prestigeSkills(); let i = index; let size = count">
+												<span [title]="skill.metadata" [style.color]="'orange'">{{skill.skill}}</span>
+												<span *ngIf="i !== size -1" class="listDash" [id]="'prestigeSkillsDash' + i.toString()" > - </span>
+										</span>
+										<br />
+									</div>
+									<div *ngIf="playerData.playerRecord.playerSkills && playerData.playerRecord.playerSkills.length > 0">
+										<span style="font-weight: bold;">Skills:</span>
+										<br />
+										<span *ngFor="let skill of userSkills(); let i = index; let size = count">
+											<span [title]="skill.metadata" [style.color]="getColorForSkill(skill)">{{skill.skill}}</span>
+											<span  *ngIf="i !== size -1" class="listDash" [id]="'userSkillsDash' + i.toString()"> - </span>
+										</span>
+									</div>
+									<br />
+
 								</div>
 								<div class="cell small-2"></div>
 							</div>

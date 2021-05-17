@@ -7,6 +7,7 @@ import { Ng2CompleterModule } from 'ng2-completer';
 import { ChartsModule } from 'ng2-charts';
 import { DataTablesModule } from 'angular-datatables';
 import { TabsModule, ModalModule } from 'ngx-foundation';
+import { NgxPrettyCheckboxModule } from 'ngx-pretty-checkbox';
 import {
   InjectableRxStompConfig,
   RxStompService,
@@ -52,6 +53,8 @@ import { GridsComponent } from './pages/live/components/grids/grids.component';
 import { BetGridComponent } from './pages/live/components/betgrid/betgrid.component';
 import { FightGridComponent } from './pages/live/components/fightgrid/fightgrid.component';
 import { MatchHeightDirective } from './directives/matchheight.directive';
+import { TwitchPlayerComponent } from './pages/live/components/twitchplayer/twitchplayer.component';
+import { TournamentTrackerComponent } from './pages/live/components/tournamenttracker/tournamenttracker.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,8 @@ import { MatchHeightDirective } from './directives/matchheight.directive';
     LivePageComponent, TeamFightImagesComponent, BetentryComponent, FightEntryComponent, TwitchembedComponent, MatchBlockComponent,
     TeamFightImagesComponent, FightImageComponent, TeamInfoComponent, UnitInfoComponent, NoticeComponent, MatchCountsComponent,
     SongComponent, SkilldropComponent, MapNumberComponent, MapImageComponent, GridsComponent, BetGridComponent, FightGridComponent,
-
+    TwitchPlayerComponent,
+    
     MenuComponent,
     PlayerRecordComponent,
     MyLineChartComponent,
@@ -73,7 +77,7 @@ import { MatchHeightDirective } from './directives/matchheight.directive';
     BotLeaderboardComponent,
     GlobalGilCountComponent, GlobalGilCountTabComponent,
     AllegianceLeaderboardComponent,
-    BotlandComponent, BotlandModalComponent, MatchHeightDirective
+    BotlandComponent, BotlandModalComponent, MatchHeightDirective, TournamentTrackerComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +88,8 @@ import { MatchHeightDirective } from './directives/matchheight.directive';
     CommonModule,
     ChartsModule,
     DataTablesModule,
-    TabsModule.forRoot(), ModalModule.forRoot()
+    TabsModule.forRoot(), ModalModule.forRoot(),
+    NgxPrettyCheckboxModule
   ],
   providers: [
     {
@@ -96,6 +101,7 @@ import { MatchHeightDirective } from './directives/matchheight.directive';
       useFactory: rxStompServiceFactory,
       deps: [InjectableRxStompConfig],
     },
+    
   ],
   bootstrap: [AppComponent]
 })

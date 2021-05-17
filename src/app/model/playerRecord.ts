@@ -18,17 +18,27 @@ export interface PlayerRecord {
     createdSource?: any;
     updateSource: string;
     subscriber: boolean;
+    snubStreak: number;
 }
 
 export interface PlayerSkill {
     skill: string;
     skillType: SkillType;
     metadata: string;
+    cooldown: number;
+    skillCategory: SkillCategory;
 }
 
 export enum SkillType {
   USER = 'USER',
   PRESTIGE = 'PRESTIGE'
+}
+
+export enum SkillCategory {
+  NORMAL = 'NORMAL',
+  MONSTER = 'MONSTER',
+  STRONG_MONSTER = 'STRONG_MONSTER',
+  ELITE_MONSTER = 'ELITE_MONSTER'
 }
 
 export enum Allegiance {

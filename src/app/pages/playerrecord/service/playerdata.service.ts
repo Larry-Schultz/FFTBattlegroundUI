@@ -44,9 +44,12 @@ export interface PlayerData {
     prestigeLevel: number;
     leaderboardPosition: number;
     timezoneFormattedDateString: string;
+    timezoneFormattedLastFightActiveDateString: string;
     expRank: number;
     percentageOfGlobalGil: string;
     notFound: boolean;
     betPercentile: number;
     fightPercentile: number;
+    classBonuses: string[];
+    skillBonuses: string[]
 }

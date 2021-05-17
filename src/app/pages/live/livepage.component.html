@@ -8,7 +8,10 @@
 				<div class="cell small-2">
 					<app-twitchembed></app-twitchembed>
 				</div>
-				<div class="cell small-5"><br /></div>
+				<div class="cell small-2">
+					<app-tournamenttracker [loading]="liveService.liveData.loading" [tournamentData]="liveService.liveData.tournamentData"></app-tournamenttracker>
+				</div>
+				<div class="cell small-3"><br /></div>
 			</div>
 		</div>
 		<div class="cell small-3">

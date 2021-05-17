@@ -99,6 +99,9 @@ export class TeamInfoEntry {
   }
 
   protected static getPlayerRecordByPlayer(player: string, playerRecordArray: PlayerRecord[]): PlayerRecord {
+    if (!playerRecordArray) {
+      return null;
+    }
     const filteredPlayerRecords: PlayerRecord[] = playerRecordArray.filter((playerRecord: PlayerRecord): boolean => {
       return playerRecord.player === player;
     });

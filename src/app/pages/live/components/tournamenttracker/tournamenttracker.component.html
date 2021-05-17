@@ -1,0 +1,29 @@
+<h3>Tournament Tracker</h3>
+<table>
+    <tbody>
+        <tr *ngFor="let allegiance of allegiances">
+            <td *ngIf="tournamentData.teamStillActiveMap.get(allegiance)" [style.border]="rowBorderColor(allegiance)"> 
+                <span [style.color]="allegianceColor(allegiance)">{{allegiance.toString() | titlecase}} </span><span [style.color]="allegianceColor(allegiance)">:</span>
+            </td>
+            <td *ngIf="!tournamentData.teamStillActiveMap.get(allegiance)" [style.border]="rowBorderColor(allegiance)">
+                <s [style.color]="allegianceColor(allegiance)">
+                    <span [style.color]="allegianceColor(allegiance)">{{allegiance.toString() | titlecase}} </span><span [style.color]="allegianceColor(allegiance)">:</span>
+                </s>
+            </td>
+
+            <td *ngIf="tournamentData.teamStillActiveMap.get(allegiance)" [style.border]="rowBorderColor(allegiance)">
+                <span *ngFor="let unitInfoEvent of tournamentData.playerUnitInfoMap.get(allegiance); let i=index; let size=count" [style.color]="allegianceColor(allegiance)">
+                    <app-unitinfo [loading]="false" [teamInfo]="tournamentData.teamInfoMap.get(allegiance)[i]" [unitInfo]="tournamentData.playerUnitInfoMap.get(allegiance)[i]"></app-unitinfo><span>, </span>
+                </span>
+            </td>
+            <td *ngIf="!tournamentData.teamStillActiveMap.get(allegiance)" [style.border]="rowBorderColor(allegiance)"> 
+                <s [style.color]="allegianceColor(allegiance)">
+                    <span *ngFor="let unitInfoEvent of tournamentData.playerUnitInfoMap.get(allegiance); let i=index; let size=count">
+                        <app-unitinfo [loading]="loading" [teamInfo]="tournamentData.teamInfoMap.get(allegiance)[i]" [unitInfo]="tournamentData.playerUnitInfoMap.get(allegiance)[i]"></app-unitinfo><span>, </span>
+                    </span>
+                </s>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
