@@ -5,6 +5,7 @@
         <br />
         <h2>Stream Music Playlist</h2>
         <br />
+        <p>Current song count: {{songCount.toLocaleString()}}</p>
         <div *ngIf="displayTable">
             <table datatable [dtOptions]="databaseOptions" class="row-border hover" id="playlistTable"></table>
         </div>

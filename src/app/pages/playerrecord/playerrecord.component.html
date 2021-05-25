@@ -153,7 +153,7 @@
 										</span>
 									</div>
 									<br />
-
+									<app-skillcolorlegend *ngIf="playerData.playerRecord.playerSkills && playerData.playerRecord.playerSkills.length > 0" [playerSkills]="playerData.playerRecord.playerSkills"></app-skillcolorlegend>
 								</div>
 								<div class="cell small-2"></div>
 							</div>

@@ -164,9 +164,25 @@ export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
 
   public getColorForSkill(playerSkill: PlayerSkill): string {
     if (playerSkill.skillCategory === SkillCategory.ELITE_MONSTER) {
-      return 'red';
-    } else if(playerSkill.skillCategory === SkillCategory.STRONG_MONSTER) {
+      return 'dark blue';
+    } else if (playerSkill.skillCategory === SkillCategory.STRONG_MONSTER) {
       return 'blue';
+    } else if (playerSkill.skillCategory === SkillCategory.MONSTER) {
+      return 'light blue';
+    } else if (playerSkill.skillCategory === SkillCategory.LEGENDARY) {
+      return 'gold';
+    } else if (playerSkill.skillCategory === SkillCategory.EQUIPMENT) {
+      return 'brown';
+    } else if (playerSkill.skillCategory === SkillCategory.ENTRY) {
+      return 'black';
+    } else if (playerSkill.skillCategory === SkillCategory.JOB) {
+      return 'purple';
+    } else if (playerSkill.skillCategory === SkillCategory.SUPPORT) {
+      return 'white';
+    } else if (playerSkill.skillCategory === SkillCategory.REACTION) {
+      return 'yellow';
+    } else if (playerSkill.skillCategory === SkillCategory.MOVEMENT) {
+      return 'red';
     }
 
     return null;

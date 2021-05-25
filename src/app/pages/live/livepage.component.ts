@@ -9,7 +9,7 @@ import { LiveService } from './service/liveservice';
   styleUrls: ['./livepage.component.scss']
 })
 export class LivePageComponent implements OnInit {
-	title = 'FFTBattlegroundUI';
+	public title = 'FFTBattlegroundUI';
 
 	public constructor(public liveService: LiveService) {}
 

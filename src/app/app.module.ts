@@ -6,8 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { ChartsModule } from 'ng2-charts';
 import { DataTablesModule } from 'angular-datatables';
-import { TabsModule, ModalModule } from 'ngx-foundation';
+import { TabsModule, ModalModule, BsDropdownModule } from 'ngx-foundation';
 import { NgxPrettyCheckboxModule } from 'ngx-pretty-checkbox';
+
 import {
   InjectableRxStompConfig,
   RxStompService,
@@ -55,6 +56,8 @@ import { FightGridComponent } from './pages/live/components/fightgrid/fightgrid.
 import { MatchHeightDirective } from './directives/matchheight.directive';
 import { TwitchPlayerComponent } from './pages/live/components/twitchplayer/twitchplayer.component';
 import { TournamentTrackerComponent } from './pages/live/components/tournamenttracker/tournamenttracker.component';
+import { LivePageOptionsComponent } from './pages/live/components/livepageoptions/livepageoptions.component';
+import { SkillColorLegendComponent } from './pages/playerrecord/components/skillcolorlegend/skillcolorlegend.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +80,7 @@ import { TournamentTrackerComponent } from './pages/live/components/tournamenttr
     BotLeaderboardComponent,
     GlobalGilCountComponent, GlobalGilCountTabComponent,
     AllegianceLeaderboardComponent,
-    BotlandComponent, BotlandModalComponent, MatchHeightDirective, TournamentTrackerComponent,
+    BotlandComponent, BotlandModalComponent, MatchHeightDirective, TournamentTrackerComponent, LivePageOptionsComponent, SkillColorLegendComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +91,7 @@ import { TournamentTrackerComponent } from './pages/live/components/tournamenttr
     CommonModule,
     ChartsModule,
     DataTablesModule,
-    TabsModule.forRoot(), ModalModule.forRoot(),
+    TabsModule.forRoot(), ModalModule.forRoot(), BsDropdownModule.forRoot(),
     NgxPrettyCheckboxModule
   ],
   providers: [

@@ -11,6 +11,7 @@ export class MusicListComponent implements OnInit {
 
   databaseOptions: any = null;
   displayTable = false;
+  songCount = 0;
 
   constructor(private musicService: MusicService) { }
 
@@ -26,6 +27,7 @@ export class MusicListComponent implements OnInit {
         ],
         select: true
       };
+      this.songCount = musicData.data.length;
     });
   }
 

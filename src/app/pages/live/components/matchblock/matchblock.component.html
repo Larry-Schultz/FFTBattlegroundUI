@@ -34,7 +34,7 @@
                 <div class="cell small-4">
                     <div class="grid-x">
                         <div class="cell small-1"></div>
-                        <div class="cell small-1 text-left">
+                        <div class="cell small-3 text-left">
                             <app-matchcounts 
                                 [loading]="liveData.loading"
                                 [mode]="liveData.gridMode"
@@ -43,12 +43,12 @@
                                 [team]="liveData.team1"
                                 [side]="leftSide"></app-matchcounts>
                         </div>
-                        <div class="cell small-2"></div>
-                        <div class="cell small-4 text-center">
+                        <div class="cell small-1"></div>
+                        <div class="cell small-2 text-center">
                             <app-map-image [matchInfoEvent]="liveData.matchInfo"></app-map-image>
                         </div>
-                        <div class="cell small-2"></div>
-                        <div class="cell small-1 text-right">
+                        <div class="cell small-1"></div>
+                        <div class="cell small-3 text-right">
                         <app-matchcounts 
                                 [loading]="liveData.loading"
                                 [mode]="liveData.gridMode"

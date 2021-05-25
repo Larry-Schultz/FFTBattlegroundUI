@@ -1,0 +1,39 @@
+<p>Skill Color Legend</p>
+<span>
+    <span *ngIf="playerHasEliteMonsteer()">
+        <p-checkbox shape="round" color="dark-blue" checked="true" lock="true">
+            <i p-icon class="material-icons">done</i>
+            Elite Monster
+        </p-checkbox><span>   </span>
+    </span>
+    <span *ngIf="playerHasStrongMonster()">
+        <p-checkbox shape="round" color="blue" checked="true" lock="true">Strong Monster</p-checkbox><span>   </span>
+    </span>
+    <span *ngIf="playerHasMonster()">
+        <p-checkbox shape="round" color="light-blue" checked="true" lock="true">Monster</p-checkbox><span>   </span>
+    </span>
+    <span *ngIf="playerHasEquipment()">
+        <p-checkbox shape="round" color="brown" checked="true" lock="true">Equipment</p-checkbox><span>   </span>
+    </span>
+    <span *ngIf="playerHasEntry()">
+        <p-checkbox shape="round" color="black" checked="true" lock="true">Entry</p-checkbox><span>   </span>
+    </span>
+    <span *ngIf="playerHasJob()">
+        <p-checkbox shape="round" color="purple" checked="true" lock="true">Job</p-checkbox><span>   </span>
+    </span>
+    <span *ngIf="playerHasSupport()">
+        <p-checkbox shape="round" color="white" checked="true" lock="true">Support</p-checkbox><span>   </span>
+    </span>
+    <span *ngIf="playerHasReaction()">
+        <p-checkbox shape="round" color="yellow" checked="true" lock="true">Reaction</p-checkbox><span>   </span>
+    </span>
+    <span *ngIf="playerHasMovement()">
+        <p-checkbox shape="round" color="red" checked="true" lock="true">Movement</p-checkbox><span>   </span>
+    </span>
+    <span *ngIf="playerHasLegendary()">
+        <p-checkbox shape="round" color="gold" checked="true" lock="true">Legendary</p-checkbox><span>   </span>
+    </span>
+    <span *ngIf="playerHasPrestigeSkill()">
+        <p-checkbox shape="round" color="orange" checked="true" lock="true">Prestige</p-checkbox><span>   </span>
+    </span>
+</span>
