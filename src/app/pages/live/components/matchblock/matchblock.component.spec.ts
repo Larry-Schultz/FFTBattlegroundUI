@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MatchBlockComponent } from './matchblock.component';
 
@@ -6,7 +6,7 @@ describe('MatchblockComponent', () => {
   let component: MatchBlockComponent;
   let fixture: ComponentFixture<MatchBlockComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ MatchBlockComponent ]
     })

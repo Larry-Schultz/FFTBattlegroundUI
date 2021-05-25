@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ExpLeaderboardComponent } from './expleaderboard.component';
 
@@ -6,7 +6,7 @@ describe('ExpleaderboardComponent', () => {
   let component: ExpLeaderboardComponent;
   let fixture: ComponentFixture<ExpLeaderboardComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ExpLeaderboardComponent ]
     })

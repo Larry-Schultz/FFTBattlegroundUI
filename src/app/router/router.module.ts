@@ -33,4 +33,4 @@ const routes: Routes = [
     { path: '**', component: NotFoundComponent}
 ];
 
-export const appRoutingModule = RouterModule.forRoot(routes);
+export const appRoutingModule = RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' });
