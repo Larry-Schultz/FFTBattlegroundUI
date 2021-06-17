@@ -37,6 +37,7 @@ export class BotlandComponent implements OnInit, AfterViewInit {
       this.playerBalanceHistoryService.find(this.botlandData.primaryBotAccountName, 'api/players/balanceHistory', 10, 1).subscribe(data => {
         const title = 'Player balance based on past participated tournaments (data where available)';
         this.chartData = this.playerBalanceHistoryService.generateMyChartData(data.data, title);
+        this.readyToRenderModal = true;
       });
     });
 

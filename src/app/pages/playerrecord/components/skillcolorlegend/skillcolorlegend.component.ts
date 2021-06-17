@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { PlayerSkill, SkillCategory, SkillType } from 'src/app/model/playerRecord';
+import { faSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-skillcolorlegend',
@@ -11,9 +12,14 @@ export class SkillColorLegendComponent implements OnInit, OnChanges {
   @Input()
   public playerSkills: PlayerSkill[];
 
-  public trackedSkillCategories: SkillCategory[] = [ SkillCategory.ELITE_MONSTER, SkillCategory.STRONG_MONSTER, SkillCategory.MONSTER, 
-    SkillCategory.EQUIPMENT, SkillCategory.ENTRY, SkillCategory.JOB, SkillCategory.SUPPORT, SkillCategory.REACTION, 
-    SkillCategory.MOVEMENT, SkillCategory.LEGENDARY];
+  @Input()
+  public classBonuses: string[];
+
+  public faSquare = faSquare;
+
+  public trackedSkillCategories: SkillCategory[] = [SkillCategory.ELITE_MONSTER, SkillCategory.STRONG_MONSTER, SkillCategory.MONSTER,
+  SkillCategory.EQUIPMENT, SkillCategory.ENTRY, SkillCategory.JOB, SkillCategory.SUPPORT, SkillCategory.REACTION,
+  SkillCategory.MOVEMENT, SkillCategory.LEGENDARY];
 
   public constructor() { }
 
@@ -50,7 +56,11 @@ export class SkillColorLegendComponent implements OnInit, OnChanges {
   }
 
   public playerHasJob(): boolean {
-    return this.playerHasSkillCategory(SkillCategory.JOB);
+    const hasJobSkill = this.playerHasSkillCategory(SkillCategory.JOB);
+    const hasClassBonus = this.classBonuses && this.classBonuses.length > 0;
+
+    const result = hasJobSkill || hasClassBonus;
+    return result;
   }
 
   public playerHasSupport(): boolean {
@@ -65,7 +75,7 @@ export class SkillColorLegendComponent implements OnInit, OnChanges {
     return this.playerHasSkillCategory(SkillCategory.MOVEMENT);
   }
 
-  protected getColorForSkill(skillCategory: SkillCategory): string {
+  protected getColorForSkillCategory(skillCategory: SkillCategory): string {
     if (skillCategory === SkillCategory.ELITE_MONSTER) {
       return 'dark blue';
     } else if (skillCategory === SkillCategory.STRONG_MONSTER) {
@@ -81,9 +91,9 @@ export class SkillColorLegendComponent implements OnInit, OnChanges {
     } else if (skillCategory === SkillCategory.JOB) {
       return 'purple';
     } else if (skillCategory === SkillCategory.SUPPORT) {
-      return 'white';
+      return 'grey';
     } else if (skillCategory === SkillCategory.REACTION) {
-      return 'yellow';
+      return 'rgb(204,204,0)';
     } else if (skillCategory === SkillCategory.MOVEMENT) {
       return 'red';
     }
@@ -93,7 +103,7 @@ export class SkillColorLegendComponent implements OnInit, OnChanges {
     if (!this.playerSkills || this.playerSkills.length === 0) {
       return false;
     }
-    const filteredSkills = this.playerSkills.filter((playerSkill: PlayerSkill): boolean =>  {
+    const filteredSkills = this.playerSkills.filter((playerSkill: PlayerSkill): boolean => {
       return playerSkill.skillCategory === skillCategory;
     });
 

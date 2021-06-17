@@ -7,7 +7,8 @@ import { Ng2CompleterModule } from 'ng2-completer';
 import { ChartsModule } from 'ng2-charts';
 import { DataTablesModule } from 'angular-datatables';
 import { TabsModule, ModalModule, BsDropdownModule } from 'ngx-foundation';
-import { NgxPrettyCheckboxModule } from 'ngx-pretty-checkbox';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {NgxLocalStorageModule} from 'ngx-localstorage';
 
 import {
   InjectableRxStompConfig,
@@ -58,6 +59,14 @@ import { TwitchPlayerComponent } from './pages/live/components/twitchplayer/twit
 import { TournamentTrackerComponent } from './pages/live/components/tournamenttracker/tournamenttracker.component';
 import { LivePageOptionsComponent } from './pages/live/components/livepageoptions/livepageoptions.component';
 import { SkillColorLegendComponent } from './pages/playerrecord/components/skillcolorlegend/skillcolorlegend.component';
+import { SkillCooldownComponent } from './pages/playerrecord/components/skillcooldown/skillcooldown.component';
+import { ClassBonusComponent } from './pages/playerrecord/components/classbonus/classbonus.component';
+import { SkillBonusComponent } from './pages/playerrecord/components/skillbonus/skillbonus.component';
+import { PrestigeSkillsComponent } from './pages/playerrecord/components/prestigeskills/prestigeskills.component';
+import { UserSkillsComponent } from './pages/playerrecord/components/userskills/userskills.component';
+import { PlayerDataComponent } from './pages/playerrecord/components/playerdata/playerdata.component';
+import { PlayerPortraitComponent } from './pages/playerrecord/components/playerportrait/playerportrait.component';
+import { StacktraceComponent } from './pages/stacktrace/stacktrace.component';
 
 @NgModule({
   declarations: [
@@ -67,9 +76,9 @@ import { SkillColorLegendComponent } from './pages/playerrecord/components/skill
     TeamFightImagesComponent, FightImageComponent, TeamInfoComponent, UnitInfoComponent, NoticeComponent, MatchCountsComponent,
     SongComponent, SkilldropComponent, MapNumberComponent, MapImageComponent, GridsComponent, BetGridComponent, FightGridComponent,
     TwitchPlayerComponent,
-    
     MenuComponent,
-    PlayerRecordComponent,
+    PlayerRecordComponent, SkillColorLegendComponent, SkillCooldownComponent, ClassBonusComponent, SkillBonusComponent,
+    PrestigeSkillsComponent, UserSkillsComponent, PlayerDataComponent, PlayerPortraitComponent,
     MyLineChartComponent,
     NotFoundComponent,
     MusicListComponent,
@@ -80,7 +89,7 @@ import { SkillColorLegendComponent } from './pages/playerrecord/components/skill
     BotLeaderboardComponent,
     GlobalGilCountComponent, GlobalGilCountTabComponent,
     AllegianceLeaderboardComponent,
-    BotlandComponent, BotlandModalComponent, MatchHeightDirective, TournamentTrackerComponent, LivePageOptionsComponent, SkillColorLegendComponent,
+    BotlandComponent, BotlandModalComponent, MatchHeightDirective, TournamentTrackerComponent, LivePageOptionsComponent, StacktraceComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,7 +101,8 @@ import { SkillColorLegendComponent } from './pages/playerrecord/components/skill
     ChartsModule,
     DataTablesModule,
     TabsModule.forRoot(), ModalModule.forRoot(), BsDropdownModule.forRoot(),
-    NgxPrettyCheckboxModule
+    FontAwesomeModule,
+    NgxLocalStorageModule.forRoot(),
   ],
   providers: [
     {

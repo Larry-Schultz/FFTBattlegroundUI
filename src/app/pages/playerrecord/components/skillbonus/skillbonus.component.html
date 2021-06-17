@@ -1,0 +1,11 @@
+<div *ngIf="skillBonuses && skillBonuses.length > 0 && userSkills">
+    <span style="font-weight: bold;">Skill Bonus:</span>
+    <br />
+    <span *ngFor="let skillBonus of skillBonuses; let i = index; let size = count">
+        <span *ngIf="skillBonus && skillBonus.length > 0">
+            <span [title]="getSkillBonusDescriptionFromExistingSkills(skillBonus)"
+                [style.color]="getColorForSkillByName(skillBonus)">{{skillBonus}}</span>
+            <span *ngIf="i !== size -1" class="listDash" [id]="'skillBonusDash' + i.toString()"> - </span>
+        </span>
+    </span>
+</div>

@@ -1,0 +1,9 @@
+<div *ngIf="containsPrestige">
+    <span style="font-weight: bold;">Prestige Skills:</span>
+    <br />
+    <span *ngFor="let skill of prestigeSkills; let i = index; let size = count">
+        <span [title]="skill.metadata" [style.color]="'orange'">{{skill.skill}}</span>
+        <span *ngIf="i !== size -1" class="listDash" [id]="'prestigeSkillsDash' + i.toString()"> - </span>
+    </span>
+    <br />
+</div>

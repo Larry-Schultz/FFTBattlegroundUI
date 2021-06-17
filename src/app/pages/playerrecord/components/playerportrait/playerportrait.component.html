@@ -1,0 +1,10 @@
+<div class="grid-y">
+    <div class="cell small-2">
+        <span id="playerName" style="font-weight: bold;">{{playerData.playerRecord.player}}</span><span
+            *ngIf="playerData.bot" style="color: red"> (bot)</span>
+    </div>
+    <div class="cell small-6">
+        <img src="{{getFullImageUrl(playerData.portraitUrl)}}" style="height: 250px" />
+    </div>
+    <div class="cell small-4"></div>
+</div>

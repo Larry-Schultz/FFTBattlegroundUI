@@ -33,7 +33,13 @@
               "node_modules/jquery-ui-dist/jquery-ui.js",
               "node_modules/datatables.net/js/jquery.dataTables.js",
               "node_modules/datatables.net-select/js/dataTables.select.js"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {

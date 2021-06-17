@@ -1,0 +1,9 @@
+<div *ngIf="userSkills && userSkills.length > 0">
+    <span style="font-weight: bold;">Skills:</span>
+    <br />
+    <span *ngFor="let skill of userSkills; let i = index; let size = count">
+        <span [title]="skill.metadata" [style.color]="getColorForSkill(skill)">{{skill.skill}}</span>
+        <span *ngIf="i !== size -1" class="listDash" [id]="'userSkillsDash' + i.toString()"> - </span>
+    </span>
+    <br />
+</div>

@@ -1,10 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, OnChanges} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { getColor } from '../../util/colorsetter';
 import { EventWebSocketAPI } from '../../util/websocketapi';
-import { getBackendUrl } from '../../util/getbackendurl';
-import { SkillType, Allegiance, PlayerSkill, SkillCategory } from 'src/app/model/playerRecord';
+import { SkillType, PlayerSkill, SkillCategory } from 'src/app/model/playerRecord';
 import { PlayerDataService, PlayerData } from './service/playerdata.service';
 import { PlayerListService} from './service/playerlist.service';
 import { PlayerBalanceHistoryService } from 'src/app/service/playerbalancehistory.service';
@@ -17,29 +15,43 @@ import { BattleGroundEvent } from '../live/model/battlegroundevent';
   styleUrls: ['./playerrecord.component.scss']
 })
 export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
-  @ViewChild('lineChart', {static: false}) lineChartElement: ElementRef;
-  playerData: PlayerData;
 
-  playerList: string[];
-  playerName: string = null;
-  currentSelectBoxSelection: string;
+  protected static skillCategoryOrderingMap: Map<SkillCategory, number> = new Map<SkillCategory, number>([
+    [SkillCategory.ELITE_MONSTER, 1], [SkillCategory.STRONG_MONSTER, 2], [SkillCategory.MONSTER, 3], [SkillCategory.JOB, 4],
+    [SkillCategory.EQUIPMENT, 5], [SkillCategory.ENTRY, 6], [SkillCategory.MOVEMENT, 7], [SkillCategory.REACTION, 8],
+    [SkillCategory.SUPPORT, 9], [SkillCategory.PRESTIGE, 10], [SkillCategory.LEGENDARY, 11], [SkillCategory.NORMAL, 12], 
+    [SkillCategory.NONE, 13]
+  ]);
 
-  chartData: MyChartData = null;
+  @ViewChild('lineChart', {static: false})
+  public lineChartElement: ElementRef;
+
+  public playerData: PlayerData;
+
+  public playerList: string[];
+  public playerName: string = null;
+  public currentSelectBoxSelection: string;
+  public chartData: MyChartData = null;
+
+  public userSkills: PlayerSkill[];
+  public prestigeSkills: PlayerSkill[];
 
   public constructor(private playerRecordService: PlayerDataService, private playerListService: PlayerListService,
-              private playerBalanceHistoryService: PlayerBalanceHistoryService, private router: Router,
-              private activatedRoute: ActivatedRoute, private eventWebSocketAPI: EventWebSocketAPI ) {
+    private playerBalanceHistoryService: PlayerBalanceHistoryService, private router: Router,
+    private activatedRoute: ActivatedRoute, private eventWebSocketAPI: EventWebSocketAPI) {
     this.activatedRoute.params.subscribe(params => {
       this.playerName = params.player;
     });
   }
 
   public ngOnInit(): void {
-    if (this.isPlayerPageRequest) {
+    if (this.isPlayerPageRequest()) {
       this.eventWebSocketAPI.subscribe<PlayerRecordComponent>(this.parseEvents, this);
 
       this.playerRecordService.find(this.playerName).subscribe(data => {
         this.playerData = data.data;
+        this.userSkills = this.generateUserSkillsList();
+        this.prestigeSkills = this.generatePrestigeSkillList();
       });
 
       this.playerBalanceHistoryService.find(this.playerName, 'api/players/balanceHistory', 10, 1).subscribe(data => {
@@ -47,6 +59,7 @@ export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
         this.chartData = this.playerBalanceHistoryService.generateMyChartData(data.data, title);
       });
     }
+
   }
 
   public ngAfterViewInit(): void {
@@ -91,149 +104,56 @@ export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
     window.location.search = urlParams.toString();
   }
 
-  public isSkillTypeUser(skillType: SkillType): boolean {
-    const cleanedSkillType = skillType as SkillType;
-    return cleanedSkillType === SkillType.USER;
-  }
-
-  public getFullImageUrl(imageUrl: string): string {
-    const cleanedImageUrl = imageUrl.replace('/', ''); // apparently only removes the first '/'
-    const result = getBackendUrl() + cleanedImageUrl;
-    return result;
-  }
-
-  public allegianceColor(allegiance: Allegiance): string {
-    const color = getColor(allegiance);
-    return color;
-  }
-
-  public getSkillBonusDescriptionFromExistingSkills(skillBonus: string): string {
-    const matchingSkill: PlayerSkill = this.getPlayerSkillBySkillName(skillBonus);
-
-    let description = null
-    if (matchingSkill) {
-      description = matchingSkill.metadata;
-    }
-
-    return description;
-  }
-
-  public hasSkillCooldowns(): boolean {
-    const playerUserSkillsWithCooldown: PlayerSkill[] = this.getCooldownPlayerSkillsList(this.playerData.playerRecord.playerSkills);
-    const result = playerUserSkillsWithCooldown.length > 0;
-    return result;
-  }
-
-  public getCooldownString(userSkill: PlayerSkill): string {
-    let newCooldownString = ''
-
-    if (userSkill.cooldown >= 4) {
-      newCooldownString = '(cannot use)';
-    } else if (userSkill.cooldown === 3) {
-      newCooldownString = '(-4 EXP, -10 priority)';
-    } else if (userSkill.cooldown === 2) {
-      newCooldownString = '(-2 EXP -5 priority)';
-    } else if (userSkill.cooldown === 1) {
-      newCooldownString = '(-1 EXP, -3 priority)';
-    }
-
-    return newCooldownString;
-  }
-
-  public getCooldownPlayerSkillsList(userSkills: PlayerSkill[]): PlayerSkill[] {
-    const playerUserSkillsWithCooldown: PlayerSkill[] = userSkills
-    .filter((skill: PlayerSkill): boolean => {
-      return skill.skillType === SkillType.USER;
-    }).filter((skill: PlayerSkill): boolean => {
-      return skill.cooldown && skill.cooldown > 0;
-    }).sort((playerSkill1: PlayerSkill, playerSkill2: PlayerSkill): number => {
-      // reverse order
-      if (playerSkill1.cooldown > playerSkill2.cooldown) {
-        return -1;
-      } else if (playerSkill1.cooldown === playerSkill2.cooldown) {
-        return 0;
-      } else if (playerSkill1.cooldown < playerSkill2.cooldown) {
-        return 1;
-      }
-
-      return -1;
-    });
-
-    return playerUserSkillsWithCooldown;
-  }
-
-  public getColorForSkill(playerSkill: PlayerSkill): string {
-    if (playerSkill.skillCategory === SkillCategory.ELITE_MONSTER) {
-      return 'dark blue';
-    } else if (playerSkill.skillCategory === SkillCategory.STRONG_MONSTER) {
-      return 'blue';
-    } else if (playerSkill.skillCategory === SkillCategory.MONSTER) {
-      return 'light blue';
-    } else if (playerSkill.skillCategory === SkillCategory.LEGENDARY) {
-      return 'gold';
-    } else if (playerSkill.skillCategory === SkillCategory.EQUIPMENT) {
-      return 'brown';
-    } else if (playerSkill.skillCategory === SkillCategory.ENTRY) {
-      return 'black';
-    } else if (playerSkill.skillCategory === SkillCategory.JOB) {
-      return 'purple';
-    } else if (playerSkill.skillCategory === SkillCategory.SUPPORT) {
-      return 'white';
-    } else if (playerSkill.skillCategory === SkillCategory.REACTION) {
-      return 'yellow';
-    } else if (playerSkill.skillCategory === SkillCategory.MOVEMENT) {
-      return 'red';
-    }
-
-    return null;
-  }
-
-  public getColorForSkillByName(skillName: string): string {
-    const matchingSkill = this.getPlayerSkillBySkillName(skillName);
-
-    let result = null;
-    if (matchingSkill) {
-      result = this.getColorForSkill(matchingSkill);
+  public calculatePrestigeLevel(): number {
+    let result = 0;
+    if (this.prestigeSkills) {
+      result = this.prestigeSkills.length;
     }
 
     return result;
   }
 
-  public isSkillBonusAlsoClassBonus(skillName: string): boolean {
-    const playerSkill: PlayerSkill = this.getPlayerSkillBySkillName(skillName);
-
-    const result = playerSkill && playerSkill.skillCategory != null && playerSkill.skillCategory !== SkillCategory.NORMAL;
-    return result;
-  }
-
-  public prestigeSkills(): PlayerSkill[] {
+  protected generatePrestigeSkillList(): PlayerSkill[] {
     const result: PlayerSkill[] = this.playerData.playerRecord.playerSkills.filter((playerSkill: PlayerSkill): boolean => {
       return playerSkill.skillType === SkillType.PRESTIGE;
+    }).sort((playerSkill1: PlayerSkill, playerSkill2: PlayerSkill): number => {
+      let sortResult = 0;
+      if (playerSkill1.skill < playerSkill2.skill) {
+        sortResult = -1;
+      } else if (playerSkill1.skill > playerSkill2.skill) {
+        sortResult = 1;
+      }
+      return sortResult;
     });
 
     return result;
   }
 
-  public userSkills(): PlayerSkill[] {
+  protected generateUserSkillsList(): PlayerSkill[] { 
     const result: PlayerSkill[] = this.playerData.playerRecord.playerSkills.filter((playerSkill: PlayerSkill): boolean => {
       return playerSkill.skillType === SkillType.USER;
-    });
+    }).sort(this.sortPlayerSkillsByCategory);
 
     return result;
   }
 
-  protected getPlayerSkillBySkillName(skillName: string): PlayerSkill {
-    const matchingSkills: PlayerSkill[] = this.playerData.playerRecord.playerSkills.filter((playerSkill: PlayerSkill): boolean => {
-      return playerSkill.skill === skillName;
-    });
+  protected sortPlayerSkillsByCategory(playerSkill1: PlayerSkill, playerSkill2: PlayerSkill): number {
+      const playerSkill1CategoryNumber: number = PlayerRecordComponent.skillCategoryOrderingMap.get(playerSkill1.skillCategory);
+      const playerSkill2CategoryNumber: number = PlayerRecordComponent.skillCategoryOrderingMap.get(playerSkill2.skillCategory);
 
-    let result: PlayerSkill;
-    if (matchingSkills && matchingSkills.length > 0) {
-      result = matchingSkills[0];
-    } else {
-      result = null;
+      let sortResult = 0;
+      if (playerSkill1CategoryNumber < playerSkill2CategoryNumber) {
+        sortResult = -1;
+      } else if (playerSkill1CategoryNumber > playerSkill2CategoryNumber) {
+        sortResult = 1;
+      } else {
+        if (playerSkill1.skill < playerSkill2.skill) {
+          sortResult = -1;
+        } else if (playerSkill1.skill > playerSkill2.skill) {
+          sortResult = 1;
+        }
+      }
+
+      return sortResult;
     }
-
-    return result;
-  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import {TwitchEmbed, TwitchEmbedLayout, TwitchEmbedTheme} from 'twitch-player';
+import {TwitchEmbed, TwitchEmbedLayout, TwitchEmbedTheme, TwitchPlayer} from 'twitch-player';
 
 @Component({
   selector: 'app-twitchplayer',
@@ -22,7 +22,7 @@ export class TwitchPlayerComponent implements OnInit, OnChanges {
   }
 
   public createTwitchEmbed(): TwitchEmbed {
-    const twitchEmbed = new TwitchEmbed('twitch-embed', {
+    const twitchEmbed: TwitchEmbed = new TwitchEmbed('twitch-embed', {
       width: 620,
       height: this.twitchHeight,
       channel: 'fftbattleground',
@@ -31,6 +31,10 @@ export class TwitchPlayerComponent implements OnInit, OnChanges {
       // only needed if your site is also embedded on embed.example.com and othersite.example.com
       parent: ['fftbview.com']
       });
+      twitchEmbed
+
+      const twitchPlayer: TwitchPlayer = twitchEmbed.getPlayer();
+      twitchPlayer.setMuted(true);
 
     return twitchEmbed;
   }

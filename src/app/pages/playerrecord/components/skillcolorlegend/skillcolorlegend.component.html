@@ -1,39 +1,41 @@
-<p>Skill Color Legend</p>
-<span>
-    <span *ngIf="playerHasEliteMonsteer()">
-        <p-checkbox shape="round" color="dark-blue" checked="true" lock="true">
-            <i p-icon class="material-icons">done</i>
-            Elite Monster
-        </p-checkbox><span>   </span>
+<div *ngIf="(playerSkills && playerSkills.length > 0) || (classBonuses && classBonuses.length > 0)">
+    <span style="font-weight: bold;">Skill Color Legend:</span>
+    <br />
+    <span>
+        <span *ngIf="playerHasEliteMonsteer()">
+            <fa-icon [icon]="faSquare" [style.color]="'darkblue'"></fa-icon><span> Elite Monster </span>
+        </span>
+        <span *ngIf="playerHasStrongMonster()">
+            <fa-icon [icon]="faSquare" [style.color]="'blue'"></fa-icon><span> Strong Monster </span>
+        </span>
+        <span *ngIf="playerHasMonster()">
+            <fa-icon [icon]="faSquare" [style.color]="'green'"></fa-icon><span> Monster </span>
+        </span>
+        <span *ngIf="playerHasJob()">
+            <fa-icon [icon]="faSquare" [style.color]="'purple'"></fa-icon><span> Job </span>
+        </span>
+        <span *ngIf="playerHasEquipment()">
+            <fa-icon [icon]="faSquare" [style.color]="'brown'"></fa-icon><span> Equipment </span>
+        </span>
+        <span *ngIf="playerHasEntry()">
+            <fa-icon [icon]="faSquare" [style.color]="'black'"></fa-icon><span> Entry </span>
+        </span>
+        <span *ngIf="playerHasMovement()">
+            <fa-icon [icon]="faSquare" [style.color]="'red'"></fa-icon><span> Movement </span>
+        </span>
+        <span *ngIf="playerHasReaction()">
+            <fa-icon [icon]="faSquare" [style.color]="'rgb(204,204,0)'"></fa-icon><span> Reaction </span>
+        </span>
+
+        <span *ngIf="playerHasSupport()">
+            <fa-icon [icon]="faSquare" [style.color]="'grey'"></fa-icon><span> Support </span>
+        </span>
+        <span *ngIf="playerHasPrestigeSkill()">
+            <fa-icon [icon]="faSquare" [style.color]="'orange'"></fa-icon><span> Prestige </span>
+        </span>
+        <span *ngIf="playerHasLegendary()">
+            <fa-icon [icon]="faSquare" [style.color]="'darkgoldenrod'"></fa-icon><span> Legendary </span>
+        </span>
+
     </span>
-    <span *ngIf="playerHasStrongMonster()">
-        <p-checkbox shape="round" color="blue" checked="true" lock="true">Strong Monster</p-checkbox><span>   </span>
-    </span>
-    <span *ngIf="playerHasMonster()">
-        <p-checkbox shape="round" color="light-blue" checked="true" lock="true">Monster</p-checkbox><span>   </span>
-    </span>
-    <span *ngIf="playerHasEquipment()">
-        <p-checkbox shape="round" color="brown" checked="true" lock="true">Equipment</p-checkbox><span>   </span>
-    </span>
-    <span *ngIf="playerHasEntry()">
-        <p-checkbox shape="round" color="black" checked="true" lock="true">Entry</p-checkbox><span>   </span>
-    </span>
-    <span *ngIf="playerHasJob()">
-        <p-checkbox shape="round" color="purple" checked="true" lock="true">Job</p-checkbox><span>   </span>
-    </span>
-    <span *ngIf="playerHasSupport()">
-        <p-checkbox shape="round" color="white" checked="true" lock="true">Support</p-checkbox><span>   </span>
-    </span>
-    <span *ngIf="playerHasReaction()">
-        <p-checkbox shape="round" color="yellow" checked="true" lock="true">Reaction</p-checkbox><span>   </span>
-    </span>
-    <span *ngIf="playerHasMovement()">
-        <p-checkbox shape="round" color="red" checked="true" lock="true">Movement</p-checkbox><span>   </span>
-    </span>
-    <span *ngIf="playerHasLegendary()">
-        <p-checkbox shape="round" color="gold" checked="true" lock="true">Legendary</p-checkbox><span>   </span>
-    </span>
-    <span *ngIf="playerHasPrestigeSkill()">
-        <p-checkbox shape="round" color="orange" checked="true" lock="true">Prestige</p-checkbox><span>   </span>
-    </span>
-</span>
+</div>

@@ -46,6 +46,8 @@ export enum SkillCategory {
   SUPPORT = 'SUPPORT',
   ENTRY = 'ENTRY',
   LEGENDARY = 'LEGENDARY',
+  PRESTIGE = 'PRESTIGE',
+  NONE = 'NONE'
 }
 
 export enum Allegiance {

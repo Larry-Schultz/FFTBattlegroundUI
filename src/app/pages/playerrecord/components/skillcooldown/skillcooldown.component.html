@@ -1,0 +1,40 @@
+<div *ngIf="userSkills && hasSkillCooldowns()">
+    <span style="font-weight: bold;">Skill Cooldowns:</span>
+    <br />
+    <span *ngIf="hasEliteMonster()">
+        <span>Elite Monster<sup title="cooldown">{{getEliteMonsterCooldown()}}</sup>: </span><span [title]="'cooldown: ' + getEliteMonsterCooldown()">{{' ' + getEliteMonsterCooldownString()}}</span>
+        <br />
+        <span *ngFor="let skillWithCooldown of eliteMonsterSkills; let i = index; let size = count">
+            <span>
+                <span [title]="skillWithCooldown.metadata" [style.color]="getColorForSkill(skillWithCooldown)">{{skillWithCooldown.skill}}</span>
+                <span *ngIf="i !== size -1" class="listDash" [id]="'userSkillsCooldownDash' + i.toString()"> - </span>
+            </span>
+        </span>
+        
+        <br />
+    </span>
+    <span *ngIf="hasStrongMonster()">
+        <span>Strong Monster<sup title="cooldown">{{getStrongMonsterCooldown()}}</sup>: </span><span [title]="'cooldown: ' + getStrongMonsterCooldown()">{{' ' + getStrongMonsterCooldownString()}}</span>
+        <br />
+        <span *ngFor="let skillWithCooldown of strongMonsterSkills; let i = index; let size = count">
+            <span>
+                <span [title]="skillWithCooldown.metadata" [style.color]="getColorForSkill(skillWithCooldown)">{{skillWithCooldown.skill}}</span>
+                <span *ngIf="i !== size -1" class="listDash" [id]="'userSkillsCooldownDash' + i.toString()"> - </span>
+            </span>
+        </span>
+        
+        <br />
+    </span>
+        <span *ngIf="hasEliteMonster() || hasStrongMonster()">
+            <span>Other Skills: </span>
+            <br />
+        </span>
+        <span *ngFor="let skillWithCooldown of otherSkills; let i = index; let size = count">
+        <span>
+            <span [title]="skillWithCooldown.metadata" [style.color]="getColorForSkill(skillWithCooldown)">{{skillWithCooldown.skill}}</span>
+            <sup  title="cooldown">{{skillWithCooldown.cooldown}}</sup><span
+                [title]="'cooldown: ' + skillWithCooldown.cooldown">{{' ' + getCooldownString(skillWithCooldown)}}</span>
+            <span *ngIf="i !== size -1" class="listDash" [id]="'userSkillsCooldownDash' + i.toString()"> - </span>
+        </span>
+    </span>
+</div>

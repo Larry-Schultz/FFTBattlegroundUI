@@ -14,14 +14,14 @@
                 [id]="fightEntry.player + 'FightEntrySkillTag'" 
                 [title]="fightEntry.skillDescription ? fightEntry.skillDescription : null" 
                 [style.color]="fightEntry.skillColor ? fightEntry.skillColor : null">
-            {{fightEntry.skill}}
+            {{' ' + fightEntry.skill + ' '}}
         </span>
 
         <span   *ngIf="fightEntry.exclusionSkill" 
                 [id]="fightEntry.player + 'FightEntryExclusionSkillTag'" 
                 [title]="fightEntry.exclusionSkillDescription ? fightEntry.exclusionSkillDescription : null" 
                 [style.color]="fightEntry.exclusionSkillColor? fightEntry.exclusionSkillColor : null">
-            {{fightEntry.exclusionSkill}}
+            {{' - ' + fightEntry.exclusionSkill}}
         </span>
 
     </span>
