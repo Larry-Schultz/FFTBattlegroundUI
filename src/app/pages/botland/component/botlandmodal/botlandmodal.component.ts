@@ -5,9 +5,11 @@ import { BsModalRef } from 'ngx-foundation/modal/bs-modal-ref.service';
 import { ChartDataSets, ChartOptions} from 'chart.js';
 import { Label } from 'ng2-charts';
 
-import { Bots, BotHourlyData, CleanedBotData } from '../../service/botlanddata.service';
+import { CleanedBotData } from '../../service/botlanddata.service';
 import { GenericElementOrdering, convertGenericElementListToMap } from 'src/app/util/genericresponse';
 import { MyChartData, MyLineChartComponent } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
+import { Bots } from '../../model/bots';
+import { BotHourlyData } from '../../model/bothourlydata';
 
 @Component({
   selector: 'app-botlandmodal',

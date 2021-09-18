@@ -113,6 +113,7 @@ export class LiveService {
 			case BattleGroundEventType.INVALID_FIGHT_ENTRY_CLASS:
 			case BattleGroundEventType.UNOWNED_SKILL:
 			case BattleGroundEventType.OTHER_PLAYER_SKILL_ON_COOLDOWN:
+			case BattleGroundEventType.INVALID_FIGHT_ENTRY_SEX:
 				const badFightEvent = event as BadFightEvent;
 				classRef.removeBadFightEntry(badFightEvent);
 				break;

@@ -2,8 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { GenericResponse, GenericElementOrdering } from 'src/app/util/genericresponse';
+import { GenericResponse, GenericElementOrdering, convertGenericPairingListToMap } from 'src/app/util/genericresponse';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
+import { Bots } from '../model/bots';
+import { BotHourlyData } from '../model/bothourlydata';
+import { BotlandData } from '../model/botlanddata';
+import { BotlandConfigData } from '../model/botlandconfigdata';
+import { BotlandHourlyData } from '../model/botlandhourlydata';
+import { BotParam } from '../model/botparam';
+import { BotData } from '../model/botdata';
+import { BotParamData } from '../model/botparamdata';
 
 
 @Injectable({
@@ -15,8 +23,11 @@ export class BotlandDataService {
 
   constructor(private http: HttpClient) {}
 
-  find(): Observable<GenericResponse<BotlandData>> {
-    const url = this.serviceUrl;
+  find(refresh: boolean): Observable<GenericResponse<BotlandData>> {
+    let url = this.serviceUrl;
+    if (refresh) {
+      url = url + '?refresh=true';
+    }
     const response: Observable<GenericResponse<BotlandData>> = this.http.get<GenericResponse<BotlandData>>(url);
     return response;
   }
@@ -28,6 +39,7 @@ export class CleanedBotlandData {
   public primaryBotName: string;
   public botConfigData: Map<string, CleanedBotData>;
   public botHourlyDataMap: Map<string, GenericElementOrdering<BotHourlyData>[]>;
+  public lastBotPersonalityResponses: Map<string, string>
 
   constructor(botlandData: BotlandData) {
     this.botData = botlandData.botData;
@@ -35,6 +47,7 @@ export class CleanedBotlandData {
     this.primaryBotName = botlandData.primaryBotName;
     this.botConfigData = this.convertBotConfigDataToMap(botlandData.botConfigData);
     this.botHourlyDataMap = this.convertBotHourlyDataToMap(botlandData.botHourlyDataMap);
+    this.lastBotPersonalityResponses = convertGenericPairingListToMap(botlandData.lastBotPersonalityResponses);
   }
 
   protected convertBotConfigDataToMap(botConfigData: BotlandConfigData[]): Map<string, CleanedBotData> {
@@ -79,59 +92,4 @@ export class CleanedBotData {
 
     return paramMap;
   }
-}
-
-
-export interface BotlandData {
-    botData: Bots[];
-    primaryBotAccountName: string;
-    primaryBotName: string;
-    botConfigData: BotlandConfigData[];
-    botHourlyDataMap: BotlandHourlyData[];
-}
-
-export interface BotlandConfigData {
-    botName: string;
-    botConfigData: BotData;
-}
-
-export interface BotData {
-    name: string;
-    classname: string;
-    canPrimary: boolean;
-    description: string;
-    params: BotParamData[];
-}
-
-export interface BotParamData {
-    paramName: string;
-    param: BotParam;
-}
-
-export interface BotParam {
-    name: string;
-    value: string;
-    description: string;
-}
-
-export interface Bots {
-    dateString: string;
-    player: string;
-    balance: number;
-    wins: number;
-    losses: number;
-    highestKnownValue: number;
-    winPercentage: number;
-}
-
-export interface BotlandHourlyData {
-    botName: string;
-    botHourlyData: GenericElementOrdering<BotHourlyData>[];
-}
-
-export interface BotHourlyData {
-    player: string;
-    hourString: string;
-    hourValue: number;
-    balance: number;
 }

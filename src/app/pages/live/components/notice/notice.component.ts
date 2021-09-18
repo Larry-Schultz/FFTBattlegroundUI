@@ -33,11 +33,6 @@ export class NoticeComponent implements OnInit, OnChanges {
   }
 
   public ngOnChanges() {
-    if (this.fightEntries && this.fightEntries.length > 0) {
-      this.fightEntryCount = this.fightEntries.length;
-    } else {
-      this.fightEntryCount = 0;
-    }
 
   }
 

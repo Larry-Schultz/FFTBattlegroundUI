@@ -67,6 +67,8 @@ import { UserSkillsComponent } from './pages/playerrecord/components/userskills/
 import { PlayerDataComponent } from './pages/playerrecord/components/playerdata/playerdata.component';
 import { PlayerPortraitComponent } from './pages/playerrecord/components/playerportrait/playerportrait.component';
 import { StacktraceComponent } from './pages/stacktrace/stacktrace.component';
+import { UnitprofileComponent } from './pages/live/components/unitprofile/unitprofile.component';
+import { BotComponent } from './pages/bot/bot.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,7 @@ import { StacktraceComponent } from './pages/stacktrace/stacktrace.component';
     BotLeaderboardComponent,
     GlobalGilCountComponent, GlobalGilCountTabComponent,
     AllegianceLeaderboardComponent,
-    BotlandComponent, BotlandModalComponent, MatchHeightDirective, TournamentTrackerComponent, LivePageOptionsComponent, StacktraceComponent,
+    BotlandComponent, BotlandModalComponent, MatchHeightDirective, TournamentTrackerComponent, LivePageOptionsComponent, StacktraceComponent, UnitprofileComponent, BotComponent,
   ],
   imports: [
     BrowserModule,

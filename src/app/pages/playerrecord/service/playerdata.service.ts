@@ -16,17 +16,21 @@ export class PlayerDataService {
 
   }
 
-  public find(player: string): Observable<GenericResponse<PlayerData>> {
-    const response: Observable<GenericResponse<PlayerData>> = this.http.get<GenericResponse<PlayerData>>(this.generateUrl(player));
+  public find(player: string, refresh: boolean): Observable<GenericResponse<PlayerData>> {
+    const response: Observable<GenericResponse<PlayerData>> = this.http.get<GenericResponse<PlayerData>>(this.generateUrl(player, refresh));
     return response;
   }
 
-  protected generateUrl(player: string) {
+  protected generateUrl(player: string, refresh: boolean) {
     let result: string = null;
     if (player == null || typeof player === undefined) {
       result = this.serviceUrl;
     } else {
-      result = this.serviceUrl + player;
+      if (refresh) {
+        result = this.serviceUrl + player + '?refresh=true';
+      } else {
+        result = this.serviceUrl + player;
+      }
     }
 
     return result;

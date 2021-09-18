@@ -1,6 +1,5 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
-import { getBackendUrl } from 'src/app/util/getbackendurl';
 import { UnitInfoEvent } from '../../model/teamevents';
 import { TeamInfoEntry } from '../teaminfo/teaminfo.component';
 import { getColor } from 'src/app/util/colorsetter';

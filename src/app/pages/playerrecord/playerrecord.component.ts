@@ -30,6 +30,7 @@ export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
 
   public playerList: string[];
   public playerName: string = null;
+  public refresh = false;
   public currentSelectBoxSelection: string;
   public chartData: MyChartData = null;
 
@@ -41,6 +42,9 @@ export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
     private activatedRoute: ActivatedRoute, private eventWebSocketAPI: EventWebSocketAPI) {
     this.activatedRoute.params.subscribe(params => {
       this.playerName = params.player;
+      if(params.refresh) {
+        this.refresh = params.refresh;
+      }
     });
   }
 
@@ -48,7 +52,7 @@ export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
     if (this.isPlayerPageRequest()) {
       this.eventWebSocketAPI.subscribe<PlayerRecordComponent>(this.parseEvents, this);
 
-      this.playerRecordService.find(this.playerName).subscribe(data => {
+      this.playerRecordService.find(this.playerName, this.refresh).subscribe(data => {
         this.playerData = data.data;
         this.userSkills = this.generateUserSkillsList();
         this.prestigeSkills = this.generatePrestigeSkillList();
@@ -82,7 +86,7 @@ export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
     if (playerName.length > 0) {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';
-      this.router.navigateByUrl('/player/' + playerName);
+      this.router.navigateByUrl('/player/' + playerName + '?refresh=true');
     }
   }
 

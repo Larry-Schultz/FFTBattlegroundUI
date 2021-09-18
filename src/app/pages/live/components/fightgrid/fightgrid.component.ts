@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { FightEntry } from '../fightentry/fightentry.component';
 
 @Component({
@@ -6,14 +6,18 @@ import { FightEntry } from '../fightentry/fightentry.component';
   templateUrl: './fightgrid.component.html',
   styleUrls: ['./fightgrid.component.scss']
 })
-export class FightGridComponent implements OnInit {
+export class FightGridComponent implements OnInit , OnChanges {
 
   @Input()
   public fightEntries: FightEntry[]
 
-  constructor() { }
+  public constructor() { }
 
-  ngOnInit() {
+  public ngOnInit() {
+  }
+
+  public ngOnChanges() {
+
   }
 
 }

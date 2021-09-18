@@ -103,12 +103,12 @@ export class LiveData {
         const duplicateEntries: FightEntry[] = this.fightEntries.filter((fightEntry: FightEntry): boolean => {
             return fightEntry.player === fightEntryEvent.player;
         });
-        for (const entry of duplicateEntries) {
-            const index = this.fightEntries.indexOf(entry);
-            this.fightEntries.splice(index, 1);
+
+        //valid entries are immutable
+        if (duplicateEntries.length == 0) {
+            this.fightEntries.push(fightEntryEvent);
+            this.fightEntries.sort(FightEntry.compare);
         }
-        this.fightEntries.push(fightEntryEvent);
-        this.fightEntries.sort(FightEntry.compare);
     }
 
     public removeBadFightEntry(badFightEntry: BadFightEvent): void {

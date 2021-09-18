@@ -17,11 +17,13 @@
                 </span>
             </td>
             <td *ngIf="!tournamentData.teamStillActiveMap.get(allegiance)" [style.border]="rowBorderColor(allegiance)"> 
-                <s [style.color]="allegianceColor(allegiance)">
-                    <span *ngFor="let unitInfoEvent of tournamentData.playerUnitInfoMap.get(allegiance); let i=index; let size=count">
+                
+                <span *ngFor="let unitInfoEvent of tournamentData.playerUnitInfoMap.get(allegiance); let i=index; let size=count">
+                    <s [style.color]="allegianceColor(allegiance)">
                         <app-unitinfo [loading]="loading" [teamInfo]="tournamentData.teamInfoMap.get(allegiance)[i]" [unitInfo]="tournamentData.playerUnitInfoMap.get(allegiance)[i]"></app-unitinfo><span>, </span>
-                    </span>
-                </s>
+                    </s>
+                </span>
+                
             </td>
 
         </tr>

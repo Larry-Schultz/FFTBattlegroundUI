@@ -12,6 +12,8 @@ import { BotLeaderboardComponent } from '../pages/botleaderboard/botleaderboard.
 import { GlobalGilCountComponent } from '../pages/globalgilcount/globalgilcount.component';
 import { AllegianceLeaderboardComponent } from '../pages/allegianceleaderboard/allegianceleaderboard.component';
 import { BotlandComponent } from '../pages/botland/botland.component';
+import { StacktraceComponent } from 'src/app/pages/stacktrace/stacktrace.component';
+import { BotComponent } from '../pages/bot/bot.component';
 
 const routes: Routes = [
     { path: '', component: LivePageComponent },
@@ -29,6 +31,8 @@ const routes: Routes = [
     { path: 'gilCount', component: GlobalGilCountComponent },
     { path: 'allegianceLeaderboard', component: AllegianceLeaderboardComponent },
     { path: 'botland', component: BotlandComponent },
+    { path: 'bot/:botName', component: BotComponent},
+    { path: 'error/stacktrace/:id', component: StacktraceComponent},
 
     { path: '**', component: NotFoundComponent}
 ];
