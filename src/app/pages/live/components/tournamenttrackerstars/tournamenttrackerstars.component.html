@@ -1,0 +1,17 @@
+<span *ngIf="tournamentWinData">
+    <span *ngIf="!isChampion(team)">
+        <span *ngFor="let win of tournamentWinData.wins">
+            <fa-icon title="{{win.toString() | titlecase}}" [icon]="star" [style.color]="getStarColor(win)"></fa-icon>
+        </span>
+        <span *ngFor="let loss of tournamentWinData.losses">
+            <fa-icon title="{{'Defeated by ' + loss.toString() | titlecase}}" [icon]="circleX" [style.color]="getStarColor(loss)"></fa-icon>
+        </span>
+    </span>
+    <span *ngIf="isChampion(team) && tournamentWinData.streak && tournamentWinData.streak > 0" [style.color]="getStarColor(team)">
+      <fa-icon title="streak" [icon]="crown"></fa-icon>
+      <span>&#160;</span>
+      <fa-icon title="streak" [icon]="times" ></fa-icon>
+      <span>&#160;</span>
+      <span><b>{{tournamentWinData.streak}}</b></span>
+    </span>
+</span>

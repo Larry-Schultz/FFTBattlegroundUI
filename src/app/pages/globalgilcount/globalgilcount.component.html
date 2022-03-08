@@ -2,8 +2,10 @@
 <div class="grid-y fluid">
     <div class="cell small-1"></div>
     <div class="cell small-3" style=" text-align: center;">
-        <h1>Current Global Gil Count: </h1><br />
-        <h1><span *ngIf="globalGilCountData != null && globalGilCountData !== undefined">{{globalGilCountData.todaysCount.globalGilCountWebFormat}}</span></h1>
+        <br />
+        <h1>Current Global Gil Count: <span *ngIf="globalGilCountData != null && globalGilCountData !== undefined">{{globalGilCountData.todaysCount.globalGilCountWebFormat}}</span></h1>
+        <h1>Active Gil Count: {{globalGilCountData.todaysActiveGilCount | number}}</h1>
+        <h1>Active Median Gil Count: {{globalGilCountData.median | number}}</h1>
         <p>as of: <span *ngIf="globalGilCountData != null && globalGilCountData !== undefined">{{globalGilCountData.todaysCount.dateWebFormat}}</span></p>
         <br />
     </div>

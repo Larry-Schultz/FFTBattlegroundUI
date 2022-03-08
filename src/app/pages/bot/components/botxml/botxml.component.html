@@ -1,0 +1,7 @@
+<div *ngIf="botData">
+    <b>Bot Parameters</b><br />
+    <div *ngFor="let line of generateXmlString(); let i = index; let size = count">
+        <span *ngIf="i > 0 && i < size - 1">&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{{line}}</span>
+    <br />
+    </div>
+</div>

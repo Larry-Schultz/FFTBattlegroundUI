@@ -8,9 +8,9 @@ import { emptyArray } from '../../../util/util';
 import { GenericResponse, GenericElementOrdering } from 'src/app/util/genericresponse';
 
 import { BattleGroundEventType, BattleGroundEvent} from '../model/battlegroundevent';
-import { BettingBeginsEvent, BetEvent, BetInfoEvent, BadBetEvent, ResultsEvent, BettingEndsEvent } from '../model/betevents';
+import { BettingBeginsEvent, BetEvent, BetInfoEvent, BadBetEvent, ResultsEvent, BettingEndsEvent, FightResultsEvent } from '../model/betevents';
 import { BadFightEvent, FightEntryEvent, FightBeginsEvent } from '../model/fightevents';
-import { TeamInfoEvent, UnitInfoEvent, TournamentUpdateEvent } from '../model/teamevents';
+import { TeamInfoEvent, UnitInfoEvent, TournamentUpdateEvent, TournamentWinData } from '../model/teamevents';
 import { BetEntry, BetEntryFactory } from '../components/betentry/betentry.component';
 import { LiveData } from '../model/livedata';
 import { MusicEvent, SkillDropEvent, MatchInfoEvent } from '../model/matchevents';
@@ -85,6 +85,10 @@ export class LiveService {
 				const resultsEvent = event as ResultsEvent;
 				classRef.handleResultsEvent(resultsEvent);
 				break;
+			case BattleGroundEventType.FIGHT_RESULT:
+				const fightResultsEvent = event as FightResultsEvent;
+				classRef.handleFightResultsEvent(fightResultsEvent);
+				break;
 			case BattleGroundEventType.TEAM_INFO:
 				const teamInfoEvent = event as TeamInfoEvent;
 				classRef.handleTeamInfo(teamInfoEvent);
@@ -114,6 +118,7 @@ export class LiveService {
 			case BattleGroundEventType.UNOWNED_SKILL:
 			case BattleGroundEventType.OTHER_PLAYER_SKILL_ON_COOLDOWN:
 			case BattleGroundEventType.INVALID_FIGHT_ENTRY_SEX:
+			case BattleGroundEventType.INVALID_FIGHT_ENTRY_TOURNAMENT_STARTED:
 				const badFightEvent = event as BadFightEvent;
 				classRef.removeBadFightEntry(badFightEvent);
 				break;
@@ -130,6 +135,7 @@ export class LiveService {
 		this.loading = false;
 		this.liveData.currentNotice = Notice.FIGHT_NOTICE;
 		this.liveData.gridMode = GridMode.FIGHT;
+		this.liveData.eventTime = event.eventTime;
 		this.liveData.team1 = null;
 		this.liveData.team2 = null;
 		this.liveData.blankOutTournamentData();
@@ -137,6 +143,16 @@ export class LiveService {
 
 	protected handleResultsEvent(event: ResultsEvent): void {
 		this.liveData.currentNotice = Notice.RESULTS_NOTICE;
+		this.liveData.eventTime = event.eventTime;
+	}
+
+	protected handleFightResultsEvent(event: FightResultsEvent): void {
+		const tournamentWinMap: Map<Allegiance, TournamentWinData> = this.liveData.tournamentData.tournamentWinMap;
+		tournamentWinMap.get(event.winner).wins.push(event.loser);
+		tournamentWinMap.get(event.loser).losses.push(event.winner);
+		if(event.winner === Allegiance.CHAMPION) {
+			tournamentWinMap.get(event.winner).streak++;
+		}
 	}
 
 	protected handleFightEntry(event: FightEntryEvent): void {
@@ -155,6 +171,7 @@ export class LiveService {
 		this.liveData.team2 = event.team2;
 		this.liveData.currentNotice = Notice.BETTING_NOTICE;
 		this.liveData.gridMode = GridMode.BET;
+		this.liveData.eventTime = event.eventTime;
 	}
 
 	protected handleBetEnds(event: BettingEndsEvent) {

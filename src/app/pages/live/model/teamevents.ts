@@ -40,4 +40,11 @@ export interface TournamentUpdateEvent extends BattleGroundEvent {
 	teamStillActiveMap: GenericPairing<Allegiance, boolean>[] ;
 	teamInfoMap: GenericPairing<Allegiance, TeamInfoEvent>[] ;
 	playerUnitInfoMap: GenericPairing<Allegiance, UnitInfoEvent[]>[]
+	tournamentWinMap: GenericPairing<Allegiance, TournamentWinData>[];
+}
+
+export interface TournamentWinData {
+	wins: Allegiance[];
+	losses: Allegiance[];
+	streak: number;
 }

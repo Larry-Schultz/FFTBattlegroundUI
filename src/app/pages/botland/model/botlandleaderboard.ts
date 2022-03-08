@@ -1,7 +1,8 @@
-import { GenericElementOrdering, GenericPairing } from 'src/app/util/genericresponse';
+import { GenericElementOrdering } from 'src/app/util/genericresponse';
 import { BotlandLeaderboardEntry } from './botlandleaderboardentry';
+import { BotlandWinner } from './botlandwinner';
 
 export interface BotlandLeaderboard {
     botlandEntries: GenericElementOrdering<BotlandLeaderboardEntry>[];
-    botlandWinners: GenericElementOrdering<GenericPairing<string, string>>[];
+    botlandWinners: GenericElementOrdering<BotlandWinner>[];
 }

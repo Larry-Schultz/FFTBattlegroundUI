@@ -1,0 +1,30 @@
+<div class="grid-x fluid">
+    <div class="cell small-2"></div>
+    <div class="cell small-8">
+        <h3>Past Winners</h3>
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="botlandLeadeboardDataTrigger" class="row-border hover">
+            <thead>
+                <th>Date</th>
+                <th>Winners</th>
+                <th>End Balance</th>
+            </thead>
+            <tbody *ngIf="botlandLeaderboard && botlandLeaderboard.botlandWinners">
+                <tr *ngFor="let botlandWinnerGenericElement of botlandLeaderboard.botlandWinners">
+                    <td>{{botlandWinnerGenericElement.element.dateString}}</td>
+                    <td>
+                        <span *ngFor="let winner of botlandWinnerGenericElement.element.winners;let indexOfelement=index">
+                            <a [href]="'/bot/' + winner"  target="_blank" style="color: inherit; text-decoration: underline;">{{winner}}</a><span *ngIf="indexOfelement < botlandWinnerGenericElement.element.winners.length -1">, </span>
+                        </span>
+                    </td>
+                    <td>{{botlandWinnerGenericElement.element.balance | number:'1.0':'en-US'}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <th>Date</th>
+                <th>Winners</th>
+                <th>End Balance</th>
+            </tfoot>
+        </table>
+    </div>
+    <div class="cell small-2"></div>
+</div>

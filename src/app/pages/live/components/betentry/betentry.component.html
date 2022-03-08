@@ -3,8 +3,8 @@
         <a id="{{betEntry.player + 'DataLink'}}" href="{{'/player/' + betEntry.player}}" target="_blank" style="color: inherit;">{{betEntry.player}}</a>
     </span>
     <span>-</span>
-    <span id="{{betEntry.player + 'BetAmount'}}" class="betAmount" title="{{betEntry.betText}}" >{{betEntry.betAmount}}</span>
+    <span id="{{betEntry.player + 'BetAmount'}}" class="betAmount" title="{{betEntry.betText}}" >{{betEntry.betAmount | number:'1.0':'en-US'}}</span>
     <span *ngIf="isSpecial()">
-    <span [title]="betEntry.betType.toString() | titlecase">{{betEntry.betType.toLocaleLowerCase() != 'value' ? '*' : ''}}</span>
+        <span [title]="betEntry.betType.toString() | titlecase">{{betEntry.betType.toLocaleLowerCase() != 'value' ? '*' : ''}}</span>
     </span>
 </li>

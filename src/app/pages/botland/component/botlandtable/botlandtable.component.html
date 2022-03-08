@@ -1,0 +1,36 @@
+<h3>Botland State</h3>
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="botlandDataTrigger" class="row-border hover">
+    <thead>
+        <tr>
+            <th>Bot</th>
+            <th>Balance</th>
+            <th>HighScore</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Win %</th>
+            <th>Personality Message</th>
+        </tr>	
+    </thead>
+    <tbody *ngIf="botlandData">
+        <tr *ngFor="let bot of botlandData.botData">
+            <td [id]="bot.player + 'Name'" class="botName"><a [href]="'bot/' + bot.player" target="_blank" class="botlandName">{{bot.player}}</a></td>
+            <td [id]="bot.player + 'Balance'">{{bot.balance | number:'1.0':'en-US'}}</td>
+            <td [id]="bot.player + 'HighScore'">{{bot.highestKnownValue | number:'1.0':'en-US'}}</td>
+            <td [id]="bot.player + 'Wins'">{{bot.wins}}</td>
+            <td [id]="bot.player + 'Losses'">{{bot.losses}}</td>
+            <td [id]="bot.player + 'WinPercentage'">{{bot.winPercentage + '%'}}</td>
+            <td [id]="bot.player + 'Message'">{{getPersonalityMessage(bot.player)}}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Bot</th>
+            <th>Balance</th>
+            <th>HighScore</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Win %</th>
+            <th>Personality Message</th>
+        </tr>	
+    </tfoot>
+</table>

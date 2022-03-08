@@ -1,7 +1,12 @@
 <div class="grid-container" style="border-style: solid; word-wrap: break-word; color: black; border-radius: 25px; background-color: white">
     <div class="grid-y">
         <div class="cell small-2">
-            <app-notice [notice]="liveData.currentNotice" [team1]="liveData.team1" [team2]="liveData.team2" [fightEntries]="liveData.fightEntries"></app-notice>
+            <app-notice 
+                [notice]="liveData.currentNotice" 
+                [team1]="liveData.team1" 
+                [team2]="liveData.team2"
+                [fightEntries]="liveData.fightEntries" [tournamentWinMap]="liveData.tournamentData.tournamentWinMap"
+                [eventTime]="liveData.eventTime"></app-notice>
         </div>
         <div class="cell small-2">
             <app-teamfightimages [liveData]="liveData"></app-teamfightimages>

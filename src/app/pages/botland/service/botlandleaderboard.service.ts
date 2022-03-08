@@ -11,7 +11,7 @@ import { BotlandLeaderboardEntry } from '../model/botlandleaderboardentry';
 })
 export class BotlandleaderboardService {
 
-  protected serviceUrl: string = getBackendUrl() + 'botland';
+  protected serviceUrl: string = getBackendUrl() + 'botlandleaderboard';
 
   constructor(private http: HttpClient) {}
 

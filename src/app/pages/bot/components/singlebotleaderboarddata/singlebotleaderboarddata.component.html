@@ -1,0 +1,19 @@
+<div *ngIf="botLeaderboardData">
+    <strong>Stats:</strong><br />
+    <strong>Creation Date: </strong><span>{{botLeaderboardData.creationDate | date: 'mediumDate'}}</span>
+    <strong> Days Participating: </strong><span>{{botLeaderboardData.daysparticipating | number: '1.0-0'}}</span>
+    <strong> End of Day Victories: </strong><span>{{botLeaderboardData.endOfDayHighScoreVictoryCount | number: '1.0-0'}}</span>
+    <br />
+    <strong>Total Bet Wins: </strong><span>{{botLeaderboardData.totalBetWins | number: '1.0-0'}}</span>
+    <strong> Total Bet Losses: </strong><span>{{botLeaderboardData.totalBetLosses | number: '1.0-0'}}</span>
+    <strong> Overall Bet Win Rate: </strong><span>{{calculateTotalWinRate() | number: '1.2-2'}}</span>
+    <br />
+    <strong>Average Daily Bet Wins: </strong><span>{{botLeaderboardData.averageWinsPerDay | number: '1.2-2'}}</span>
+    <strong> Average Daily Bet Losses: </strong><span>{{botLeaderboardData.averageLossesPerDay | number: '1.2-2'}}</span>
+    <strong> Average Daily Bet Win Rate: </strong><span>{{botLeaderboardData.averageWinRatePerDay | number: '1.2-2'}}</span>
+    <br />
+    <strong>Average Daily End Balance: </strong><span>{{botLeaderboardData.averageBalance | number: '1.0-0'}}</span>
+    <strong> Average Daily Peak Balancve </strong><span>{{botLeaderboardData.averagePeakBalance | number: '1.0-0'}}</span>
+    <strong> Highest Recorded Balance: </strong><span>{{botLeaderboardData.highestRecordedBalance | number: '1.0-0'}}</span>
+    <br />
+</div>

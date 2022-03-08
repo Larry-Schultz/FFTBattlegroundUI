@@ -6,4 +6,9 @@ export interface BotlandLeaderboardEntry {
 	totalBetWins: number;
 	totalBetLosses: number;
 	highestRecordedBalance: number;
+	averageBalance: number;
+	averagePeakBalance: number;
+	averageWinsPerDay: number;
+	averageLossesPerDay: number;
+	averageWinRatePerDay: number;
 }

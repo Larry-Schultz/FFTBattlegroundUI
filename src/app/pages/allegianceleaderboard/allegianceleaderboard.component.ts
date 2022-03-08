@@ -65,7 +65,7 @@ export class AllegianceLeaderboardComponent implements OnInit {
   }
 
   public getFormattedGilPerPlayer(allegianceLeaderboard: AllegianceLeaderboard): string {
-    const result: string = this.decimalFormatNumber(allegianceLeaderboard.gilPerPlayer);
+    const result: string = this.commaFormat(allegianceLeaderboard.gilPerPlayer);
     return result;
   }
 

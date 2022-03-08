@@ -28,7 +28,7 @@
                                     <span style="text-decoration: underline;" [id]="player.player + 'Name'" >{{player.player}}</span>
                                 </a>
                             </td>
-                            <td [id]="player.player + 'Level'" >{{player.level}}</td>
+                            <td [id]="player.player + 'Level'" >{{player.level | number:'1.0':'en-US'}}</td>
                             <td [id]="player.player + 'Exp'" >{{player.exp}}</td>
                             <td [id]="player.player + 'PrestigeLevel'" >{{player.prestigeLevel}}</td>
                             <td [id]="player.player + 'Allegiance'" class="allegianceEntry" [style.color]="getColorForLeaderboardEntry(player)">{{player.team | uppercase}}</td>

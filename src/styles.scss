@@ -5,3 +5,5 @@
 @import "~ngx-foundation/assets/scss/main";
 
 @import '~pretty-checkbox/src/pretty-checkbox.scss';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

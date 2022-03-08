@@ -9,6 +9,8 @@ import { DataTablesModule } from 'angular-datatables';
 import { TabsModule, ModalModule, BsDropdownModule } from 'ngx-foundation';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {NgxLocalStorageModule} from 'ngx-localstorage';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDividerModule} from '@angular/material/divider';
 
 import {
   InjectableRxStompConfig,
@@ -38,7 +40,6 @@ import { GlobalGilCountComponent } from './pages/globalgilcount/globalgilcount.c
 import { GlobalGilCountTabComponent } from './pages/globalgilcount/component/globalgilcounttab/globalgilcounttab.component';
 import { AllegianceLeaderboardComponent } from './pages/allegianceleaderboard/allegianceleaderboard.component';
 import { BotlandComponent } from './pages/botland/botland.component';
-import { BotlandModalComponent } from './pages/botland/component/botlandmodal/botlandmodal.component';
 import { TwitchembedComponent } from './pages/live/components/twitchembed/twitchembed.component';
 import { MatchBlockComponent } from './pages/live/components/matchblock/matchblock.component';
 import { TeamFightImagesComponent } from './pages/live/components/teamfightimages/teamfightimages.component';
@@ -69,6 +70,15 @@ import { PlayerPortraitComponent } from './pages/playerrecord/components/playerp
 import { StacktraceComponent } from './pages/stacktrace/stacktrace.component';
 import { UnitprofileComponent } from './pages/live/components/unitprofile/unitprofile.component';
 import { BotComponent } from './pages/bot/bot.component';
+import { BotlandDisplayComponent } from './pages/botland/component/botlanddisplay/botlanddisplay.component';
+import { BotlandTableComponent } from './pages/botland/component/botlandtable/botlandtable.component';
+import { BotlandHistoricalLeaderboardComponent } from './pages/botland/component/botlandhistoricalleaderboard/botlandhistoricalleaderboard.component';
+import { BotlandwinnersComponent } from './pages/botland/component/botlandwinners/botlandwinners.component';
+import { TournamentTrackerStarsComponent } from './pages/live/components/tournamenttrackerstars/tournamenttrackerstars.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SingleBotLeaderboardDataComponent } from './pages/bot/components/singlebotleaderboarddata/singlebotleaderboarddata.component';
+import { BotxmlComponent } from './pages/bot/components/botxml/botxml.component';
+import { GeneFileComponent } from './pages/genefile/genefile.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +101,9 @@ import { BotComponent } from './pages/bot/bot.component';
     BotLeaderboardComponent,
     GlobalGilCountComponent, GlobalGilCountTabComponent,
     AllegianceLeaderboardComponent,
-    BotlandComponent, BotlandModalComponent, MatchHeightDirective, TournamentTrackerComponent, LivePageOptionsComponent, StacktraceComponent, UnitprofileComponent, BotComponent,
+    BotlandComponent, MatchHeightDirective, TournamentTrackerComponent, LivePageOptionsComponent, StacktraceComponent, 
+    UnitprofileComponent, BotComponent, BotlandDisplayComponent, BotlandTableComponent, BotlandHistoricalLeaderboardComponent, 
+    BotlandwinnersComponent, TournamentTrackerStarsComponent, SingleBotLeaderboardDataComponent, BotxmlComponent, GeneFileComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,6 +117,8 @@ import { BotComponent } from './pages/bot/bot.component';
     TabsModule.forRoot(), ModalModule.forRoot(), BsDropdownModule.forRoot(),
     FontAwesomeModule,
     NgxLocalStorageModule.forRoot(),
+    BrowserAnimationsModule,
+    MatExpansionModule, MatDividerModule
   ],
   providers: [
     {

@@ -1,0 +1,50 @@
+<div class="grid-x fluid">
+    <div class="cell small-2"></div>
+    <div class="cell small-8">
+        <h3>Botland Historical</h3>
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="botlandLeadeboardDataTrigger" class="row-border hover">
+            <thead>
+                <th>Bot</th>
+                <th>End of Day Victories</th>
+                <th>Age in days</th>
+                <th>Victory Rate</th>
+                <th>First Day</th>
+                <th>Total Bet Wins</th>
+                <th>Total Bet Losses</th>
+                <th>Bet Win Rate %</th>
+                <th>Highest Recorded Balance</th>
+                <th>Average End Day Balance</th>
+                <th>Average Peak Balance Per Day</th>
+            </thead>
+            <tbody *ngIf="botlandLeaderboard && botlandLeaderboard.botlandEntries">
+                <tr *ngFor="let botlandGenericEntry of botlandLeaderboard.botlandEntries">
+                    <td [id]="botlandGenericEntry.element.botName + 'Name'" class="botName"><a [href]="'bot/' + botlandGenericEntry.element.botName" target="_blank" class="botlandName">{{botlandGenericEntry.element.botName}}</a></td>
+                    <td>{{botlandGenericEntry.element.endOfDayHighScoreVictoryCount | number:'1.0':'en-US'}}</td>
+                    <td>{{botlandGenericEntry.element.daysparticipating | number:'1.0':'en-US'}}</td>
+                    <td>{{calculateVictoryRate(botlandGenericEntry.element.endOfDayHighScoreVictoryCount, botlandGenericEntry.element.daysparticipating) | number:'1.00':'en-US'}}%</td>
+                    <td>{{botlandGenericEntry.element.creationDate | date: 'MM-dd-yyyy'}}</td>
+                    <td>{{botlandGenericEntry.element.totalBetWins | number:'1.0':'en-US'}}</td>
+                    <td>{{botlandGenericEntry.element.totalBetLosses | number:'1.0':'en-US'}}</td>
+                    <td>{{calculateVictoryRate(botlandGenericEntry.element.totalBetWins, botlandGenericEntry.element.totalBetWins + botlandGenericEntry.element.totalBetLosses) | number:'1.00':'en-US'}}%</td>
+                    <td>{{botlandGenericEntry.element.highestRecordedBalance | number:'1.0':'en-US'}}</td>
+                    <td>{{botlandGenericEntry.element.averageBalance | number:'1.0-0':'en-US'}}</td>
+                    <td>{{botlandGenericEntry.element.averagePeakBalance | number:'1.0-0':'en-US'}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <th>Bot</th>
+                <th>End of Day Victories</th>
+                <th>Age in days</th>
+                <th>Victory Rate</th>
+                <th>First Day</th>
+                <th>Total Bet Wins</th>
+                <th>Total Bet Losses</th>
+                <th>Bet Win Rate %</th>
+                <th>Highest Recorded Balance</th>
+                <th>Average End Day Balance</th>
+                <th>Average Peak Balance Per Day</th>
+            </tfoot>
+        </table>
+    </div>
+    <div class="cell small-2"></div>
+</div>

@@ -37,6 +37,10 @@ export interface ResultsEvent extends BattleGroundEvent {
 	winner: Allegiance;
 }
 
+export interface FightResultsEvent extends ResultsEvent {
+	loser: Allegiance;
+}
+
 export interface BettingEndsEvent extends BattleGroundEvent {
 	team1: Allegiance;
 	team1Bets: number;

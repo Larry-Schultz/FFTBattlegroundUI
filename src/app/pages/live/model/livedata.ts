@@ -3,7 +3,7 @@ import { MusicEvent, SkillDropEvent, MatchInfoEvent } from './matchevents';
 import { Notice } from '../components/notice/notice.component';
 import { GridMode } from '../components/grids/grids.component';
 import { FightEntry } from '../components/fightentry/fightentry.component';
-import { UnitInfoEvent } from './teamevents';
+import { UnitInfoEvent, TournamentWinData } from './teamevents';
 import { Allegiance } from 'src/app/model/playerRecord';
 import { BadBetEvent } from './betevents';
 import { BadFightEvent } from './fightevents';
@@ -28,6 +28,7 @@ export class LiveData {
     public matchInfo: MatchInfoEvent;
     public gridMode: GridMode = GridMode.BET;
     public tournamentData: TournamentTracker = new TournamentTrackerBlank();
+    public eventTime: number;
 
     private team1TeamInfo: TeamInfoEntry[];
     private team2TeamInfo: TeamInfoEntry[];
@@ -181,4 +182,22 @@ export class LiveData {
         this.tournamentData = tournamentData;
     }
 
+    public addTournamentWin(winningTeam: Allegiance, losingTeam: Allegiance): void {
+        const tournamentWinMap: Map<Allegiance, TournamentWinData> = this.tournamentData.tournamentWinMap;
+        if (!tournamentWinMap.get(winningTeam)) {
+            tournamentWinMap.set(winningTeam, {wins: [], losses: [], streak: null});
+        }
+        if(!tournamentWinMap.get(losingTeam)) {
+            tournamentWinMap.set(losingTeam, {wins: [], losses: [], streak: null});
+        }
+		tournamentWinMap.get(winningTeam).wins.push(losingTeam);
+		tournamentWinMap.get(losingTeam).losses.push(winningTeam);
+		if(winningTeam === Allegiance.CHAMPION) {
+			tournamentWinMap.get(winningTeam).streak++;
+		}
+    }
+
+    public addTournamentLoss(losingTeam: Allegiance, winningTeam: Allegiance): void {
+
+    }
 }

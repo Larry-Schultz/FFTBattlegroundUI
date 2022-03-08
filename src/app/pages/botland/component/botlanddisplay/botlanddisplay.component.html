@@ -1,0 +1,20 @@
+<div class="grid-x fluid">
+    <div class="cell small-2"></div>
+    <div class="cell small-8">
+        <div *ngIf="botlandData">
+            <h3>Botland</h3>
+            <p>Current state of my internal botland used to power <span id="accountName">{{botlandData.primaryBotAccountName}}</span></p>
+            <p>
+                <b>Current Primary Bot: </b>
+                <span id="primaryBotName" style="text-decoration: underline;"><a [href]="'/bot/' + botlandData.primaryBotName" target="_blank" style="color: inherit;">{{botlandData.primaryBotName}}</a></span>
+            </p>
+            <p><b>Gil History for the bot:</b></p>
+            <div id="accountChartDiv" style="max-height:350px; max-width:700px;">
+                <app-mychartcomponent [chartData]="chartData" [width]="700" [height]="350"></app-mychartcomponent>
+            </div>
+            <br />
+            <app-botlandtable [botlandData]="botlandData" [botlandDataTrigger]="botlandDataTrigger"></app-botlandtable>
+        </div>
+    </div>
+    <div class="cell small-2"></div>
+</div>

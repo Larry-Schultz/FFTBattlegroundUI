@@ -14,7 +14,7 @@ export class GlobalGilCountTabComponent implements OnInit, AfterViewInit, OnChan
 
   @Input() globalGilCountData: TodaysCount[];
   @Input() timeUnit: string;
-  chartData: MyChartData;
+  public chartData: MyChartData;
 
   constructor(private globalGilCountChartService: GlobalGilCountChartService) { }
 

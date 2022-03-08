@@ -3,66 +3,16 @@
     <div class="cell small-3">
         <br />
     </div>
-    <div class="cell small-6">
-        <div class="grid-x fluid">
-            <div class="cell small-2"></div>
-            <div class="cell small-8">
-                <div *ngIf="botlandData">
-                    <h3>Botland</h3>
-                    <p>Current state of my internal botland used to power <span id="accountName">{{botlandData.primaryBotAccountName}}</span></p>
-                    <p><b>Current Primary Bot: </b><span id="primaryBotName">{{botlandData.primaryBotName}}</span></p>
-                    <p><b>Gil History for the bot:</b></p>
-                    <div id="accountChartDiv" style="max-height:350px; max-width:700px;">
-                        <app-mychartcomponent [chartData]="chartData" [width]="700" [height]="350"></app-mychartcomponent>
-                    </div>
-                </div>
-                <br />
-                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-                    <thead>
-                        <tr>
-                            <th>Bot</th>
-                            <th>Balance</th>
-                            <th>HighScore</th>
-                            <th>Wins</th>
-                            <th>Losses</th>
-                            <th>Win %</th>
-                            <th>Personality Message</th>
-                        </tr>	
-                    </thead>
-                    <tbody *ngIf="botlandData">
-                        <tr *ngFor="let bot of botlandData.botData">
-                            <td [id]="bot.player + 'Name'" class="botName"><a [href]="'bot/' + bot.player" target="_blank" style="color: inherit;">{{bot.player}}</a></td>
-                            <td [id]="bot.player + 'Balance'">{{bot.balance}}</td>
-                            <td [id]="bot.player + 'HighScore'">{{bot.highestKnownValue}}</td>
-                            <td [id]="bot.player + 'Wins'">{{bot.wins}}</td>
-                            <td [id]="bot.player + 'Losses'">{{bot.losses}}</td>
-                            <td [id]="bot.player + 'WinPercentage'">{{bot.winPercentage + '%'}}</td>
-                            <td [id]="bot.player + 'Message'">{{getPersonalityMessage(bot.player)}}</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Bot</th>
-                            <th>Balance</th>
-                            <th>HighScore</th>
-                            <th>Wins</th>
-                            <th>Losses</th>
-                            <th>Win %</th>
-                            <th>Personality Message</th>
-                        </tr>	
-                    </tfoot>
-                </table>
-            </div>
-            <div id="dataLocation"></div>
-            <div class="cell small-2">
-                <br />
-            </div>
-        </div>
+    <div class="cell small-3">
+        <app-botlanddisplay [botlandData]="botlandData" [chartData]="chartData" [botlandDataTrigger]="botlandDataTrigger"></app-botlanddisplay>
+        <br />
     </div>
-    <div class="cell small-3"></div>
-</div>
-<div id="modals" *ngIf="botlandData">
-    <div *ngFor="let bot of botlandData.botData">
-        <app-botlandmodal [bot]="bot" [botConfigData]="botlandData.botConfigData.get(bot.player)" [botHourlyData]="botlandData.botHourlyDataMap.get(bot.player)"></app-botlandmodal>
+    <div class="cell small-3">
+        <app-botlandhistoricalleaderboard [botlandLeaderboard]="botlandLeaderboard" [botlandLeadeboardDataTrigger]="botlandLeadeboardDataTrigger"></app-botlandhistoricalleaderboard>
+        <br />
+    </div>
+    <div class="cell small-3">
+        <app-botlandwinners [botlandLeaderboard]="botlandLeaderboard" [botlandLeadeboardDataTrigger]="botlandLeadeboardDataTrigger"></app-botlandwinners>
+        <br />
     </div>
 </div>

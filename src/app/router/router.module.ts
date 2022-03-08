@@ -14,6 +14,7 @@ import { AllegianceLeaderboardComponent } from '../pages/allegianceleaderboard/a
 import { BotlandComponent } from '../pages/botland/botland.component';
 import { StacktraceComponent } from 'src/app/pages/stacktrace/stacktrace.component';
 import { BotComponent } from '../pages/bot/bot.component';
+import { GeneFileComponent } from '../pages/genefile/genefile.component';
 
 const routes: Routes = [
     { path: '', component: LivePageComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
     { path: 'botland', component: BotlandComponent },
     { path: 'bot/:botName', component: BotComponent},
     { path: 'error/stacktrace/:id', component: StacktraceComponent},
+    { path: 'genefile/:genefile', component: GeneFileComponent},
 
     { path: '**', component: NotFoundComponent}
 ];

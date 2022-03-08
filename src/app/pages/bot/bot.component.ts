@@ -10,6 +10,9 @@ import { Label } from 'ng2-charts';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { EventWebSocketAPI } from 'src/app/util/websocketapi';
 import { BattleGroundEvent } from '../live/model/battlegroundevent';
+import { BotlandLeaderboardEntry } from '../botland/model/botlandleaderboardentry';
+import { BotLeaderboardSingleBotDataService } from './service/botleaderboardsinglebotdata.service';
+import { BotParamData } from '../botland/model/botparamdata';
 
 @Component({
   selector: 'app-bot',
@@ -21,19 +24,18 @@ export class BotComponent implements OnInit {
   public botName = null;
   public refresh = false;
   public bot: BotResponseData;
+  public botLeaderboardData: BotlandLeaderboardEntry;
   public myChartData: MyChartData = null;
 
   constructor(private botDataService: BotDataService, private activatedRoute: ActivatedRoute,
-              private eventWebSocketAPI: EventWebSocketAPI) {
-      this.activatedRoute.params.subscribe(params => {
+              private eventWebSocketAPI: EventWebSocketAPI,
+              private botLeaderboardSingleBotDataService: BotLeaderboardSingleBotDataService) {
+    this.activatedRoute.params.subscribe(params => {
       this.botName = params.botName;
       if (params.refresh) {
         this.refresh = params.refresh;
       }
     });
-
-    
-
   }
 
   public ngOnInit(): void {
@@ -43,6 +45,23 @@ export class BotComponent implements OnInit {
       this.bot = botResponseData.data;
       this.myChartData = this.populateBotChart(this.bot.botHourlyDataMap);
     });
+
+    this.botLeaderboardSingleBotDataService.find(this.botName).subscribe(botLeaderboardSingleBotData => {
+      this.botLeaderboardData = botLeaderboardSingleBotData.data;
+    });
+  }
+
+  public getGeneFile(): string {
+    const data: BotParamData[] = this.bot.botData.params.filter(param => param.paramName === 'geneFile');
+    if(data.length > 0) {
+      return data[0].param.value;
+    } else {
+      return null;
+    }
+  }
+
+  public containsGenefile(): boolean {
+    return this.getGeneFile() !== null;
   }
 
   public parseEvents(event: BattleGroundEvent, classRef: BotComponent): void {

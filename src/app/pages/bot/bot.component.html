@@ -1,27 +1,17 @@
+<app-menu></app-menu>
 <div style="background-color: white;">
-    <h2 [id]="bot.botName + 'ModalTitle'">{{'Bot: ' + bot.botName}}</h2>
-    <p [id]="bot.botName + 'ModalBotDescription'">{{bot.botData.description}}</p>
+    <h2 [id]="bot.botName + 'ModalTitle'">{{bot.botName}}</h2>
+    <span [id]="bot.botName + 'ModalBotDescription'">{{bot.botData.description}}</span>
     <br />
-    <div *ngIf="bot.botData.params.length > 0" [id]="bot.botName + 'FieldDescriptions'">
-        <p>Field Descriptions:</p>
-        <div *ngFor="let botParam of bot.botData.params" >
-            <span>
-                <b>Field Name: </b> <span [id]="bot.botName + 'ModalParams' + botParam.param.name + 'FieldName'">{{botParam.param.name}}</span>
-            </span>
-            <br />
-            <span>
-                <b>Field Value: </b> <span [id]="bot.botName + 'ModalParams' + botParam.param.name + 'FieldValue'">{{botParam.param.value}}</span>
-            </span>
-            <br />
-            <span>
-                <b>Field Description: </b> <span [id]="bot.botName + 'ModalParams' + botParam.param.name + 'FieldDescription'">{{botParam.param.description}}</span>
-            </span>
-            <br />
-            <br />
-        </div>
+    <br />
+    <app-singlebotleaderboarddata [botLeaderboardData]="botLeaderboardData"></app-singlebotleaderboarddata>
+    <br />
+    <div *ngIf="containsGenefile()">
+        <strong>GeneFile: </strong><a [href]="'genefile/' + getGeneFile()">{{getGeneFile()}}</a>
     </div>
     <div id="accountChartDiv" style="max-height:350px; max-width:700px;">
         <app-mychartcomponent [chartData]="myChartData" [width]="700" [height]="350"></app-mychartcomponent>
     </div>
     <br />
+    <app-botxml [botData]="bot.botData"></app-botxml>
 </div>
