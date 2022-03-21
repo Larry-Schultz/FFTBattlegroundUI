@@ -11,6 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {NgxLocalStorageModule} from 'ngx-localstorage';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDividerModule} from '@angular/material/divider';
+import { NgOrdinalPipeModule  } from 'angular-pipes';
 
 import {
   InjectableRxStompConfig,
@@ -118,7 +119,8 @@ import { GeneFileComponent } from './pages/genefile/genefile.component';
     FontAwesomeModule,
     NgxLocalStorageModule.forRoot(),
     BrowserAnimationsModule,
-    MatExpansionModule, MatDividerModule
+    MatExpansionModule, MatDividerModule,
+    NgOrdinalPipeModule
   ],
   providers: [
     {

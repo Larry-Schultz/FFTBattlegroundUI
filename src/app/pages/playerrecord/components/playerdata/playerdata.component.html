@@ -8,7 +8,7 @@
             id="lossSpan">{{playerData.playerRecord.losses | number:'1.0-0':'en-US'}}</span><span> Ratio: </span><span
             id="ratioSpan">{{playerData.betRatio}}</span>
         <span> Percentile: </span><span id="betPercentile"
-            *ngIf="playerData.betPercentile != null">{{playerData.betPercentile + 'th'}}</span><span id="betPercentile"
+            *ngIf="playerData.betPercentile != null">{{playerData.betPercentile | ordinal}}</span><span id="betPercentile"
             *ngIf="playerData.betPercentile == null"
             title="Percentiles are only calculated for players who have been active in the last 30 days">None</span>
         <br />
@@ -26,7 +26,7 @@
         </span><span id="fightLossSpan">{{playerData.playerRecord.fightLosses | number:'1.0':'en-US'}}</span> <span> Ratio: </span><span
             id="fightRatioSpan">{{playerData.fightRatio}}</span>
         <span> Percentile: </span><span id="fightPercentile"
-            *ngIf="playerData.fightPercentile != null">{{playerData.fightPercentile + 'th'}}</span><span
+            *ngIf="playerData.fightPercentile != null">{{playerData.fightPercentile | ordinal}}</span><span
             id="fightPercentile" *ngIf="playerData.fightPercentile == null"
             title="Percentiles are only calculated for players who have been active in the last 30 days">None</span>
         <br />

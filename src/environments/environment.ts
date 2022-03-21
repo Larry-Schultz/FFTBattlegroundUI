@@ -5,8 +5,8 @@
 import { IEnvironment } from 'src/app/util/ienvironment';
 
 export const environment: IEnvironment = {
-  //backendUrl: 'https://localhost:443/',
-  backendUrl: 'https://fftbview.com:9443/',
+  backendUrl: 'https://localhost:443/',
+  //backendUrl: 'https://fftbview.com:9443/',
   production: false
 };
 
