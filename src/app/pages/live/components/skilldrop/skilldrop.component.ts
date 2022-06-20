@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { SkillDropEvent } from '../../model/matchevents';
+import { SkillDropEvent } from '../../model/MatchEvents/skilldropevent';
 
 @Component({
   selector: 'app-skilldrop',

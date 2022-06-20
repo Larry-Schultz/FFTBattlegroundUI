@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { TeamInfoEntry } from '../teaminfo/teaminfo.component';
-import { UnitInfoEvent } from '../../model/teamevents';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
+import { UnitInfoEvent } from '../../model/TeamEvents/unitinfoevent';
+import { TeamInfoEntry } from '../teaminfo/model/teaminfoentry';
 
 @Component({
   selector: 'app-fightimage',

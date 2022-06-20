@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, OnChanges, TrackByFunction } from '@angular/core';
 
 import { Allegiance } from 'src/app/model/playerRecord';
-import { BetEntry } from '../betentry/betentry.component';
 import { getColor } from 'src/app/util/colorsetter';
 import { GridMode } from '../grids/grids.component';
+import { BetEntry } from '../betentry/model/betentry';
 
 @Component({
   selector: 'app-bet-grid',

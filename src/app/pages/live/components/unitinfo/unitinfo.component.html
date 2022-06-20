@@ -1,13 +1,23 @@
-<span *ngIf="unitInfo && teamInfo" class="fightData" [style.color]="getTeamColor(unitInfo.team)">
-    <a id="fightLeftPlayer1Link" [href]="'/player/' + unitInfo.player" target="_blank" style="color: inherit;">
-    <span class="fightPlayerName" [title]="teamInfo.playerDataString">{{unitInfo.player}}</span>
-    </a>
-    <span> the </span>
-    <span [title]="unitInfo.unitInfoString">{{unitInfo.unit.Class}}</span>
-    <span *ngIf="unitInfo.isRaidBoss" title="Raid Boss" class="raidBoss">[!]</span>
-</span>
-<span *ngIf="!unitInfo">
+<ng-container *ngIf="unitInfo; else loading">
+    <ng-container *ngIf="alive; else knockedOut">
+        <ng-template [ngTemplateOutlet]="unitInfoTemplate" [ngTemplateOutletContext]="{unitInfo:unitInfo, teamInfo:teamInfo}"></ng-template>
+    </ng-container>
+    <ng-template #knockedOut>
+        <s><ng-template [ngTemplateOutlet]="unitInfoTemplate" [ngTemplateOutletContext]="{unitInfo:unitInfo, teamInfo:teamInfo}"></ng-template></s>
+    </ng-template>
+</ng-container>
+<ng-template #loading>
     <img  class="fightLoading leftPlayerNameLoading" src="assets/Pulse-1s-200px.gif" />
     <span> the </span>
     <img  class="fightLoading leftPlayerNameLoading" src="assets/Pulse-1s-200px.gif" />
-</span>
+</ng-template>
+<ng-template #unitInfoTemplate let-unitInfo="unitInfo" let-teamInfo="teamInfo">
+    <span *ngIf="unitInfo && teamInfo" class="fightData" [style.color]="getTeamColor(unitInfo.team)">
+        <a id="fightLeftPlayer1Link" [href]="'/player/' + unitInfo.player" target="_blank" style="color: inherit;">
+            <span class="fightPlayerName" [title]="teamInfo.playerDataString">{{unitInfo.player}}</span>
+        </a>
+        <span> the </span>
+        <span [title]="unitInfo.unitInfoString">{{unitInfo.unit.Class}}</span>
+        <span *ngIf="unitInfo.isRaidBoss" title="Raid Boss" class="raidBoss">[!]</span>
+    </span>
+</ng-template>

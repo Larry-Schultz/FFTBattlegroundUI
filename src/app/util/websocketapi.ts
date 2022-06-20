@@ -1,13 +1,13 @@
 import * as Stomp from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
 
-import { webSocket, WebSocketSubject } from 'rxjs/webSocket'
 import {getBackendUrl} from './getbackendurl';
 import { RxStompService } from '@stomp/ng2-stompjs';
-import { BattleGroundEvent } from '../pages/live/model/battlegroundevent';
 import { Injectable } from '@angular/core';
 import { Message } from 'stompjs';
-import { GenericResponse, GenericElementOrdering } from './genericresponse';
+import { GenericElementOrdering } from './genericresponse';
+import { BattleGroundEvent } from '../pages/live/model/BattleGroundEvents/battlegroundevent';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +16,19 @@ export class EventWebSocketAPI {
 
 	public topic = '/matches/events';
 
-    public constructor(private rxStompService: RxStompService) { }
+	public websocketHandler: Observable<Stomp.IMessage>;
+
+    public constructor(private rxStompService: RxStompService) {
+		this.websocketHandler = this.rxStompService.watch(this.topic);
+	}
     
 
 	public subscribe<T>(handlerFunction: (param: BattleGroundEvent, classRef: T) => void, classRef: T): void {
-		this.rxStompService.watch(this.topic).subscribe((message: Message) => {
+		this.websocketHandler.subscribe((message: Message) => {
 			try {
 				const jsonData = JSON.parse(message.body);
 				//const events = this.checkAndPossiblyResend(jsonData);
-				const genericData = jsonData as GenericElementOrdering<BattleGroundEvent>;
+				const genericData = jsonData as GenericElementOrdering<BattleGroundEvent           >;
 				handlerFunction(genericData.element, classRef);
 			} catch (error) {
 				console.log('error found for chatMessages: ' + message.body + ' with error ' + error);

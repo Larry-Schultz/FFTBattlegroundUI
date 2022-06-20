@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { FightEntry } from '../fightentry/fightentry.component';
 import { Allegiance } from 'src/app/model/playerRecord';
 import { getColor } from 'src/app/util/colorsetter';
-import { TournamentWinData } from '../../model/teamevents';
+import { FightEntry } from '../fightentry/model/fightentry';
+import { TournamentWinData } from '../../model/tournamentwindata';
+import { Notice } from './model/notice';
 
 @Component({
   selector: 'app-notice',
@@ -67,12 +68,4 @@ export class NoticeComponent implements OnInit, OnChanges {
     return color;
   }
 
-}
-
-export enum Notice {
-  LOADING_NOTICE = 'LOADING_NOTICE',
-  MATCH_NOTICE = 'MATCH_NOTICE',
-  FIGHT_NOTICE = 'FIGHT_NOTICE',
-  BETTING_NOTICE = 'BETTING_NOTICE',
-  RESULTS_NOTICE = 'RESULTS_NOTICE'
 }

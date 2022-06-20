@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { BetEntry } from '../betentry/betentry.component';
-import { FightEntry } from '../fightentry/fightentry.component';
 import { Allegiance } from 'src/app/model/playerRecord';
+import { BetEntry } from '../betentry/model/betentry';
+import { FightEntry } from '../fightentry/model/fightentry';
 
 @Component({
   selector: 'app-grids',

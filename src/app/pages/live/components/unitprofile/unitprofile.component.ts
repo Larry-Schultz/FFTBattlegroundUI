@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-import { UnitInfoEvent } from '../../model/teamevents';
+import { UnitInfoEvent } from '../../model/TeamEvents/unitinfoevent';
 
 @Component({
   selector: 'app-unitprofile',

@@ -6,19 +6,33 @@ import { EventWebSocketAPI } from '../../../util/websocketapi';
 import { getBackendUrl } from '../../../util/getbackendurl';
 import { emptyArray } from '../../../util/util';
 import { GenericResponse, GenericElementOrdering } from 'src/app/util/genericresponse';
-
-import { BattleGroundEventType, BattleGroundEvent} from '../model/battlegroundevent';
-import { BettingBeginsEvent, BetEvent, BetInfoEvent, BadBetEvent, ResultsEvent, BettingEndsEvent, FightResultsEvent } from '../model/betevents';
-import { BadFightEvent, FightEntryEvent, FightBeginsEvent } from '../model/fightevents';
-import { TeamInfoEvent, UnitInfoEvent, TournamentUpdateEvent, TournamentWinData } from '../model/teamevents';
-import { BetEntry, BetEntryFactory } from '../components/betentry/betentry.component';
 import { LiveData } from '../model/livedata';
-import { MusicEvent, SkillDropEvent, MatchInfoEvent } from '../model/matchevents';
-import { Notice } from '../components/notice/notice.component';
-import { FightEntry } from '../components/fightentry/fightentry.component';
-import { TeamInfoEntry } from '../components/teaminfo/teaminfo.component';
 import { GridMode } from '../components/grids/grids.component';
-import { TournamentTrackerData } from '../components/tournamenttracker/tournamenttracker.component';
+import { BattleGroundEvent } from '../model/BattleGroundEvents/battlegroundevent';
+import { BattleGroundEventType } from '../model/BattleGroundEvents/battlegroundeventtype';
+import { BetEvent } from '../model/BetEvents/betevent';
+import { FightEntryEvent } from '../model/FightEvents/fightentryevent';
+import { BetInfoEvent } from '../model/BetEvents/betinfoevent';
+import { BettingBeginsEvent } from '../model/BetEvents/bettingbeginsevent';
+import { BettingEndsEvent } from '../model/BetEvents/bettingendsevent';
+import { FightBeginsEvent } from '../model/FightEvents/fightbeginsevent';
+import { ResultsEvent } from '../model/BetEvents/resultsevent';
+import { FightResultsEvent } from '../model/BetEvents/fightresultsevent';
+import { TeamInfoEvent } from '../model/TeamEvents/teaminfoevent';
+import { UnitInfoEvent } from '../model/TeamEvents/unitinfoevent';
+import { MatchInfoEvent } from '../model/MatchEvents/matchinfoevent';
+import { TournamentUpdateEvent } from '../model/TeamEvents/tournamentupdateevent';
+import { SkillDropEvent } from '../model/MatchEvents/skilldropevent';
+import { BadBetEvent } from '../model/BetEvents/badbetevent';
+import { BadFightEvent } from '../model/FightEvents/badfightevent';
+import { MusicEvent } from '../model/MatchEvents/musicevent';
+import { Notice } from '../components/notice/model/notice';
+import { TournamentWinData } from '../model/tournamentwindata';
+import { FightEntry } from '../components/fightentry/model/fightentry';
+import { BetEntry } from '../components/betentry/model/betentry';
+import { BetEntryFactory } from '../components/betentry/model/betentryfactory';
+import { TeamInfoEntry } from '../components/teaminfo/model/teaminfoentry';
+import { TournamentTrackerData } from '../components/tournamenttracker/model/tournamenttrackerdata';
 
 @Injectable({
   providedIn: 'root'

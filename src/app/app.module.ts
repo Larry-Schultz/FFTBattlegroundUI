@@ -8,10 +8,10 @@ import { ChartsModule } from 'ng2-charts';
 import { DataTablesModule } from 'angular-datatables';
 import { TabsModule, ModalModule, BsDropdownModule } from 'ngx-foundation';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {NgxLocalStorageModule} from 'ngx-localstorage';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatDividerModule} from '@angular/material/divider';
-import { NgOrdinalPipeModule  } from 'angular-pipes';
+import { NgxLocalStorageModule } from 'ngx-localstorage';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDividerModule } from '@angular/material/divider';
+import { NgOrdinalPipeModule } from 'angular-pipes';
 
 import {
   InjectableRxStompConfig,
@@ -80,11 +80,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SingleBotLeaderboardDataComponent } from './pages/bot/components/singlebotleaderboarddata/singlebotleaderboarddata.component';
 import { BotxmlComponent } from './pages/bot/components/botxml/botxml.component';
 import { GeneFileComponent } from './pages/genefile/genefile.component';
+import { TournamentTrackerUnitItemComponent } from './pages/live/components/tournamenttrackerunititem/tournamenttrackerunititem.component';
+import { FoundationGridContainerComponent } from './util/Foundation/components/foundationgridcontainer/foundationgridcontainer.component';
+import { FoundationGridYComponent } from './util/Foundation/components/foundationgridy/foundationgridy.component';
+import { FoundationGridXComponent } from './util/Foundation/components/foundationgridx/foundationgridx.component';
+import { FoundationcellComponent } from './util/Foundation/components/foundationcell/foundationcell.component';
+import { MustadioDataComponent } from './pages/live/components/mustadiodata/mustadiodata.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
     LivePageComponent, TeamFightImagesComponent, BetentryComponent, FightEntryComponent, TwitchembedComponent, MatchBlockComponent,
     TeamFightImagesComponent, FightImageComponent, TeamInfoComponent, UnitInfoComponent, NoticeComponent, MatchCountsComponent,
     SongComponent, SkilldropComponent, MapNumberComponent, MapImageComponent, GridsComponent, BetGridComponent, FightGridComponent,
@@ -102,9 +107,11 @@ import { GeneFileComponent } from './pages/genefile/genefile.component';
     BotLeaderboardComponent,
     GlobalGilCountComponent, GlobalGilCountTabComponent,
     AllegianceLeaderboardComponent,
-    BotlandComponent, MatchHeightDirective, TournamentTrackerComponent, LivePageOptionsComponent, StacktraceComponent, 
-    UnitprofileComponent, BotComponent, BotlandDisplayComponent, BotlandTableComponent, BotlandHistoricalLeaderboardComponent, 
-    BotlandwinnersComponent, TournamentTrackerStarsComponent, SingleBotLeaderboardDataComponent, BotxmlComponent, GeneFileComponent,
+    BotlandComponent, MatchHeightDirective, TournamentTrackerComponent, LivePageOptionsComponent, StacktraceComponent,
+    UnitprofileComponent, BotComponent, BotlandDisplayComponent, BotlandTableComponent, BotlandHistoricalLeaderboardComponent,
+    BotlandwinnersComponent, TournamentTrackerStarsComponent, SingleBotLeaderboardDataComponent, BotxmlComponent,
+    GeneFileComponent, TournamentTrackerUnitItemComponent, FoundationGridContainerComponent, FoundationGridYComponent,
+    FoundationGridXComponent, FoundationcellComponent, MustadioDataComponent,
   ],
   imports: [
     BrowserModule,

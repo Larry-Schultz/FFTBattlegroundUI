@@ -7,7 +7,7 @@ import { PlayerDataService, PlayerData } from './service/playerdata.service';
 import { PlayerListService} from './service/playerlist.service';
 import { PlayerBalanceHistoryService } from 'src/app/service/playerbalancehistory.service';
 import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
-import { BattleGroundEvent } from '../live/model/battlegroundevent';
+import { BattleGroundEvent } from '../live/model/BattleGroundEvents/battlegroundevent';
 
 @Component({
   selector: 'app-playerrecord',
@@ -118,8 +118,8 @@ export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   protected generatePrestigeSkillList(): PlayerSkill[] {
-    const result: PlayerSkill[] = this.playerData.playerRecord.playerSkills.filter((playerSkill: PlayerSkill): boolean => {
-      return playerSkill.skillType === SkillType.PRESTIGE;
+    const result: PlayerSkill[] = this.playerData.playerRecord.prestigeSkills.filter((playerSkill: PlayerSkill): boolean => {
+      return this.playerData.prestigeSkills.includes(playerSkill.skill);
     }).sort((playerSkill1: PlayerSkill, playerSkill2: PlayerSkill): number => {
       let sortResult = 0;
       if (playerSkill1.skill < playerSkill2.skill) {

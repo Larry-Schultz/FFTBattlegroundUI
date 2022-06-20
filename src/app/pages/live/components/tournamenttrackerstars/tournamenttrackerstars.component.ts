@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { TournamentWinData } from '../../model/teamevents';
 import { faStar, faCrown, faTimes} from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import { getColor } from 'src/app/util/colorsetter';
 import { Allegiance } from 'src/app/model/playerRecord';
+import { TournamentWinData } from '../../model/tournamentwindata';
 
 @Component({
   selector: 'app-tournamenttrackerstars',

@@ -3,26 +3,71 @@
 		<ul class="vertical medium-horizontal dropdown menu" data-dropdown-menu style="background-image: url(/assets/bgtexture.png)">
 			<li><img src="/assets/bigbrain.png" /></li>
 			<li class="menu-text">FFTB Viewer</li>
-			<li class="is-active"><a style="color: black;" href="/"><span style=" text-decoration: underline;">Live Feed</span></a></li>
-			<li><a style="color: black;" href="/player"><span style=" text-decoration: underline;">Player Data</span></a></li>
-			<li><a style="color: black;" href="/playerLeaderboard"><span style=" text-decoration: underline;">Player Leaderboard</span></a></li>
-			<li><a style="color: black;" href="/botleaderboard"><span style=" text-decoration: underline;">Bot Leaderboard</span></a></li>
-			<li><a style="color: black;" href="/expLeaderboard"><span style=" text-decoration: underline;">Exp Leaderboard</span></a></li>
-			<li><a style="color: black;" href="/ascension"><span style=" text-decoration: underline;">Ascensions</span></a></li>
-			<li><a style="color: black;" href="/allegianceLeaderboard"><span style=" text-decoration: underline;">Allegiance Leaderboard</span></a></li>
-			<li><a style="color: black;" href="/apidocs"><span style=" text-decoration: underline;">API</span></a></li>
-			<li><a style="color: black;" href="/music"><span style=" text-decoration: underline;">Playlist</span></a></li>
-			<li><a style="color: black;" href="/gilCount"><span style=" text-decoration: underline;">Global Gil Count</span></a></li>
-			<li><a style="color: black;" href="/botland"><span style=" text-decoration: underline;">Botland</span></a></li>
+			<li class="is-active">
+				<a href="/">
+					<span style="text-decoration: underline; color: black;">Live Feed</span>
+					<ng-container *ngIf="isBettingBeginsEvent(event) || isBettingEndsEvent(event)">
+						<span style="color: black;">(</span>
+						<span *ngIf="isBettingBeginsEvent(event)" style="color: black;">Betting&#160;</span>
+						<span [style.color]="getTeamColor(extractTeam1Allegiance(event))">{{extractTeam1Name(event)}}</span>
+						<span style="color: black;">&#160;vs&#160;</span>
+						<span [style.color]="getTeamColor(extractTeam2Allegiance(event))">{{extractTeam2Name(event)}}</span>
+						<span style="color: black;">)</span>
+					</ng-container>
+					<span *ngIf="isFightBegins(event)" style="color: black;">
+						(!fight)
+					</span>
+				</a>
+			</li>
+			<li>
+				<a class="menuLink" href="/player"><span class="menuItem">Player Data</span></a>
+			</li>
+			<li>
+				<a class="menuLink" href="/playerLeaderboard"><span class="menuItem">Player Leaderboard</span></a>
+			</li>
+			<li>
+				<a class="menuLink" href="/botleaderboard"><span class="menuItem">Bot Leaderboard</span></a>
+			</li>
+			<li>
+				<a class="menuLink" href="/expLeaderboard"><span class="menuItem">Exp Leaderboard</span></a>
+			</li>
+			<li>
+				<a class="menuLink" href="/ascension"><span class="menuItem">Ascensions</span></a>
+			</li>
+			<li>
+				<a class="menuLink" href="/allegianceLeaderboard"><span class="menuItem">Allegiance Leaderboard</span></a>
+			</li>
+			<li>
+				<a class="menuLink" href="/apidocs"><span class="menuItem">API</span></a>
+			</li>
+			<li>
+				<a class="menuLink" href="/music"><span class="menuItem">Playlist</span></a>
+			</li>
+			<li>
+				<a class="menuLink" href="/gilCount"><span class="menuItem">Global Gil Count</span></a>
+			</li>
+			<li>
+				<a class="menuLink" href="/botland"><span class="menuItem">Botland</span></a>
+			</li>
 		</ul>
 	</div>
 	<div class="top-bar-right">
 		<ul class="vertical medium-horizontal dropdown menu" data-dropdown-menu style="background-image: url(/assets/bgtexture.png)">
-			<li><a style="color: purple;" href="https://www.twitch.tv/fftbattleground"><span style=" text-decoration: underline;">Twitch Stream</span></a></li>
-			<li><a style="color: black;" href="https://fftbg.com/"><span style=" text-decoration: underline;">FFBG</span></a></li>
-			<li><a style="color: black;" href="https://www.mustad.io/"><span style=" text-decoration: underline;">Mustadio.io</span></a></li>
-			<li><a style="color: black;" href="https://fftbg.help/"><span style=" text-decoration: underline;">FFTBG Help</span></a></li>
-			<li><a style="color: black;" href="https://birb-brains-bot.app/#!/home"><span style=" text-decoration: underline;">BirbBrainsBot</span></a></li>
+			<li>
+				<a style="color: purple;" href="https://www.twitch.tv/fftbattleground"><span class="menuItem">Twitch Stream</span></a>
+			</li>
+			<li>
+				<a class="menuLink" href="https://fftbg.com/"><span class="menuItem">FFBG</span></a>
+			</li>
+			<li>
+				<a class="menuLink" href="https://www.mustad.io/"><span class="menuItem">Mustadio.io</span></a>
+			</li>
+			<li>
+				<a class="menuLink" href="https://fftbg.help/"><span class="menuItem">FFTBG Help</span></a>
+			</li>
+			<li>
+				<a class="menuLink" href="https://birb-brains-bot.app/#!/home"><span class="menuItem">BirbBrainsBot</span></a>
+			</li>
 		</ul>
 	</div>
 </div>

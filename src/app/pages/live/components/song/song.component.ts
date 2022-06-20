@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { MusicEvent } from '../../model/matchevents';
+import { MusicEvent } from '../../model/MatchEvents/musicevent';
 
 @Component({
   selector: 'app-song',

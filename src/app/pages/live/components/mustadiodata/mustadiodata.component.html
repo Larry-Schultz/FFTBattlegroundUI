@@ -1,0 +1,58 @@
+<table *ngIf="unitStats">
+    <tr>
+        <td>Brave:</td>
+        <td>{{brave}}</td>
+        <td>Faith</td>
+        <td>{{faith}}</td>
+    </tr>
+    <tr>
+        <td>HP:</td>
+        <td>{{unitStats.hp}}</td>
+        <td>MP:</td>
+        <td>{{unitStats.mp}}</td>
+    </tr>
+    <tr>
+        <td>Move:</td>
+        <td>{{unitStats.move}}</td>
+        <td>Jump:</td>
+        <td>{{unitStats.jump}}</td>
+    </tr>
+    <tr>
+        <td>Speed:</td>
+        <td>{{unitStats.speed}}</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>PA:</td>
+        <td>{{unitStats.pa}}</td>
+        <td>MA:</td>
+        <td>{{unitStats.ma}}</td>
+    </tr>
+    </table>
+    <table>
+        <ng-container *ngIf="unitStats.permStatuses && unitStats.permStatuses.length > 0">
+            <tr><td>Perm Statuses</td></tr>
+            <tr *ngFor="let status of unitStats.permStatuses">
+                <td>
+                    <ul>
+                        <li>
+                            <span [title]="status.info">{{status.name}}</span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </ng-container>
+        <ng-container *ngIf="unitStats.initialStatuses && unitStats.initialStatuses.length > 0">
+            <tr><td>Initial Statuses</td></tr>
+            <tr *ngFor="let status of unitStats.initialStatuses">
+                <td>
+                    <ul>
+                        <li>
+                            <span [title]="status.info">{{status.name}}</span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </ng-container>
+    </table>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { MatchInfoEvent } from '../../model/matchevents';
+import { MatchInfoEvent } from '../../model/MatchEvents/matchinfoevent';
 
 @Component({
   selector: 'app-map-image',

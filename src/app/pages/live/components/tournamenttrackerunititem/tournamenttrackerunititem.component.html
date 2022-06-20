@@ -1,0 +1,71 @@
+<table *ngIf="unitInfoEvent && unitInfoEvent.unit">
+    <tbody>
+        <tr *ngIf="unitInfoEvent.player" [id]="unitInfoEvent.player + 'TournamentTracker' + 'Portrait'">
+            <td>
+                <div class="portrait-cell">
+                    <p><u><b><a id="{{unitInfoEvent.player + 'DataLink'}}" href="{{'/player/' + unitInfoEvent.player}}" target="_blank" style="color: inherit;">{{unitInfoEvent.player}}</a></b></u></p>
+                    <img [src]="generateUnitPortraitUrl(unitInfoEvent)" />
+                </div>
+            </td>
+        </tr>
+        <tr *ngIf="unitInfoEvent.unit.Class" [id]="unitInfoEvent.player + 'TournamentTracker' + 'Class'">
+            <td><span [title]="classTooltip(unitInfoEvent)">{{unitInfoEvent.unit.Class}}</span></td>
+        </tr>
+        <tr *ngIf="unitInfoEvent.unit.Gender" [id]="unitInfoEvent.player + 'TournamentTracker' + 'Gender'">
+            <td><span>{{unitInfoEvent.unit.Gender}}</span></td>
+        </tr>
+        <tr *ngIf="unitInfoEvent.unit.Sign" [id]="unitInfoEvent.player + 'TournamentTracker' + 'ZodiacSign'">
+            <td><span [title]="signTip(unitInfoEvent)">{{unitInfoEvent.unit.Sign}}</span></td>
+        </tr>
+        <tr *ngIf="unitInfoEvent.unitStats" [id]="unitInfoEvent.player + 'TournamentTracker' + 'UnitStats'">
+            <div class="grid-container fluid grid-frame">
+	            <div class="grid-x">
+                    <div class="cell small-1"></div>
+                    <div class="cell small-10">
+                        <app-mustadiodata [unitStats]="unitInfoEvent.unitStats" [brave]="unitInfoEvent.unit.Brave" [faith]="unitInfoEvent.unit.Faith"></app-mustadiodata>
+                    </div>
+                    <div class="cell small-1"></div>
+                </div>
+            </div>
+
+        </tr>
+        <tr *ngIf="unitInfoEvent.unit.ActionSkill" [id]="unitInfoEvent.player + 'TournamentTracker' + 'ActionSkill'">
+            <td><span [title]="actionSkillTip(unitInfoEvent)">{{unitInfoEvent.unit.ActionSkill}}</span></td>
+        </tr>
+        <tr *ngIf="unitInfoEvent.unit.ReactionSkill" [id]="unitInfoEvent.player + 'TournamentTracker' + 'ReactionSkill'">
+            <td><span [title]="reactionSkillTip(unitInfoEvent)">{{unitInfoEvent.unit.ReactionSkill}}</span></td>
+        </tr>
+        <tr *ngIf="unitInfoEvent.unit.MoveSkill" [id]="unitInfoEvent.player + 'TournamentTracker' + 'MoveSkill'">
+            <td><span [title]="moveSkillTip(unitInfoEvent)">{{unitInfoEvent.unit.MoveSkill}}</span></td>
+        </tr>
+        <tr *ngIf="unitInfoEvent.unit.Mainhand" [id]="unitInfoEvent.player + 'TournamentTracker' + 'MainHand'">
+            <td><span [title]="mainhandTip(unitInfoEvent)">{{unitInfoEvent.unit.Mainhand}}</span></td>
+        </tr>
+        <tr *ngIf="unitInfoEvent.unit.Offhand"  [id]="unitInfoEvent.player + 'TournamentTracker' + 'Offhand'">
+            <td><span [title]="offhandTip(unitInfoEvent)">{{unitInfoEvent.unit.Offhand}}</span></td>
+        </tr>
+        <tr *ngIf="unitInfoEvent.unit.Head" [id]="unitInfoEvent.player + 'TournamentTracker' + 'Head'">
+            <td><span [title]="headTip(unitInfoEvent)">{{unitInfoEvent.unit.Head}}</span></td>
+        </tr>
+        <tr *ngIf="unitInfoEvent.unit.Armor" [id]="unitInfoEvent.player + 'TournamentTracker' + 'Armor'">
+            <td><span [title]="armorTip(unitInfoEvent)">{{unitInfoEvent.unit.Armor}}</span></td>
+        </tr>
+        <tr *ngIf="unitInfoEvent.unit.Accessory" [id]="unitInfoEvent.player + 'TournamentTracker' + 'Accessory'">
+            <td><span [title]="accessoryTip(unitInfoEvent)">{{unitInfoEvent.unit.Accessory}}</span></td>
+        </tr>
+        <tr *ngIf="unitInfoEvent.unit.ClassSkills && unitInfoEvent.unit.ClassSkills.length > 0" [id]="unitInfoEvent.player + 'TournamentTracker' + 'ClassSkills'">
+            <td>
+                <span *ngFor="let classSkill of unitInfoEvent.unit.ClassSkills; let i=index; let size=count">
+                    <span [title]="getClassTooltip(classSkill)">{{classSkill}}</span><ng-container *ngIf="i !== (size - 1)">,&#160;</ng-container>
+                </span>
+            </td>
+        </tr>
+        <tr *ngIf="loadExtraSkills(unitInfoEvent.unit)" [id]="unitInfoEvent.player + 'TournamentTracker' + 'ExtraSkills'">
+            <td>
+                <span *ngFor="let classSkill of calculateExtraSkills(unitInfoEvent.unit); let i=index; let size=count">
+                    <span [title]="getClassTooltip(classSkill)">{{classSkill}}</span><ng-container *ngIf="i !== (size - 1)">,&#160;</ng-container>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>

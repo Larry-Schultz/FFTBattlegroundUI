@@ -1,23 +1,3 @@
-export interface BattleGroundEvent {
-    eventTime: number;
-    eventType: BattleGroundEventType;
-}
-
-export enum BetType {
-	VALUE = 'value',
-	PERCENTAGE = 'percentage',
-	HALF = 'half',
-	ALLIN = 'allin',
-	FLOOR = 'floor',
-	RANDOM = 'random'
-}
-
-export enum Gender {
-	MALE = 'male',
-	FEMALE = 'female',
-	MONSTER = 'monster'
-}
-
 export enum BattleGroundEventType {
 	FIGHT_BEGINS = 'FIGHT_BEGINS',
 	BETTING_BEGINS = 'BETTING_BEGINS',

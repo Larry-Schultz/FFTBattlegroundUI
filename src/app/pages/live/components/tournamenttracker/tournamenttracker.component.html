@@ -1,35 +1,41 @@
-<h3>Tournament Tracker</h3>
-<table>
-    <tbody>
-        <tr *ngFor="let allegiance of allegiances">
-            <td *ngIf="tournamentData.teamStillActiveMap.get(allegiance)" [style.border]="rowBorderColor(allegiance)"> 
-                <span [style.color]="allegianceColor(allegiance)">{{allegiance.toString() | titlecase}} </span><span [style.color]="allegianceColor(allegiance)"></span>
-                <app-tournamenttrackerstars [tournamentWinData]="tournamentData.tournamentWinMap.get(allegiance)" [team]="allegiance"></app-tournamenttrackerstars>
-                <span>:</span>
-            </td>
-            <td *ngIf="!tournamentData.teamStillActiveMap.get(allegiance)" [style.border]="rowBorderColor(allegiance)">
-                <s [style.color]="allegianceColor(allegiance)">
-                    <span [style.color]="allegianceColor(allegiance)">{{allegiance.toString() | titlecase}} </span><span [style.color]="allegianceColor(allegiance)"></span>
-                    <app-tournamenttrackerstars [tournamentWinData]="tournamentData.tournamentWinMap.get(allegiance)"  [team]="allegiance"></app-tournamenttrackerstars>
-                    <span>:</span>
-                </s>
-            </td>
-
-            <td *ngIf="tournamentData.teamStillActiveMap.get(allegiance)" [style.border]="rowBorderColor(allegiance)">
-                <span *ngFor="let unitInfoEvent of tournamentData.playerUnitInfoMap.get(allegiance); let i=index; let size=count" [style.color]="allegianceColor(allegiance)">
-                    <app-unitinfo [loading]="false" [teamInfo]="tournamentData.teamInfoMap.get(allegiance)[i]" [unitInfo]="tournamentData.playerUnitInfoMap.get(allegiance)[i]"></app-unitinfo><span>, </span>
-                </span>
-            </td>
-            <td *ngIf="!tournamentData.teamStillActiveMap.get(allegiance)" [style.border]="rowBorderColor(allegiance)"> 
-                
-                <span *ngFor="let unitInfoEvent of tournamentData.playerUnitInfoMap.get(allegiance); let i=index; let size=count">
+                                                                                                                                                                                                                                                                                                                                  <h3>Tournament Tracker</h3>
+<mat-accordion multi>
+    <ng-container *ngFor="let allegiance of allegiances; let j=index;">
+        <mat-expansion-panel [class]="getClassForPanel(j)">
+            <mat-expansion-panel-header>
+                <mat-panel-title *ngIf="tournamentData.teamStillActiveMap.get(allegiance)"  > 
+                    <ng-template [ngTemplateOutlet]="allegianceName" [ngTemplateOutletContext]="{allegiance: allegiance, tournamentData: tournamentData}"></ng-template>
+                </mat-panel-title>
+                <mat-panel-title *ngIf="!tournamentData.teamStillActiveMap.get(allegiance)" >
                     <s [style.color]="allegianceColor(allegiance)">
-                        <app-unitinfo [loading]="loading" [teamInfo]="tournamentData.teamInfoMap.get(allegiance)[i]" [unitInfo]="tournamentData.playerUnitInfoMap.get(allegiance)[i]"></app-unitinfo><span>, </span>
+                        <ng-template [ngTemplateOutlet]="allegianceName" [ngTemplateOutletContext]="{allegiance: allegiance, tournamentData: tournamentData}"></ng-template>
                     </s>
-                </span>
-                
-            </td>
-
-        </tr>
-    </tbody>
-</table>
+                </mat-panel-title>
+                <ng-template #allegianceName let-allegiance="allegiance" let-tournamentData="tournamentData">
+                    <span [style.color]="allegianceColor(allegiance)">{{allegiance.toString() | titlecase}} </span>
+                    <span [style.color]="allegianceColor(allegiance)">
+                        <app-tournamenttrackerstars [tournamentWinData]="tournamentData.tournamentWinMap.get(allegiance)"  [team]="allegiance"></app-tournamenttrackerstars>
+                        <span>:</span>
+                    </span>
+                </ng-template>
+                <mat-panel-description>
+                    <span *ngFor="let unitInfoEvent of tournamentData.playerUnitInfoMap.get(allegiance); let i=index; let size=count" [style.color]="allegianceColor(allegiance)">
+                        <app-unitinfo [loading]="false" [teamInfo]="tournamentData.teamInfoMap.get(allegiance)[i]" 
+                                      [unitInfo]="tournamentData.playerUnitInfoMap.get(allegiance)[i]"
+                                      [alive]="tournamentData.teamStillActiveMap.get(allegiance)"></app-unitinfo>
+                        <span><ng-container *ngIf="i !== (size - 1)">,</ng-container>
+                            &#160;
+                        </span>
+                    </span>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <table>
+                <tr>
+                    <td *ngFor="let unitInfoEvent of tournamentData.playerUnitInfoMap.get(allegiance);">
+                        <app-tournamenttrackerunititem [allegiance]="allegiance" [unitInfoEvent]="unitInfoEvent"></app-tournamenttrackerunititem>
+                    </td> 
+                </tr>
+            </table>
+        </mat-expansion-panel>
+    </ng-container>
+</mat-accordion>

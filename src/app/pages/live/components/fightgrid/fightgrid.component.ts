@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { FightEntry } from '../fightentry/fightentry.component';
+import { FightEntry } from '../fightentry/model/fightentry';
 
 @Component({
   selector: 'app-fight-grid',

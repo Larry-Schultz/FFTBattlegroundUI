@@ -12,6 +12,7 @@ export interface PlayerRecord {
     allegiance: Allegiance;
     portrait: string;
     playerSkills: PlayerSkill[];
+    prestigeSkills: PlayerSkill[];
     lastActive: number;
     lastFightActive: number;
     isSubscriber: boolean;

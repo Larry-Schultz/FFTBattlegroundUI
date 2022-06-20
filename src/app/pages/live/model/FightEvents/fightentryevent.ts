@@ -1,9 +1,6 @@
-import { PlayerRecord} from 'src/app/model/playerRecord';
-import {BattleGroundEvent, Gender} from './battlegroundevent';
-
-export interface FightBeginsEvent extends BattleGroundEvent {
-    skillDrop: string;
-}
+import { BattleGroundEvent } from '../BattleGroundEvents/battlegroundevent';
+import { Gender } from '../BattleGroundEvents/gender';
+import { PlayerRecord } from 'src/app/model/playerRecord';
 
 export interface FightEntryEvent extends BattleGroundEvent {
     player: string;
@@ -29,6 +26,4 @@ export interface FightEntryEvent extends BattleGroundEvent {
 	exclusionSkillColor: string;
 }
 
-export interface BadFightEvent extends BattleGroundEvent {
-    player: string;
-}
+

@@ -1,9 +1,9 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
-import { UnitInfoEvent } from '../../model/teamevents';
-import { TeamInfoEntry } from '../teaminfo/teaminfo.component';
 import { getColor } from 'src/app/util/colorsetter';
 import { Allegiance } from 'src/app/model/playerRecord';
+import { UnitInfoEvent } from '../../model/TeamEvents/unitinfoevent';
+import { TeamInfoEntry } from '../teaminfo/model/teaminfoentry';
 
 @Component({
   selector: 'app-unitinfo',
@@ -20,6 +20,9 @@ export class UnitInfoComponent implements OnInit, OnChanges {
 
   @Input()
   public unitInfo: UnitInfoEvent;
+
+  @Input()
+  public alive: boolean;
 
   public constructor() { }
 

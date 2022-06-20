@@ -8,10 +8,10 @@ import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent
 import { PlayerBalanceHistoryService } from 'src/app/service/playerbalancehistory.service';
 
 import { BotlandDataService, CleanedBotlandData } from './service/botlanddata.service';
-import { BattleGroundEvent } from '../live/model/battlegroundevent';
 import { BotlandData } from './model/botlanddata';
 import { BotlandleaderboardService } from './service/botlandleaderboard.service';
 import { BotlandLeaderboard } from './model/botlandleaderboard';
+import { BattleGroundEvent } from '../live/model/BattleGroundEvents/battlegroundevent';
 
 
 @Component({

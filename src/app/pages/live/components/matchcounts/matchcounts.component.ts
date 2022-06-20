@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, IterableDiffers, DoCheck } from '@angular/core';
-import { BetEntry } from '../betentry/betentry.component';
 import { getFixedDecimal, stringToInt, capitalize } from 'src/app/util/util';
 import { Allegiance } from 'src/app/model/playerRecord';
 import { GridMode } from '../grids/grids.component';
 import { getColor } from 'src/app/util/colorsetter';
+import { BetEntry } from '../betentry/model/betentry';
 
 @Component({
   selector: 'app-matchcounts',

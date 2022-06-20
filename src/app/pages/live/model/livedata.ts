@@ -1,17 +1,19 @@
-import { BetEntry } from '../components/betentry/betentry.component';
-import { MusicEvent, SkillDropEvent, MatchInfoEvent } from './matchevents';
-import { Notice } from '../components/notice/notice.component';
 import { GridMode } from '../components/grids/grids.component';
-import { FightEntry } from '../components/fightentry/fightentry.component';
-import { UnitInfoEvent, TournamentWinData } from './teamevents';
 import { Allegiance } from 'src/app/model/playerRecord';
-import { BadBetEvent } from './betevents';
-import { BadFightEvent } from './fightevents';
-import { TeamInfoEntry } from '../components/teaminfo/teaminfo.component';
-
-import { TournamentTracker,
-     TournamentTrackerBlank,
-     TournamentTrackerData } from '../components/tournamenttracker/tournamenttracker.component';
+import { MusicEvent } from './MatchEvents/musicevent';
+import { SkillDropEvent } from './MatchEvents/skilldropevent';
+import { MatchInfoEvent } from './MatchEvents/matchinfoevent';
+import { UnitInfoEvent } from './TeamEvents/unitinfoevent';
+import { BadBetEvent } from './BetEvents/badbetevent';
+import { BadFightEvent } from './FightEvents/badfightevent';
+import { TournamentWinData } from './tournamentwindata';
+import { BetEntry } from '../components/betentry/model/betentry';
+import { FightEntry } from '../components/fightentry/model/fightentry';
+import { Notice } from '../components/notice/model/notice';
+import { TournamentTracker } from '../components/tournamenttracker/model/tournamenttracker';
+import { TournamentTrackerBlank } from '../components/tournamenttracker/model/tournamenttrackerblank';
+import { TeamInfoEntry } from '../components/teaminfo/model/teaminfoentry';
+import { TournamentTrackerData } from '../components/tournamenttracker/model/tournamenttrackerdata';
 
 const TEAM_INFO_COUNT = 4;
 

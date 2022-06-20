@@ -55,5 +55,6 @@ export interface PlayerData {
     betPercentile: number;
     fightPercentile: number;
     classBonuses: string[];
-    skillBonuses: string[]
+    skillBonuses: string[];
+    prestigeSkills: string[];
 }

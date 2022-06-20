@@ -9,10 +9,10 @@ import { BotHourlyData } from '../botland/model/bothourlydata';
 import { Label } from 'ng2-charts';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { EventWebSocketAPI } from 'src/app/util/websocketapi';
-import { BattleGroundEvent } from '../live/model/battlegroundevent';
 import { BotlandLeaderboardEntry } from '../botland/model/botlandleaderboardentry';
 import { BotLeaderboardSingleBotDataService } from './service/botleaderboardsinglebotdata.service';
 import { BotParamData } from '../botland/model/botparamdata';
+import { BattleGroundEvent } from '../live/model/BattleGroundEvents/battlegroundevent';
 
 @Component({
   selector: 'app-bot',

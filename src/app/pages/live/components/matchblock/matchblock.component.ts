@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { LiveData } from '../../model/livedata';
 import { Allegiance } from 'src/app/model/playerRecord';
-import { TeamInfoEvent } from '../../model/teamevents';
-
 
 @Component({
   selector: 'app-matchblock',
