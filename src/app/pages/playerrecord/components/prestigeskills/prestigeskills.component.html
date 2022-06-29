@@ -3,6 +3,10 @@
     <br />
     <span *ngFor="let skill of prestigeSkills; let i = index; let size = count">
         <span [title]="skill.metadata" [style.color]="'orange'">{{skill.skill}}</span>
+        <ng-container *ngIf="skill.cooldown && skill.cooldown > 0">
+            <sup  [title]="skill.cooldown + ' levels until this skill is remembered'">{{skill.cooldown}}</sup>
+            <span > (cannot use)</span>
+        </ng-container>
         <span *ngIf="i !== size -1" class="listDash" [id]="'prestigeSkillsDash' + i.toString()"> - </span>
     </span>
     <br />

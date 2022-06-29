@@ -36,18 +36,18 @@ export class TournamentTrackerUnitItemComponent implements OnInit, OnChanges {
   public generateUnitPortraitUrl(unitInfoEvent: UnitInfoEvent): string {
     const unit: Unit = unitInfoEvent.unit;
     let cleanedImageUrl = 'images/portraits/';
-    if (unit.Gender === capitalize(Gender.MONSTER.toLocaleLowerCase())) {
+    if (unit.Gender === Gender.MONSTER) {
       cleanedImageUrl = cleanedImageUrl + unit.Class;
     } else if (this.allegiance !== Allegiance.CHAMPION) {
       const className: string = unit.Class;
-      const genderCode: string = unit.Gender === capitalize(Gender.MALE.toLocaleLowerCase()) ? 'M' : 'F';
+      const genderCode: string = unit.Gender === Gender.MALE ? 'M' : 'F';
       const allegianceString: string = capitalize(this.allegiance.toLocaleLowerCase());
       
       const unitImageName: string = className + genderCode + '_' + allegianceString;
       cleanedImageUrl = cleanedImageUrl + unitImageName;
     } else {
       const className: string = unit.Class;
-      const genderCode: string = unit.Gender === capitalize(Gender.MALE.toLocaleLowerCase()) ? 'M' : 'F';
+      const genderCode: string = unit.Gender === Gender.MALE ? 'M' : 'F';
       const unitImageName: string = className + genderCode;
       cleanedImageUrl = cleanedImageUrl + unitImageName;
     }
@@ -164,6 +164,6 @@ export class TournamentTrackerUnitItemComponent implements OnInit, OnChanges {
     } else {
       return false;
     }
-  }
+  }n
 
 }

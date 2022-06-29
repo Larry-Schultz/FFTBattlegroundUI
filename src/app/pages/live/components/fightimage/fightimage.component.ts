@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
 import { UnitInfoEvent } from '../../model/TeamEvents/unitinfoevent';
 import { TeamInfoEntry } from '../teaminfo/model/teaminfoentry';
+import { Gender } from '../../model/BattleGroundEvents/gender';
 
 @Component({
   selector: 'app-fightimage',
@@ -37,11 +38,11 @@ export class FightImageComponent implements OnInit, OnChanges {
 		if (className.startsWith('Calculator')) {
 			className = className.split('(')[0].trim();
 		}
-		const gender: string = event.unit.Gender;
+		const gender: Gender = event.unit.Gender;
 
 		let characterImageString: string;
-		if (gender != 'Monster') {
-			if (className == 'Time Mage') {
+		if (gender !== Gender.MONSTER) {
+			if (className === 'Time Mage') {
 				className = 'TimeMage';
 			}
 			characterImageString = baseUrl + className + ' ' + gender;
@@ -54,10 +55,10 @@ export class FightImageComponent implements OnInit, OnChanges {
 
 	public generateUnitImageTitle(event: UnitInfoEvent): string {
 		const className: string = event.unit.Class;
-		const gender: string = event.unit.Gender;
+		const gender: Gender = event.unit.Gender;
 
 		let characterImageTitle: string;
-		if (gender !== 'Monster') {
+		if (gender !== Gender.MONSTER) {
 			characterImageTitle = className + ' - ' + gender;
 		} else {
 			characterImageTitle = className;

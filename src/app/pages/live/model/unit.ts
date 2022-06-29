@@ -1,6 +1,8 @@
+import { Gender } from './BattleGroundEvents/gender';
+
 export interface Unit {
 	Name: string;
-	Gender: string;
+	Gender: Gender;
 	Sign: string;
 	Brave: number;
 	Faith: number;
