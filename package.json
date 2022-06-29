@@ -86,5 +86,9 @@
   "engines" : { 
     "npm" : ">=8.13.1",
     "node" : ">=16.2.0"
-  }
+  },
+  "scripts": {
+   "start": "SET NODE_OPTIONS=--openssl-legacy-provider",
+   "build": "SET NODE_OPTIONS=--openssl-legacy-provider"
+ }
 }
