@@ -87,6 +87,9 @@
     "npm" : ">=8.13.1",
     "node" : "=16.13.0"
   }, "scripts": {
-    "start": "node --optimize_for_size --max_old_space_size=460 dist/main.js"
+    "ng": "ng",
+    "build": "ng build",
+    "start": "ng build && node --optimize_for_size --max_old_space_size=460 dist/main.js",
+    "start:heroku": "node dist/fftb-viewer-ui/server/main.js"
   }
 }
