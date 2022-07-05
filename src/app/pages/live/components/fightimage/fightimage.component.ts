@@ -3,6 +3,7 @@ import { getBackendUrl } from 'src/app/util/getbackendurl';
 import { UnitInfoEvent } from '../../model/TeamEvents/unitinfoevent';
 import { TeamInfoEntry } from '../teaminfo/model/teaminfoentry';
 import { Gender } from '../../model/BattleGroundEvents/gender';
+import { capitalize } from 'src/app/util/util';
 
 @Component({
   selector: 'app-fightimage',
@@ -45,7 +46,7 @@ export class FightImageComponent implements OnInit, OnChanges {
 			if (className === 'Time Mage') {
 				className = 'TimeMage';
 			}
-			characterImageString = baseUrl + className + ' ' + gender;
+			characterImageString = baseUrl + className + ' ' + capitalize(gender.toString());
 		} else {
 			characterImageString = baseUrl + className.replace(' ', '');
 		}
