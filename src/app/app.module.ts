@@ -12,6 +12,7 @@ import { NgxLocalStorageModule } from 'ngx-localstorage';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { NgOrdinalPipeModule } from 'angular-pipes';
+import { CountdownModule } from 'ngx-countdown';
 
 import {
   InjectableRxStompConfig,
@@ -127,7 +128,8 @@ import { MustadioDataComponent } from './pages/live/components/mustadiodata/must
     NgxLocalStorageModule.forRoot(),
     BrowserAnimationsModule,
     MatExpansionModule, MatDividerModule,
-    NgOrdinalPipeModule
+    NgOrdinalPipeModule,
+    CountdownModule
   ],
   providers: [
     {
@@ -139,7 +141,7 @@ import { MustadioDataComponent } from './pages/live/components/mustadiodata/must
       useFactory: rxStompServiceFactory,
       deps: [InjectableRxStompConfig],
     },
-    
+
   ],
   bootstrap: [AppComponent]
 })
