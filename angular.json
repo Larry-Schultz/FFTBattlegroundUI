@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    1  eswswsss"FFTBattlegroundUI": {
+    "FFTBattlegroundUI": {
       "projectType": "application",
       "schematics": {},
       "root": "",
