@@ -5,7 +5,12 @@
         <br />
         <h2>Stream Music Playlist</h2>
         <br />
-        <p>Current song count: {{songCount.toLocaleString()}}</p>
+        <p>Current song count: {{songCount | number}}</p>
+        <br />
+        <p>
+          <span>Tracking {{totalOccurences | number}} distinct song plays for {{totalSongsWithOccurences | number}} songs since {{firstOccurenceString}}.  </span>
+          <span *ngIf="(songCount - totalSongsWithOccurences) > 0">{{songCount - totalSongsWithOccurences | number}} songs have yet to be played.</span>
+        </p>
         <div *ngIf="displayTable">
             <table datatable [dtOptions]="databaseOptions" class="row-border hover" id="playlistTable"></table>
         </div>

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
+import { MusicPayload } from '../model/musicpayload';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +17,9 @@ export class MusicService {
 
   }
 
-  find(): Observable<GenericResponse<Music[]>> {
+  find(): Observable<GenericResponse<MusicPayload>> {
     const url = this.serviceUrl;
-    const response: Observable<GenericResponse<Music[]>> = this.http.get<GenericResponse<Music[]>>(url);
+    const response: Observable<GenericResponse<MusicPayload>> = this.http.get<GenericResponse<MusicPayload>>(url);
     return response;
   }
 }
-
-export interface Music {
-    songName: string;
-    duration: string;
-}
-
