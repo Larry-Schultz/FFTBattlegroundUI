@@ -1,4 +1,4 @@
-import { Allegiance } from 'src/app/model/playerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 
 export interface TournamentWinData {
 	wins: Allegiance[];

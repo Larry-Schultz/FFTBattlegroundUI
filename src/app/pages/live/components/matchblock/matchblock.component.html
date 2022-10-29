@@ -1,12 +1,13 @@
 <div class="grid-container" style="border-style: solid; word-wrap: break-word; color: black; border-radius: 25px; background-color: white">
     <div class="grid-y">
         <div class="cell small-2">
-            <app-notice 
-                [notice]="liveData.currentNotice" 
-                [team1]="liveData.team1" 
+            <app-notice
+                [notice]="liveData.currentNotice"
+                [team1]="liveData.team1"
                 [team2]="liveData.team2"
                 [fightEntries]="liveData.fightEntries" [tournamentWinMap]="liveData.tournamentData.tournamentWinMap"
-                [eventTime]="liveData.eventTime"></app-notice>
+                [eventTime]="liveData.eventTime"
+                [memeTournamentSettings]="liveData?.matchInfo?.memeTournamentSettings"></app-notice>
         </div>
         <div class="cell small-2">
             <app-teamfightimages [liveData]="liveData"></app-teamfightimages>
@@ -20,7 +21,7 @@
                     <div class="grid-x">
                         <div class="cell small-3"></div>
                         <div class="cell small-6 text-center">
-                            <app-song [musicEvent]="liveData.musicEvent"></app-song>
+                            <app-song [musicEvent]="liveData.musicEvent" [hypeCount]="liveData.hypeCount" [searchEnabled]="searchEnabled"></app-song>
                             <br />
                             <app-skilldrop [skillDropEvent]="liveData.skillDropEvent"></app-skilldrop>
                         </div>
@@ -40,7 +41,7 @@
                     <div class="grid-x">
                         <div class="cell small-1"></div>
                         <div class="cell small-3 text-left">
-                            <app-matchcounts 
+                            <app-matchcounts
                                 [loading]="liveData.loading"
                                 [mode]="liveData.gridMode"
                                 [myTeamBetEntries]="liveData.team1BetEntries"
@@ -54,7 +55,7 @@
                         </div>
                         <div class="cell small-1"></div>
                         <div class="cell small-3 text-right">
-                        <app-matchcounts 
+                        <app-matchcounts
                                 [loading]="liveData.loading"
                                 [mode]="liveData.gridMode"
                                 [myTeamBetEntries]="liveData.team2BetEntries"
@@ -69,7 +70,7 @@
         </div>
         <div class="cell small-2">
             <div class="grid-x">
-            
+
             </div>
         </div>
     </div>

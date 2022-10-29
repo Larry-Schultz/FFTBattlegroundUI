@@ -1,5 +1,6 @@
 import { BattleGroundEvent } from '../BattleGroundEvents/battlegroundevent';
-import { Allegiance, PlayerRecord } from 'src/app/model/playerRecord';
+import { PlayerRecord } from 'src/app/model/PlayerRecord/PlayerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 
 export interface BetInfoEvent extends BattleGroundEvent {
     player: string;

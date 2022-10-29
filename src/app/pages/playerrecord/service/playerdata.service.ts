@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
-import { PlayerRecord } from 'src/app/model/playerRecord';
+import { PlayerRecord } from 'src/app/model/PlayerRecord/PlayerRecord';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { Allegiance } from 'src/app/model/playerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { BetEntry } from '../betentry/model/betentry';
 import { FightEntry } from '../fightentry/model/fightentry';
 

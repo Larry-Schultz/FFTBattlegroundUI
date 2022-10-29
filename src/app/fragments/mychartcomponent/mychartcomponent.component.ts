@@ -10,9 +10,14 @@ import { Color, Label, BaseChartDirective } from 'ng2-charts';
 })
 export class MyLineChartComponent implements OnInit, OnChanges {
 
-  @Input() chartData: MyChartData;
-  @Input() width: number;
-  @Input() height: number;
+  @Input()
+  public chartData: MyChartData;
+
+  @Input()
+  public width: number;
+
+  @Input()
+  public height: number;
 
   @ViewChild(BaseChartDirective, {static: false})
   public chart: BaseChartDirective;

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
-import { Allegiance } from 'src/app/model/playerRecord';
+import { BotLeaderboardData } from '../model/BotLeaderboardData';
 
 @Injectable({
   providedIn: 'root'
@@ -22,16 +22,4 @@ export class BotLeaderboardDataService {
   }
 }
 
-export interface BotLeaderboardData {
-    botLeaderboard: BotLeaderboard[];
-    generationDateString: string;
-}
 
-export interface BotLeaderboard {
-    name: string;
-    rank: number;
-    gil: string;
-    lastActiveDate: string;
-    percentageOfGlobalGil: string;
-    allegiance: Allegiance;
-}

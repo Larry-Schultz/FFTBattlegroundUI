@@ -6,7 +6,7 @@
         <span style="font-weight: bold;">Betting</span><br />
         <span>Wins: </span><span id="winSpan">{{playerData.playerRecord.wins | number:'1.0-0':'en-US'}}</span> <span> Losses: </span><span
             id="lossSpan">{{playerData.playerRecord.losses | number:'1.0-0':'en-US'}}</span><span> Ratio: </span><span
-            id="ratioSpan">{{playerData.betRatio}}</span>
+            id="ratioSpan">{{playerData.betRatio | percent}}</span>
         <span> Percentile: </span><span id="betPercentile"
             *ngIf="playerData.betPercentile != null">{{playerData.betPercentile | ordinal}}</span><span id="betPercentile"
             *ngIf="playerData.betPercentile == null"
@@ -24,7 +24,7 @@
         <span style="font-weight: bold;">Fighting</span><br />
         <span>Wins: </span><span id="fightWinSpan">{{playerData.playerRecord.fightWins | number:'1.0':'en-US'}}</span> <span> Losses:
         </span><span id="fightLossSpan">{{playerData.playerRecord.fightLosses | number:'1.0':'en-US'}}</span> <span> Ratio: </span><span
-            id="fightRatioSpan">{{playerData.fightRatio}}</span>
+            id="fightRatioSpan">{{playerData.fightRatio | percent}}</span>
         <span> Percentile: </span><span id="fightPercentile"
             *ngIf="playerData.fightPercentile != null">{{playerData.fightPercentile | ordinal}}</span><span
             id="fightPercentile" *ngIf="playerData.fightPercentile == null"

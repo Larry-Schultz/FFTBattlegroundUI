@@ -7,7 +7,7 @@ import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent
 import { GenericElementOrdering, convertGenericElementListToMap } from 'src/app/util/genericresponse';
 import { BotHourlyData } from '../botland/model/bothourlydata';
 import { Label } from 'ng2-charts';
-import { ChartDataSets, ChartOptions } from 'chart.js';
+import { ChartData, ChartDataSets, ChartOptions, ChartTooltipItem } from 'chart.js';
 import { EventWebSocketAPI } from 'src/app/util/websocketapi';
 import { BotlandLeaderboardEntry } from '../botland/model/botlandleaderboardentry';
 import { BotLeaderboardSingleBotDataService } from './service/botleaderboardsinglebotdata.service';
@@ -112,6 +112,31 @@ export class BotComponent implements OnInit {
             title: {
                 display: true,
                 text: 'Bot balance based on past 24 hours',
+            },
+            tooltips: {
+              callbacks: {
+                label: (tooltipItem: ChartTooltipItem, data: ChartData) => {
+                  let value: any = data.datasets[0].data[tooltipItem.index];
+                  value = value.toString();
+                  value = value.split(/(?=(?:...)*$)/);
+                  value = value.join(',');
+                  return value;
+                }
+              } // end callbacks:
+            }, //end tooltips
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero:true,
+                  callback: (value: number, index: number, values: number[]) => {
+                    // Convert the number to a string and splite the string every 3 charaters from the end
+                    return value.toLocaleString();
+                  }
+                }
+              }],
+              xAxes: [{
+                ticks: {}
+              }]
             }
         };
 

@@ -9,13 +9,19 @@
         <br />
         <p>
           <span>Tracking {{totalOccurences | number}} distinct song plays for {{totalSongsWithOccurences | number}} songs since {{firstOccurenceString}}.  </span>
-          <span *ngIf="(songCount - totalSongsWithOccurences) > 0">{{songCount - totalSongsWithOccurences | number}} songs have yet to be played.</span>
+          <span *ngIf="totalSongsWithoutOccurences >= 0">{{totalSongsWithoutOccurences | number}} songs have yet to be played.</span>
         </p>
+        <br />
         <div *ngIf="displayTable">
             <table datatable [dtOptions]="databaseOptions" class="row-border hover" id="playlistTable"></table>
         </div>
+        <br />
+        <div *ngIf="searchEnabled">
+          <span >The below search links are unofficial links that make it easy to perform Youtube searches for songs in the Playlist.</span>
+          <br />
+        </div>
     </div>
     <div class="cell small-3">
-        <br />
+      <br />
     </div>
 </div>

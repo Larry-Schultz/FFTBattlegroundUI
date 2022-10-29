@@ -1,4 +1,5 @@
-import { Allegiance, PlayerRecord } from 'src/app/model/playerRecord';
+import { PlayerRecord } from 'src/app/model/PlayerRecord/PlayerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { TeamInfoEvent } from '../../../model/TeamEvents/teaminfoevent';
 import { getFixedDecimal } from 'src/app/util/util';
 
@@ -37,7 +38,7 @@ export class TeamInfoEntry {
       const losses = (playerRecord.fightLosses != null && playerRecord.fightLosses > 0 ? playerRecord.fightLosses : 1);
       let playerWinLossRatio: number = wins / (wins + losses);
       playerWinLossRatio = getFixedDecimal(playerWinLossRatio * 100, 0);
-      result = 'Fighting: Wins: ' + playerRecord.fightWins.toLocaleString() + ' Losses: ' + playerRecord.fightLosses.toLocaleString() 
+      result = 'Fighting: Wins: ' + playerRecord.fightWins.toLocaleString() + ' Losses: ' + playerRecord.fightLosses.toLocaleString()
             + ' Ratio: ' + playerWinLossRatio.toString() + '%"';
     }
 

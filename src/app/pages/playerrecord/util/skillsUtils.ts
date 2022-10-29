@@ -1,4 +1,5 @@
-import { PlayerSkill, SkillCategory } from 'src/app/model/playerRecord';
+import { PlayerSkill } from "src/app/model/PlayerRecord/PlayerSkill";
+import { SkillCategory } from "src/app/model/PlayerRecord/SkillCategory";
 
 export function getColorForSkill(playerSkill: PlayerSkill): string {
     if (playerSkill.skillCategory === SkillCategory.ELITE_MONSTER) {

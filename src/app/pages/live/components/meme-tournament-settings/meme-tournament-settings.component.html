@@ -1,0 +1,8 @@
+<span class="meme-tournament-settings">
+  <span class="meme-tournament-setting-title">Tournament Settings: </span>
+  <br />
+  <span class="meme-tournament-setting-value">
+    <span *ngIf="memeTournamentSettings && !isFightNotice(notice)" class="meme-tournament-setting-value">{{formattedSettingsList()}}</span>
+    <img *ngIf="isFightNotice(notice)" class="textLoading" src="assets/Pulse-1s-200px.gif" />
+  </span>
+</span>

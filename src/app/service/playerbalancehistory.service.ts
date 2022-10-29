@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { ChartDataSets, ChartOptions} from 'chart.js';
+import { ChartData, ChartDataSets, ChartOptions, ChartTooltipItem} from 'chart.js';
 import { Label } from 'ng2-charts';
 import 'chartjs-plugin-colorschemes/src/plugins/plugin.colorschemes';
 
 // import a particular color scheme
 import { Paired12 } from 'chartjs-plugin-colorschemes/src/colorschemes/colorschemes.brewer';
 
-import { BalanceHistoryData } from 'src/app/model/balancehistory';
+import { BalanceHistoryData } from "src/app/model/BalanceHistory/BalanceHistoryData";
 import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
@@ -31,7 +31,7 @@ export class PlayerBalanceHistoryService {
   }
 
   findBotLeaderboardData(): Observable<GenericResponse<BalanceHistoryData>> {
-    const url = getBackendUrl() + 'api/players/botLeaderboardBalanceHistory?count=20';
+    const url = getBackendUrl() + 'api/players/botLeaderboardBalanceHistory?count=10&bots=10';
     const response: Observable<GenericResponse<BalanceHistoryData>> = this.http.get<GenericResponse<BalanceHistoryData>>(url);
     return response;
   }
@@ -45,7 +45,8 @@ export class PlayerBalanceHistoryService {
 
   generateBotChartData(balanceHistoryData: BalanceHistoryData): MyChartData {
     const title = 'Balance based on past participated tournaments (for active bots only)';
-    const result: MyChartData = this._generateChartData(balanceHistoryData, 20, title);
+    const count = balanceHistoryData.standardSize;
+    const result: MyChartData = this._generateChartData(balanceHistoryData, count, title);
     return result;
   }
 
@@ -61,11 +62,15 @@ export class PlayerBalanceHistoryService {
     let chartOptions: ChartOptions;
     const chartPlugins = [];
     for (const element of balanceHistoryData.leaderboardBalanceHistories) {
-        if (element.balanceHistory.length === count) {
+        if (element.balanceHistory.length >= count) {
+          let balanceHistory = element.balanceHistory
+          if(element.balanceHistory.length > count) {
+            balanceHistory = balanceHistory.splice(0, count);
+          }
           const playerName = element.playerName;
           const labels = [];
           const dataArray = [];
-          for (const currentBalanceHistory of element.balanceHistory) {
+          for (const currentBalanceHistory of balanceHistory) {
             const date = new Date(currentBalanceHistory.create_timestamp);
             const year = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date);
             const month = new Intl.DateTimeFormat('en', { month: 'short' }).format(date);
@@ -89,7 +94,33 @@ export class PlayerBalanceHistoryService {
                 title: {
                     display: true,
                     text: chartTitle,
+                },
+                tooltips: {
+                  callbacks: {
+                    label: (tooltipItem: ChartTooltipItem, data: ChartData) => {
+                      let value: any = data.datasets[0].data[tooltipItem.index];
+                      value = value.toString();
+                      value = value.split(/(?=(?:...)*$)/);
+                      value = value.join(',');
+                      return value;
+                    }
+                  } // end callbacks:
+                }, //end tooltips
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero:true,
+                      callback: (value: number, index: number, values: number[]) => {
+                        // Convert the number to a string and splite the string every 3 charaters from the end
+                        return value.toLocaleString();
+                      }
+                    }
+                  }],
+                  xAxes: [{
+                    ticks: {}
+                  }]
                 }
+
             };
 
     chartData = new MyChartData(datasets, coreLabels, chartOptions);

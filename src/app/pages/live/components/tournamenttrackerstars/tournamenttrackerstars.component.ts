@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { faStar, faCrown, faTimes} from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import { getColor } from 'src/app/util/colorsetter';
-import { Allegiance } from 'src/app/model/playerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { TournamentWinData } from '../../model/tournamentwindata';
 
 @Component({

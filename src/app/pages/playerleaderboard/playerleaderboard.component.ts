@@ -4,7 +4,7 @@ import { PlayerBalanceHistoryService } from 'src/app/service/playerbalancehistor
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { getColor } from 'src/app/util/colorsetter';
 import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
-import { BalanceHistoryData } from 'src/app/model/balancehistory';
+import { BalanceHistoryData } from "src/app/model/BalanceHistory/BalanceHistoryData";
 
 import {
   PlayerLeaderboardDataService,
@@ -21,11 +21,11 @@ export class PlayerLeaderboardComponent implements OnInit, AfterViewInit {
   protected chartResultsCount = 10;
 
 
-  leaderboard: PlayerLeaderboard;
-  topPlayerCommaDelimitedString: string;
-  generationDateString: string;
+  public leaderboard: PlayerLeaderboard;
+  public topPlayerCommaDelimitedString: string;
+  public generationDateString: string;
 
-  chartData: MyChartData;
+  public chartData: MyChartData;
 
   constructor(private playerLeaderboardDataService: PlayerLeaderboardDataService,
               private playerBalanceHistoryService: PlayerBalanceHistoryService) { }

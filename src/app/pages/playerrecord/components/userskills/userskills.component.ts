@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { PlayerSkill } from 'src/app/model/playerRecord';
+import { PlayerSkill } from "src/app/model/PlayerRecord/PlayerSkill";
 import { getColorForSkill } from '../../util/skillsUtils';
 
 @Component({

@@ -1,4 +1,5 @@
-import { Allegiance, PlayerRecord } from 'src/app/model/playerRecord';
+import { PlayerRecord } from 'src/app/model/PlayerRecord/PlayerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { BetType } from '../../../model/BattleGroundEvents/bettype';
 import { TrackByFunction } from '@angular/core';
 import { stringToInt, getFixedDecimal } from 'src/app/util/util';

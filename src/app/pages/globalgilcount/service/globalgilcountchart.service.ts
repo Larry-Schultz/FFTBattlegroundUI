@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { ChartDataSets, ChartOptions} from 'chart.js';
+import { ChartData, ChartDataSets, ChartOptions, ChartTooltipItem} from 'chart.js';
 import { Label } from 'ng2-charts';
 
 import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
+import { GilDateGraphEntry } from '../model/GilDateGraphEntry';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +17,13 @@ export class GlobalGilCountChartService {
 
   constructor(private http: HttpClient) { }
 
-  findGlobalGilChartData(unit: string): Observable<GenericResponse<GilDateGraphEntry[]>> {
+  public findGlobalGilChartData(unit: string): Observable<GenericResponse<GilDateGraphEntry[]>> {
     const url = getBackendUrl() + 'api/players/globalGilHistoryGraphData?timeUnit=' + unit;
     const response: Observable<GenericResponse<GilDateGraphEntry[]>> = this.http.get<GenericResponse<GilDateGraphEntry[]>>(url);
     return response;
   }
 
-  populateChart(gilDateGraphEntry: GilDateGraphEntry[], unit: string, chartTitle: string): MyChartData {
+  public populateChart(gilDateGraphEntry: GilDateGraphEntry[], unit: string, chartTitle: string): MyChartData {
     let chartData: MyChartData;
     let coreLabels: Label[];
     const datasets: ChartDataSets[] = [];
@@ -55,6 +56,31 @@ export class GlobalGilCountChartService {
                 title: {
                     display: true,
                     text: chartTitle,
+                },
+                tooltips: {
+                  callbacks: {
+                    label: (tooltipItem: ChartTooltipItem, data: ChartData) => {
+                      let value: any = data.datasets[0].data[tooltipItem.index];
+                      value = value.toString();
+                      value = value.split(/(?=(?:...)*$)/);
+                      value = value.join(',');
+                      return value;
+                    }
+                  } // end callbacks:
+                }, //end tooltips
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero:true,
+                      callback: (value: number, index: number, values: number[]) => {
+                        // Convert the number to a string and splite the string every 3 charaters from the end
+                        return value.toLocaleString();
+                      }
+                    }
+                  }],
+                  xAxes: [{
+                    ticks: {}
+                  }]
                 }
             };
 
@@ -64,7 +90,4 @@ export class GlobalGilCountChartService {
   }
 }
 
-export interface GilDateGraphEntry {
-    globalGilCount: number;
-    date: number;
-}
+

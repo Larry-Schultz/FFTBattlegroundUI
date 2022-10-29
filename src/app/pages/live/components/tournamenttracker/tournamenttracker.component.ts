@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { Allegiance } from 'src/app/model/playerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { getColor } from 'src/app/util/colorsetter';
 import { TournamentTracker, trackerAllegiances } from './model/tournamenttracker';
 

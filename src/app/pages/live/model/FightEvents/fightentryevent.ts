@@ -1,6 +1,6 @@
 import { BattleGroundEvent } from '../BattleGroundEvents/battlegroundevent';
 import { Gender } from '../BattleGroundEvents/gender';
-import { PlayerRecord } from 'src/app/model/playerRecord';
+import { PlayerRecord } from 'src/app/model/PlayerRecord/PlayerRecord';
 
 export interface FightEntryEvent extends BattleGroundEvent {
     player: string;

@@ -1,5 +1,5 @@
 import { TournamentTracker } from './tournamenttracker';
-import { Allegiance } from 'src/app/model/playerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { TeamInfoEntry } from '../../teaminfo/model/teaminfoentry';
 import { UnitInfoEvent } from '../../../model/TeamEvents/unitinfoevent';
 import { TournamentWinData } from '../../../model/tournamentwindata';

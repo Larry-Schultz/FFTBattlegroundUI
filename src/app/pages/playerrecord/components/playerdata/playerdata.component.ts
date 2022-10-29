@@ -2,7 +2,8 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 import { PlayerData } from '../../service/playerdata.service';
 import { getColor } from 'src/app/util/colorsetter';
-import { Allegiance, PlayerSkill } from 'src/app/model/playerRecord';
+import { PlayerSkill } from "src/app/model/PlayerRecord/PlayerSkill";
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 
 @Component({
   selector: 'app-playerdata',

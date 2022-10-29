@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, IterableDiffers, DoCheck } from '@angular/core';
 import { getFixedDecimal, stringToInt, capitalize } from 'src/app/util/util';
-import { Allegiance } from 'src/app/model/playerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { GridMode } from '../grids/grids.component';
 import { getColor } from 'src/app/util/colorsetter';
 import { BetEntry } from '../betentry/model/betentry';
@@ -40,7 +40,7 @@ export class MatchCountsComponent implements OnInit, DoCheck {
 
 	protected differ: any;
 
-	public constructor(differs: IterableDiffers) { 
+	public constructor(differs: IterableDiffers) {
 		this.differ = differs.find([]).create(null);
 	}
 
@@ -87,7 +87,7 @@ export class MatchCountsComponent implements OnInit, DoCheck {
 
 	public countValuesforGrid(): number {
 		const count = this.countValueForBetEntries(this.myTeamBetEntries);
-		
+
 		return count;
 	}
 

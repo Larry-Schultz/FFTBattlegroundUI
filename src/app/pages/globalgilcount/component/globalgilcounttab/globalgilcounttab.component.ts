@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, AfterViewInit, OnChanges } from '@angular/core';
 
 import { TodaysCount } from '../../service/globalgilcountdata.service';
-import { GlobalGilCountChartService, GilDateGraphEntry } from 'src/app/pages/globalgilcount/service/globalgilcountchart.service';
+import { GlobalGilCountChartService } from 'src/app/pages/globalgilcount/service/globalgilcountchart.service';
+import { GilDateGraphEntry } from "src/app/pages/globalgilcount/model/GilDateGraphEntry";
 import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
 import { GenericResponse } from 'src/app/util/genericresponse';
 
@@ -12,7 +13,9 @@ import { GenericResponse } from 'src/app/util/genericresponse';
 })
 export class GlobalGilCountTabComponent implements OnInit, AfterViewInit, OnChanges {
 
-  @Input() globalGilCountData: TodaysCount[];
+  @Input()
+  public globalGilCountData: TodaysCount[];
+
   @Input() timeUnit: string;
   public chartData: MyChartData;
 

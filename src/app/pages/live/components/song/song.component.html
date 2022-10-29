@@ -2,4 +2,23 @@
 <span *ngIf="musicEvent" id="trackName">{{musicEvent.songName}}</span>
 <img *ngIf="!musicEvent" id="trackImage" class="mapPlayerLoadingImage" src="assets/Pulse-1s-200px.gif" />
 <span> - </span>
-<countdown #cd [config]="config" (event)="handleEvent($event)"></countdown>
+<countdown #cd [config]="countdownConfig"></countdown>
+<span *ngIf="searchEnabled">
+  <span> - </span>
+  <a [href]="'https://www.youtube.com/results?search_query=' + songName" target="_blank">
+    <fa-icon title="search youtube" [icon]="magnifyingGlass" ></fa-icon>
+  </a>
+</span>
+<div style="max-width: 200px; max-height: 100px; margin: auto;">
+  <mwl-gauge
+      [max]="20"
+      [dialStartAngle]="180"
+      [dialEndAngle]="0"
+      [value]="hypeCount"
+      [animated]="true"
+      [animationDuration]="1"
+    >
+    </mwl-gauge>
+</div>
+<br />
+<span>Hype!</span>

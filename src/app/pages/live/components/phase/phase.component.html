@@ -1,0 +1,13 @@
+<span class="phase">
+  <span class="phase-title">Phase: </span>
+  <br />
+  <span *ngIf="isLoadingNotice(notice)" id="loadingNotice" class="phase-value" title="FFTBViewer uses data from IRC to track the current tournament's progress.  Once the stream's bot announces a new match, the application will know which two teams are fighting.">Please wait.  Viewer will sync with stream during the beginning of the next !bet or !fight phase.</span>
+  <span *ngIf="isMatchNotice(notice)" id="matchNotice" class="phase-value" [title]="'Event Started: ' + (eventTime | date:'medium')">Match</span>
+  <div *ngIf="isFightNotice(notice)" id="fightNotice" [title]="'Event Started: ' + (eventTime | date:'medium')">
+      <span class="phase-value">Fight</span>
+      <br />
+      <span id="fightEntryCounter" class="phase-fight-counter">{{fightEntries.length}}</span><span> fight entries</span>
+  </div>
+  <span *ngIf="isBettingNotice(notice)" id="bettingNotice" class="phase-value" [title]="'Event Started: ' + (eventTime | date:'medium')">Betting</span>
+  <span *ngIf="isResultsNotice(notice)" id="resultsNotice" class="phase-value" [title]="'Event Started: ' + (eventTime | date:'medium')">Results</span>
+</span>

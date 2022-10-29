@@ -1,7 +1,7 @@
 import { FightEntryEvent } from '../../../model/FightEvents/fightentryevent';
 import { BattleGroundEventType } from '../../../model/BattleGroundEvents/battlegroundeventtype';
 import { Gender } from '../../../model/BattleGroundEvents/gender';
-import { PlayerRecord } from 'src/app/model/playerRecord';
+import { PlayerRecord } from 'src/app/model/PlayerRecord/PlayerRecord';
 import { getFixedDecimal } from 'src/app/util/util';
 
 export class FightEntry implements FightEntryEvent {
@@ -82,7 +82,7 @@ export class FightEntry implements FightEntryEvent {
     const wins: number = this.metadata.fightWins;
     const losses: number = this.metadata.fightLosses;
     const ratio: number = (wins + 1) / (wins + losses + 1);
-    const ratioString: string = 'Wins: ' + wins.toString() + ' Losses: ' + losses.toString() + ' Ratio: ' 
+    const ratioString: string = 'Wins: ' + wins.toString() + ' Losses: ' + losses.toString() + ' Ratio: '
       + getFixedDecimal(ratio, 2).toString();
 
     return ratioString;

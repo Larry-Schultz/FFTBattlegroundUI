@@ -5,7 +5,7 @@ import { getBackendUrl } from 'src/app/util/getbackendurl';
 import { EventWebSocketAPI } from 'src/app/util/websocketapi';
 import { BattleGroundEvent } from 'src/app/pages/live/model/BattleGroundEvents/battlegroundevent';
 import { BettingBeginsEvent } from 'src/app/pages/live/model/BetEvents/bettingbeginsevent';
-import { Allegiance } from 'src/app/model/playerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { getColor } from 'src/app/util/colorsetter';
 import { BattleGroundEventType } from 'src/app/pages/live/model/BattleGroundEvents/battlegroundeventtype';
 import { BettingEndsEvent } from 'src/app/pages/live/model/BetEvents/bettingendsevent';

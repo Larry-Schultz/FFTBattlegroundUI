@@ -17,7 +17,7 @@
 							<th>Percentage of Global Gil</th>
 							<th>Allegiance</th>
 							<th>Last Active</th>
-						</tr>	
+						</tr>
 					</thead>
 					<tbody *ngIf="leaderboard != null">
 						<tr *ngFor="let player of leaderboard.highestPlayers">
@@ -41,7 +41,7 @@
 							<th>Percentage of Global Gil</th>
 							<th>Allegiance</th>
 							<th>Last Active</th>
-						</tr>	
+						</tr>
 					</tfoot>
 				</table>
 			</div>
@@ -54,7 +54,7 @@
 		<div class="grid-x fluid">
 			<div class="cell small-3"></div>
 			<div class="cell small-6">
-				<app-mychartcomponent [chartData]="chartData"></app-mychartcomponent>
+				<app-mychartcomponent [chartData]="chartData"  [width]="700" [height]="350"></app-mychartcomponent>
 			</div>
 			<div class="cell small-3">
 			</div>
@@ -74,7 +74,7 @@
 							<th>Percentage of Global Gil</th>
 							<th>Allegiance</th>
 							<th>Last Active</th>
-						</tr>	
+						</tr>
 					</thead>
 					<tbody *ngIf="leaderboard != null" >
 						<tr *ngFor="let player of leaderboard.topPlayers">
@@ -98,7 +98,7 @@
 							<th>Percentage of Global Gil</th>
 							<th>Allegiance</th>
 							<th>Last Active</th>
-						</tr>	
+						</tr>
 					</tfoot>
 				</table>
 			</div>

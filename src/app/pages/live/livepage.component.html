@@ -15,15 +15,15 @@
 			</div>
 		</div>
 		<div class="cell small-3">
-			<app-matchblock [liveData]="liveService.liveData"></app-matchblock>
+			<app-matchblock [liveData]="liveService.liveData" [searchEnabled]="searchEnabled"></app-matchblock>
 		</div>
 		<div class="cell small-1"><br /></div>
 		<div class="cell small-3">
-			<app-grids 
+			<app-grids
 				[team1]="liveService.liveData.team1"
 				[team2]="liveService.liveData.team2"
-				[team1BetEntries]="liveService.liveData.team1BetEntries" 
-				[team2BetEntries]="liveService.liveData.team2BetEntries" 
+				[team1BetEntries]="liveService.liveData.team1BetEntries"
+				[team2BetEntries]="liveService.liveData.team2BetEntries"
 				[fightEntries]="liveService.liveData.fightEntries"
 				[gridMode]="liveService.liveData.gridMode">
 			</app-grids>

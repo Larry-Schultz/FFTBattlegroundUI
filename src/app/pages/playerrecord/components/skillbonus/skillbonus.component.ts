@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 import { getColorForSkill, getSkillBonusDescriptionFromExistingSkills, getPlayerSkillBySkillName } from '../../util/skillsUtils';
-import { PlayerSkill } from 'src/app/model/playerRecord';
+import { PlayerSkill } from "src/app/model/PlayerRecord/PlayerSkill";
 
 @Component({
   selector: 'app-skillbonus',

@@ -13,6 +13,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { NgOrdinalPipeModule } from 'angular-pipes';
 import { CountdownModule } from 'ngx-countdown';
+import { GaugeModule } from 'angular-gauge';
 
 import {
   InjectableRxStompConfig,
@@ -87,6 +88,10 @@ import { FoundationGridYComponent } from './util/Foundation/components/foundatio
 import { FoundationGridXComponent } from './util/Foundation/components/foundationgridx/foundationgridx.component';
 import { FoundationcellComponent } from './util/Foundation/components/foundationcell/foundationcell.component';
 import { MustadioDataComponent } from './pages/live/components/mustadiodata/mustadiodata.component';
+import { PhaseComponent } from './pages/live/components/phase/phase.component';
+import { MemeTournamentSettingsComponent } from './pages/live/components/meme-tournament-settings/meme-tournament-settings.component';
+import { BotLeaderboardTableComponent } from './pages/botleaderboard/components/bot-leaderboard-table/bot-leaderboard-table.component';
+import { OptionsComponent } from './pages/options/options.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +117,7 @@ import { MustadioDataComponent } from './pages/live/components/mustadiodata/must
     UnitprofileComponent, BotComponent, BotlandDisplayComponent, BotlandTableComponent, BotlandHistoricalLeaderboardComponent,
     BotlandwinnersComponent, TournamentTrackerStarsComponent, SingleBotLeaderboardDataComponent, BotxmlComponent,
     GeneFileComponent, TournamentTrackerUnitItemComponent, FoundationGridContainerComponent, FoundationGridYComponent,
-    FoundationGridXComponent, FoundationcellComponent, MustadioDataComponent,
+    FoundationGridXComponent, FoundationcellComponent, MustadioDataComponent, PhaseComponent, MemeTournamentSettingsComponent, BotLeaderboardTableComponent, OptionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,7 +134,8 @@ import { MustadioDataComponent } from './pages/live/components/mustadiodata/must
     BrowserAnimationsModule,
     MatExpansionModule, MatDividerModule,
     NgOrdinalPipeModule,
-    CountdownModule
+    CountdownModule,
+    GaugeModule.forRoot()
   ],
   providers: [
     {

@@ -2,7 +2,9 @@ import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, OnChanges} fro
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { EventWebSocketAPI } from '../../util/websocketapi';
-import { SkillType, PlayerSkill, SkillCategory } from 'src/app/model/playerRecord';
+import { PlayerSkill } from "src/app/model/PlayerRecord/PlayerSkill";
+import { SkillType } from "src/app/model/PlayerRecord/SkillType";
+import { SkillCategory } from "src/app/model/PlayerRecord/SkillCategory";
 import { PlayerDataService, PlayerData } from './service/playerdata.service';
 import { PlayerListService} from './service/playerlist.service';
 import { PlayerBalanceHistoryService } from 'src/app/service/playerbalancehistory.service';
@@ -19,7 +21,7 @@ export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
   protected static skillCategoryOrderingMap: Map<SkillCategory, number> = new Map<SkillCategory, number>([
     [SkillCategory.ELITE_MONSTER, 1], [SkillCategory.STRONG_MONSTER, 2], [SkillCategory.MONSTER, 3], [SkillCategory.JOB, 4],
     [SkillCategory.EQUIPMENT, 5], [SkillCategory.ENTRY, 6], [SkillCategory.MOVEMENT, 7], [SkillCategory.REACTION, 8],
-    [SkillCategory.SUPPORT, 9], [SkillCategory.PRESTIGE, 10], [SkillCategory.LEGENDARY, 11], [SkillCategory.NORMAL, 12], 
+    [SkillCategory.SUPPORT, 9], [SkillCategory.PRESTIGE, 10], [SkillCategory.LEGENDARY, 11], [SkillCategory.NORMAL, 12],
     [SkillCategory.NONE, 13]
   ]);
 
@@ -133,7 +135,7 @@ export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
     return result;
   }
 
-  protected generateUserSkillsList(): PlayerSkill[] { 
+  protected generateUserSkillsList(): PlayerSkill[] {
     const result: PlayerSkill[] = this.playerData.playerRecord.playerSkills.filter((playerSkill: PlayerSkill): boolean => {
       return playerSkill.skillType === SkillType.USER;
     }).sort(this.sortPlayerSkillsByCategory);

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { Allegiance } from 'src/app/model/playerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { getBackendUrl } from 'src/app/util/getbackendurl';
 import { UnitInfoEvent } from '../../model/TeamEvents/unitinfoevent';
 import { Unit } from '../../model/unit';
@@ -42,7 +42,7 @@ export class TournamentTrackerUnitItemComponent implements OnInit, OnChanges {
       const className: string = unit.Class;
       const genderCode: string = unit.Gender === Gender.MALE ? 'M' : 'F';
       const allegianceString: string = capitalize(this.allegiance.toLocaleLowerCase());
-      
+
       const unitImageName: string = className + genderCode + '_' + allegianceString;
       cleanedImageUrl = cleanedImageUrl + unitImageName;
     } else {

@@ -40,3 +40,26 @@
 .raidBoss {
 	font-weight: bold;
 }
+
+mwl-gauge {
+  width: 20px;
+  height: 20px;
+  display: block;
+  padding: 10px;
+}
+mwl-gauge > .gauge > .dial {
+  stroke: lightblue;
+  stroke-width: 2;
+  fill: lightblue;
+}
+mwl-gauge > .gauge > .value {
+  stroke: rgb(47, 227, 255);
+  stroke-width: 2;
+  fill: lightblue;
+}
+mwl-gauge > .gauge > .value-text {
+  fill: rgb(47, 227, 255);
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+}

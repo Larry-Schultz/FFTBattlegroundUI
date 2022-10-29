@@ -1,0 +1,11 @@
+export enum Hype {
+  CATJAM,
+	RATJAM,
+	PEPEJAM,
+	MAGERAGE,
+  MOOGLEH,
+	ELISSPIN,
+	SOURPLS,
+  PIANOTIME,
+  BEEBOBBLE
+}

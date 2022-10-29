@@ -1,6 +1,6 @@
 import { GridMode } from '../components/grids/grids.component';
-import { Allegiance } from 'src/app/model/playerRecord';
-import { MusicEvent } from './MatchEvents/musicevent';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
+import { MusicEvent } from './MusicEvents/musicevent';
 import { SkillDropEvent } from './MatchEvents/skilldropevent';
 import { MatchInfoEvent } from './MatchEvents/matchinfoevent';
 import { UnitInfoEvent } from './TeamEvents/unitinfoevent';
@@ -25,6 +25,7 @@ export class LiveData {
     public fightEntries: FightEntry[] = new Array<FightEntry>();
     public loading = true;
     public musicEvent: MusicEvent;
+    public hypeCount: number = 0;
     public skillDropEvent: SkillDropEvent;
     public currentNotice = Notice.LOADING_NOTICE;
     public matchInfo: MatchInfoEvent;

@@ -1,0 +1,26 @@
+<span class="bot-leaderboard-table">
+  <table class="hover">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Balance</th>
+            <th>Percentage of Global Gil</th>
+            <th>Last Active</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="leaderboard != null && leaderboard !== undefined">
+        <tr *ngFor="let bot of leaderboard">
+            <td [id]="bot.name + 'Rank'">{{bot.rank}}</td>
+            <td [id]="bot.name + 'NameCell'">
+                <a [id]="bot.name + 'Link'" [href]="'/player/' + bot.name" target="_blank" style="color: inherit;" >
+                    <span style="text-decoration: underline;" [id]="bot.name + 'Name'">{{bot.name}}</span>
+                </a>
+            </td>
+            <td [id]="bot.name + 'Amount'">{{bot.gil}}</td>
+            <td [id]="bot.name + 'PercentageOfGlobalGil'">{{bot.percentageOfGlobalGil + '%'}}</td>
+            <td [id]="bot.name + 'LastActive'">{{bot.lastActiveDate}}</td>
+        </tr>
+    </tbody>
+</table>
+</span>

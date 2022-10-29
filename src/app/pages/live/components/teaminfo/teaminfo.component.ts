@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
-import { Allegiance } from 'src/app/model/playerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { LiveData } from '../../model/livedata';
 import { UnitInfoEvent } from '../../model/TeamEvents/unitinfoevent';
 import { TeamInfoEntry } from './model/teaminfoentry';

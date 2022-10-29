@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as $ from 'jquery';
 
-import { Allegiance } from 'src/app/model/playerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { EventWebSocketAPI } from '../../../util/websocketapi';
 import { getBackendUrl } from '../../../util/getbackendurl';
 import { emptyArray } from '../../../util/util';
@@ -25,7 +25,7 @@ import { TournamentUpdateEvent } from '../model/TeamEvents/tournamentupdateevent
 import { SkillDropEvent } from '../model/MatchEvents/skilldropevent';
 import { BadBetEvent } from '../model/BetEvents/badbetevent';
 import { BadFightEvent } from '../model/FightEvents/badfightevent';
-import { MusicEvent } from '../model/MatchEvents/musicevent';
+import { MusicEvent } from '../model/MusicEvents/musicevent';
 import { Notice } from '../components/notice/model/notice';
 import { TournamentWinData } from '../model/tournamentwindata';
 import { FightEntry } from '../components/fightentry/model/fightentry';
@@ -33,6 +33,7 @@ import { BetEntry } from '../components/betentry/model/betentry';
 import { BetEntryFactory } from '../components/betentry/model/betentryfactory';
 import { TeamInfoEntry } from '../components/teaminfo/model/teaminfoentry';
 import { TournamentTrackerData } from '../components/tournamenttracker/model/tournamenttrackerdata';
+import { HypeEvent } from '../model/MusicEvents/hypeevent';
 
 @Injectable({
   providedIn: 'root'
@@ -140,6 +141,10 @@ export class LiveService {
 				const musicEvent: MusicEvent = event as MusicEvent;
 				classRef.handleMusicEvent(musicEvent);
 				break;
+      case BattleGroundEventType.HYPE:
+        const hypeEvent: HypeEvent = event as HypeEvent;
+        classRef.handleHypeEvent(hypeEvent);
+        break;
 		}
 
 	}
@@ -208,8 +213,15 @@ export class LiveService {
 	}
 
 	protected handleMusicEvent(event: MusicEvent): void {
-		this.liveData.musicEvent = event;
+		if(!this.liveData.musicEvent || this.liveData.musicEvent.songName !== event.songName) {
+      this.liveData.hypeCount = 0;
+    }
+    this.liveData.musicEvent = event;
 	}
+
+  protected handleHypeEvent(event: HypeEvent): void {
+    this.liveData.hypeCount+= event.hypeEmotes.length;
+  }
 
 	protected generatePlayerRecordFromBetEvent(event: BetEvent): BetEntry {
 		const betEntry: BetEntry = BetEntryFactory.betEntryFromBetEvent(event);

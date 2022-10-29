@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PlayerBalanceHistoryService } from 'src/app/service/playerbalancehistory.service';
-import { BotLeaderboardDataService, BotLeaderboard, BotLeaderboardData } from './service/botleaderboarddata.service';
+import { BotLeaderboardDataService } from './service/botleaderboarddata.service';
+import { BotLeaderboard } from "./model/BotLeaderboard";
+import { BotLeaderboardData } from "./model/BotLeaderboardData";
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
-import { BalanceHistoryData } from 'src/app/model/balancehistory';
+import { BalanceHistoryData } from "src/app/model/BalanceHistory/BalanceHistoryData";
 
 @Component({
   selector: 'app-botleaderboard',
@@ -13,7 +15,8 @@ import { BalanceHistoryData } from 'src/app/model/balancehistory';
 })
 export class BotLeaderboardComponent implements OnInit {
 
-  leaderboard: BotLeaderboard[];
+  public leaderboard: BotLeaderboard[];
+  public inactiveBots: BotLeaderboard[];
   generationDateString: string;
 
   chartData: MyChartData = null;
@@ -24,6 +27,7 @@ export class BotLeaderboardComponent implements OnInit {
   ngOnInit() {
     this.botLeaderboardDataService.find().subscribe((genericResponse: GenericResponse<BotLeaderboardData>): void => {
       this.leaderboard = genericResponse.data.botLeaderboard;
+      this.inactiveBots = genericResponse.data.inactiveBots;
       this.generationDateString = genericResponse.data.generationDateString;
     });
 

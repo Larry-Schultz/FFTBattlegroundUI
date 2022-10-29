@@ -1,5 +1,5 @@
 import * as $ from 'jquery';
-import { Allegiance } from 'src/app/model/playerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 
 export function setTeamColor(teamName: string, elementId: string): void {
 	const allegiance = teamName.toUpperCase() as Allegiance;

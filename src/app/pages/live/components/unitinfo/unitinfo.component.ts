@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 import { getColor } from 'src/app/util/colorsetter';
-import { Allegiance } from 'src/app/model/playerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { UnitInfoEvent } from '../../model/TeamEvents/unitinfoevent';
 import { TeamInfoEntry } from '../teaminfo/model/teaminfoentry';
 

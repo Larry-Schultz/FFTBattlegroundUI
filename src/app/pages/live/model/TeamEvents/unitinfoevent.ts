@@ -1,6 +1,6 @@
 import { BattleGroundEvent } from '../BattleGroundEvents/battlegroundevent';
 import { Unit } from '../unit';
-import { Allegiance } from 'src/app/model/playerRecord';
+import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { UnitStats } from './unitstats';
 import { UnitTipInfo } from './unittipinfo';
 
