@@ -48,7 +48,7 @@
     "ngx-countdown": "^14.0.0",
     "ngx-device-detector": "^2.0.10",
     "ngx-foundation": "^1.0.8",
-    "ngx-localstorage": "^3.3.1",
+    "ngx-localstorage": "^3.5.0",
     "ngx-pretty-checkbox": "^1.2.1",
     "pretty-checkbox": "^3.0.3",
     "rxjs": "^6.6.7",
