@@ -3,7 +3,7 @@ import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { getColor } from 'src/app/util/colorsetter';
 import { FightEntry } from '../fightentry/model/fightentry';
 import { TournamentWinData } from '../../model/tournamentwindata';
-import { Notice } from './model/notice';
+import { Notice } from '../phase/model/notice';
 
 @Component({
   selector: 'app-notice',

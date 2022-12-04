@@ -5,7 +5,7 @@ import { BotLeaderboardDataService } from './service/botleaderboarddata.service'
 import { BotLeaderboard } from "./model/BotLeaderboard";
 import { BotLeaderboardData } from "./model/BotLeaderboardData";
 import { GenericResponse } from 'src/app/util/genericresponse';
-import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
+import { MyChartData } from "src/app/fragments/mychartcomponent/model/MyChartData";
 import { BalanceHistoryData } from "src/app/model/BalanceHistory/BalanceHistoryData";
 
 @Component({

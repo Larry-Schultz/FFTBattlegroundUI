@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Ng2CompleterModule } from 'ng2-completer';
 import { ChartsModule } from 'ng2-charts';
@@ -11,6 +11,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxLocalStorageModule } from 'ngx-localstorage';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
 import { NgOrdinalPipeModule } from 'angular-pipes';
 import { CountdownModule } from 'ngx-countdown';
 import { GaugeModule } from 'angular-gauge';
@@ -61,7 +67,6 @@ import { FightGridComponent } from './pages/live/components/fightgrid/fightgrid.
 import { MatchHeightDirective } from './directives/matchheight.directive';
 import { TwitchPlayerComponent } from './pages/live/components/twitchplayer/twitchplayer.component';
 import { TournamentTrackerComponent } from './pages/live/components/tournamenttracker/tournamenttracker.component';
-import { LivePageOptionsComponent } from './pages/live/components/livepageoptions/livepageoptions.component';
 import { SkillColorLegendComponent } from './pages/playerrecord/components/skillcolorlegend/skillcolorlegend.component';
 import { SkillCooldownComponent } from './pages/playerrecord/components/skillcooldown/skillcooldown.component';
 import { ClassBonusComponent } from './pages/playerrecord/components/classbonus/classbonus.component';
@@ -92,6 +97,23 @@ import { PhaseComponent } from './pages/live/components/phase/phase.component';
 import { MemeTournamentSettingsComponent } from './pages/live/components/meme-tournament-settings/meme-tournament-settings.component';
 import { BotLeaderboardTableComponent } from './pages/botleaderboard/components/bot-leaderboard-table/bot-leaderboard-table.component';
 import { OptionsComponent } from './pages/options/options.component';
+import { MusicOptionsComponent } from './pages/options/component/music-options/music-options.component';
+import { PlayerOptionsComponent } from './pages/options/component/player-options/player-options.component';
+import { PrimaryPlayerOptionComponent } from './pages/options/component/player-options/components/primary-player-option/primary-player-option.component';
+import { FavoritePlayerOptionComponent } from './pages/options/component/player-options/components/favorite-player-option/favorite-player-option.component';
+import { PlayerOptionSelectorComponent } from './pages/options/component/player-options/components/player-option-selector/player-option-selector.component';
+import { FavoritePlayerStarComponent } from './fragments/favorite-player-star/favorite-player-star.component';
+import { LivePageOptionsComponent } from './pages/options/component/live-page-options/live-page-options.component';
+import { TeamValueComponent } from './pages/live/components/team-value/team-value.component';
+import { ActivePortraitsComponent } from './pages/active-portraits/active-portraits.component';
+import { ActiveMapsComponent } from './pages/active-maps/active-maps.component';
+import { LivePageStatusComponent } from './fragments/menu/components/live-page-status/live-page-status.component';
+import { PlayerListAutocompleteComponent } from './pages/playerrecord/components/player-list-autocomplete/player-list-autocomplete.component';
+import { PrimaryFavoritePlayerListComponent } from './pages/playerrecord/components/primary-favorite-player-list/primary-favorite-player-list.component';
+import { PlayerRecordHeaderComponent } from './pages/playerrecord/components/player-record-header/player-record-header.component';
+import { PlayerRecordCoreComponent } from './pages/playerrecord/components/player-record-core/player-record-core.component';
+import { PlayerRecordChartComponent } from './pages/playerrecord/components/player-record-chart/player-record-chart.component';
+
 
 @NgModule({
   declarations: [
@@ -113,18 +135,20 @@ import { OptionsComponent } from './pages/options/options.component';
     BotLeaderboardComponent,
     GlobalGilCountComponent, GlobalGilCountTabComponent,
     AllegianceLeaderboardComponent,
-    BotlandComponent, MatchHeightDirective, TournamentTrackerComponent, LivePageOptionsComponent, StacktraceComponent,
+    BotlandComponent, MatchHeightDirective, TournamentTrackerComponent, StacktraceComponent,
     UnitprofileComponent, BotComponent, BotlandDisplayComponent, BotlandTableComponent, BotlandHistoricalLeaderboardComponent,
     BotlandwinnersComponent, TournamentTrackerStarsComponent, SingleBotLeaderboardDataComponent, BotxmlComponent,
     GeneFileComponent, TournamentTrackerUnitItemComponent, FoundationGridContainerComponent, FoundationGridYComponent,
-    FoundationGridXComponent, FoundationcellComponent, MustadioDataComponent, PhaseComponent, MemeTournamentSettingsComponent, BotLeaderboardTableComponent, OptionsComponent,
+    FoundationGridXComponent, FoundationcellComponent, MustadioDataComponent, PhaseComponent, MemeTournamentSettingsComponent,
+    BotLeaderboardTableComponent, OptionsComponent, MusicOptionsComponent, PlayerOptionsComponent, PrimaryPlayerOptionComponent,
+    FavoritePlayerOptionComponent, PlayerOptionSelectorComponent, FavoritePlayerStarComponent, LivePageOptionsComponent, TeamValueComponent, ActivePortraitsComponent, ActiveMapsComponent, LivePageStatusComponent, PlayerListAutocompleteComponent, PrimaryFavoritePlayerListComponent, PlayerRecordHeaderComponent, PlayerRecordCoreComponent, PlayerRecordChartComponent
   ],
   imports: [
     BrowserModule,
     appRoutingModule,
     HttpClientModule,
     Ng2CompleterModule,
-    FormsModule,
+    FormsModule, ReactiveFormsModule,
     CommonModule,
     ChartsModule,
     DataTablesModule,
@@ -132,10 +156,10 @@ import { OptionsComponent } from './pages/options/options.component';
     FontAwesomeModule,
     NgxLocalStorageModule.forRoot(),
     BrowserAnimationsModule,
-    MatExpansionModule, MatDividerModule,
+    MatExpansionModule, MatDividerModule, MatSlideToggleModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatAutocompleteModule, NgxMatColorPickerModule,
     NgOrdinalPipeModule,
     CountdownModule,
-    GaugeModule.forRoot()
+    GaugeModule.forRoot(),
   ],
   providers: [
     {
@@ -147,6 +171,9 @@ import { OptionsComponent } from './pages/options/options.component';
       useFactory: rxStompServiceFactory,
       deps: [InjectableRxStompConfig],
     },
+    { provide: MAT_COLOR_FORMATS,
+      useValue: NGX_MAT_COLOR_FORMATS
+    }
 
   ],
   bootstrap: [AppComponent]

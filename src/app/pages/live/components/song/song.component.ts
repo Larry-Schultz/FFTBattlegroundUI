@@ -2,7 +2,9 @@ import { Component, OnInit, Input, OnChanges, ViewChild, AfterViewInit } from '@
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 
 import { CountdownComponent, CountdownConfig } from 'ngx-countdown';
+import { Hype } from '../../model/MusicEvents/hype';
 import { MusicEvent } from '../../model/MusicEvents/musicevent';
+import { GaugeSetting } from './model/GaugeSetting';
 
 @Component({
   selector: 'app-song',
@@ -15,7 +17,7 @@ export class SongComponent implements OnInit, OnChanges, AfterViewInit {
   public musicEvent: MusicEvent;
 
   @Input()
-  public hypeCount: number;
+  public hypeEmotes: Hype[];
 
   @Input()
   public searchEnabled: boolean;
@@ -44,7 +46,7 @@ export class SongComponent implements OnInit, OnChanges, AfterViewInit {
 
   public ngOnInit() {
     this.songName = null;
-    this.hypeCount = 0;
+    this.hypeEmotes = new Array<Hype>();
     this.countdownConfig = this.countdownConfigFactory(0);
 
   }
@@ -67,9 +69,14 @@ export class SongComponent implements OnInit, OnChanges, AfterViewInit {
       }
     }
 
-    if (this.hypeCount) {
-      this.setHypeGuageColorBasedOnCount(this.hypeCount);
+    if (this.hypeEmotes) {
+      this.setHypeGuageColorBasedOnCount(this.hypeEmotes?.length);
     }
+  }
+
+  public hypeTitle(): string {
+    let hypeTitle: string = 'hype emotes: ' + this.hypeEmotes.map(hype => hype.toLocaleString()).join(' ');
+    return hypeTitle;
   }
 
   public countdownConfigFactory(leftTime: number): CountdownConfig {
@@ -97,16 +104,4 @@ export class SongComponent implements OnInit, OnChanges, AfterViewInit {
     (pathElements[0] as HTMLElement).style.stroke = color;
   }
 
-}
-
-class GaugeSetting {
-  public startRange: number;
-  public endRange: number;
-  public color: string;
-
-  constructor(startRange: number, endRange: number, color: string) {
-    this.startRange = startRange;
-    this.endRange = endRange;
-    this.color = color;
-  }
 }

@@ -52,11 +52,11 @@
             id="percentageOfGlobalGil">{{playerData.percentageOfGlobalGil}}%</span>
         <br />
         <span>Leaderboard Rank: #</span><span id="rank"
-            *ngIf="playerData.leaderboardPosition">{{playerData.leaderboardPosition}}</span><span id="rank"
+            *ngIf="playerData.leaderboardPosition">{{playerData.leaderboardPosition | number:'1.0':'en-US'}}</span><span id="rank"
             *ngIf="!playerData.leaderboardPosition"
             title="Leaderboard ranks are only calculated for players who have been active in the last 30 days">None</span>
         <span> Exp Rank: #</span><span id="expRank"
-            *ngIf="playerData.expRank">{{playerData.expRank}}</span><span id="expRank"
+            *ngIf="playerData.expRank">{{playerData.expRank | number:'1.0':'en-US'}}</span><span id="expRank"
             *ngIf="!playerData.leaderboardPosition"
             title="Leaderboard ranks are only calculated for players who have been active in the last 30 days">None</span>
         <br />

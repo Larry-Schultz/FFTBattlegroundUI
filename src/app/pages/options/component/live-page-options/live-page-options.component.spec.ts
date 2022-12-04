@@ -1,19 +1,17 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LivePageOptionsComponent } from './livepageoptions.component';
+import { LivePageOptionsComponent } from './live-page-options.component';
 
-describe('LivepageoptionsComponent', () => {
+describe('LivePageOptionsComponent', () => {
   let component: LivePageOptionsComponent;
   let fixture: ComponentFixture<LivePageOptionsComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [ LivePageOptionsComponent ]
     })
     .compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(LivePageOptionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

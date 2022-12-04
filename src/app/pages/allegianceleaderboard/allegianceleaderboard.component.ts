@@ -5,12 +5,11 @@ import { GenericResponse } from 'src/app/util/genericresponse';
 import { intToString, generateOrdinal, capitalize } from 'src/app/util/util';
 import { getColor } from 'src/app/util/colorsetter';
 
-import {
-  AllegianceLeaderboardDataService,
-  AllegianceLeaderboard,
-  AllegianceLeaderboardWrapper,
-  AllegianceLeaderboardEntry} from './service/allegianceleaderboarddata.service';
+import { AllegianceLeaderboardDataService } from './service/allegianceleaderboarddata.service';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
+import { AllegianceLeaderboard } from './model/AllegianceLeaderboard';
+import { AllegianceLeaderboardEntry } from './model/AllegianceLeaderboardEntry';
+import { AllegianceLeaderboardWrapper } from './model/AllegianceLeaderboardWrapper';
 
 
 @Component({
@@ -22,6 +21,7 @@ export class AllegianceLeaderboardComponent implements OnInit {
 
   allegianceLeaderboard: AllegianceLeaderboard[];
   generationDate: Date;
+  gilcap: number;
 
   constructor(private allegianceLeaderboardDataService: AllegianceLeaderboardDataService, private sanitizer: DomSanitizer) { }
 
@@ -29,6 +29,7 @@ export class AllegianceLeaderboardComponent implements OnInit {
     this.allegianceLeaderboardDataService.find().subscribe((genericResponse: GenericResponse<AllegianceLeaderboardWrapper>): void => {
       this.allegianceLeaderboard = genericResponse.data.leaderboards;
       this.generationDate = new Date(genericResponse.data.generationDate);
+      this.gilcap = genericResponse.data.gilCap;
     });
   }
 

@@ -14,11 +14,11 @@
       [max]="20"
       [dialStartAngle]="180"
       [dialEndAngle]="0"
-      [value]="hypeCount"
+      [value]="hypeEmotes?.length"
       [animated]="true"
       [animationDuration]="1"
     >
     </mwl-gauge>
 </div>
 <br />
-<span>Hype!</span>
+<span [title]="hypeTitle()">Hype!</span>

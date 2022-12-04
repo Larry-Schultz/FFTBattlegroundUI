@@ -10,7 +10,7 @@
                     <div class="cell large-1">
                         <br />
                         <h2>Allegiance Leaderboard</h2>
-                        <p>Includes only active players that are neither in the <a href="/playerLeaderboard">Top 10 Players</a> or <a href="/botleaderboard">bots</a></p>
+                        <p>All gil contributions to the allegiance leaderboard from players with greater than {{gilcap | number:'1.0':'en-US'}} gil are treated as if they had that value in gil.</p>
                     </div>
                     <div *ngIf="allegianceLeaderboard != null && allegianceLeaderboard !== undefined">
                         <div *ngFor="let allegianceBoard of allegianceLeaderboard" [id]="allegianceBoard.team.toString() + '_grid'" class="cell large-1">
@@ -35,6 +35,7 @@
                                                 <div class="cell small-2" >
                                                     <span>
                                                         <span>{{getFormattedPosition(allegianceBoard.leaderboard[0])}}</span><span>) </span><a class="topOnePlayer" [href]="'/player/' + allegianceBoard.leaderboard[0].name" target="_blank" style="color: inherit;">{{allegianceBoard.leaderboard[0].name}}</a>
+                                                        <app-favorite-player-star [player]="allegianceBoard.leaderboard[0].name"></app-favorite-player-star>
                                                         <span> - </span><span >{{getFormattedBalance(allegianceBoard.leaderboard[0])}}</span>
                                                     </span>
                                                 </div>
@@ -43,6 +44,7 @@
                                                     <div class="cell small-1" >
                                                         <span>
                                                             <span>{{getFormattedPosition(allegianceTopPlayer)}}</span><span>) </span><a [href]="'/player/' + allegianceTopPlayer.name" target="_blank" style="color: inherit;">{{allegianceTopPlayer.name}}</a>
+                                                            <app-favorite-player-star [player]="allegianceTopPlayer.name"></app-favorite-player-star>
                                                             <span> - </span><span>{{getFormattedBalance(allegianceTopPlayer)}}</span>
                                                         </span>
                                                     </div>
@@ -98,12 +100,14 @@
                                                     <div class="cell small-1">
                                                         <div class="grid-x fluid">
                                                             <div class="cell small-4">
-                                                            <span class="statLabel">Bet Quantile: </span><span class="quantile" [id]="allegianceBoard.team.toString() + '_betQuantile'">{{getFormattedBetQuantile(allegianceBoard)}}</span>
+                                                              <span class="statLabel">Bet Quantile: </span><span class="quantile" [id]="allegianceBoard.team.toString() + '_betQuantile'">{{getFormattedBetQuantile(allegianceBoard)}}</span>
                                                             </div>
                                                             <div class="cell small-4">
-                                                            <span class="statLabel">Fight Quantile: </span><span class="quantile" [id]="allegianceBoard.team.toString() + '_fightQuantile'">{{getFormattedFightQuantile(allegianceBoard)}}</span>
+                                                              <span class="statLabel">Fight Quantile: </span><span class="quantile" [id]="allegianceBoard.team.toString() + '_fightQuantile'">{{getFormattedFightQuantile(allegianceBoard)}}</span>
                                                             </div>
-                                                            <div class="cell small-4"></div>
+                                                            <div class="cell small-4">
+                                                              <span class="statLabel">Total Millionaraires: </span><span>{{allegianceBoard.totalMillionaires | number}}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="cell small-1"><br /></div>

@@ -10,7 +10,9 @@
                 <h3>Active Bots</h3>
                 <app-bot-leaderboard-table [leaderboard]="leaderboard"></app-bot-leaderboard-table>
                 <br />
-                <app-mychartcomponent [chartData]="chartData" [width]="700" [height]="350"></app-mychartcomponent>
+                <div class="balance-history-graph">
+                  <app-mychartcomponent [chartData]="chartData" [width]="700" [height]="350"></app-mychartcomponent>
+                </div>
                 <br />
                 <h3>Inactive Bots</h3>
                 <app-bot-leaderboard-table [leaderboard]="inactiveBots"></app-bot-leaderboard-table>

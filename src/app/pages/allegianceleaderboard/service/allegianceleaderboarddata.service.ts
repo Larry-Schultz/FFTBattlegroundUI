@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
-import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
+import { AllegianceLeaderboardWrapper } from '../model/AllegianceLeaderboardWrapper';
 
 @Injectable({
   providedIn: 'root'
@@ -21,38 +21,4 @@ export class AllegianceLeaderboardDataService {
   }
 }
 
-export interface AllegianceLeaderboardWrapper {
-    leaderboards: AllegianceLeaderboard[];
-    generationDate: number;
-}
 
-export interface AllegianceLeaderboard {
-    position: number;
-    team: Allegiance;
-    totalGil: number;
-    totalPlayers: number;
-    gilPerPlayer: number;
-    totalLevels: number;
-    totalLevelsPerPlayer: number;
-    totalPrestiges: number;
-    portraitUrl: string;
-    betWins: number;
-    betLosses: number;
-    fightWins: number;
-    fightLosses: number;
-    currentSeasonFightWinsAsChampion: number;
-    betRatio: number;
-    fightRatio: number;
-    betQuantile: number;
-    fightQuantile: number;
-    betWinUnderdog: boolean;
-    fightWinUnderdog: boolean;
-    gilUnderdog: boolean;
-    leaderboard: AllegianceLeaderboardEntry[];
-}
-
-export interface AllegianceLeaderboardEntry {
-    name: string;
-    position: number;
-    balance: number;
-}

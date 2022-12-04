@@ -15,7 +15,7 @@
                             <th>Prestige Level</th>
                             <th>Allegiance</th>
                             <th>Last Active</th>
-                        </tr>	
+                        </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let player of prestigeTable">
@@ -23,6 +23,7 @@
                                 <a [id]="player.name + 'Link'" [href]="'/player/' + player.name" target="_blank" style="color: inherit;">
                                     <span style="text-decoration: underline;" [id]="player.name + 'Name'">{{player.name}}</span>
                                 </a>
+                                <app-favorite-player-star [player]="player.name"></app-favorite-player-star>
                             </td>
                             <td [id]="player.name + 'PrestigeLevel'" >{{player.prestigeLevel}}</td>
                             <td [id]="player.name + 'Allegiance'" class="allegianceEntry" [style.color]="getColorForPrestige(player)" >{{player.allegiance | uppercase}}</td>
@@ -35,7 +36,7 @@
                             <th>Prestige Level</th>
                             <th>Allegiance</th>
                             <th>Last Active</th>
-                        </tr>	
+                        </tr>
                     </tfoot>
                 </table>
             </div>

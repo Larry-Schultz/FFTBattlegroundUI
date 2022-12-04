@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
-import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
+import { PlayerLeaderboardData } from '../model/PlayerLeaderboardData';
 
 @Injectable({
   providedIn: 'root'
@@ -20,25 +20,5 @@ export class PlayerLeaderboardDataService {
     const response: Observable<GenericResponse<PlayerLeaderboardData>> = this.http.get<GenericResponse<PlayerLeaderboardData>>(url);
     return response;
   }
-}
 
-export interface PlayerLeaderboardData {
-    playerLeaderboard: PlayerLeaderboard;
-    generationDateString: string;
-    topPlayerCommaSplitString: string;
-}
-
-export interface PlayerLeaderboard {
-    highestPlayers: PlayerLeaderboardEntry[];
-    topPlayers: PlayerLeaderboardEntry[];
-    generationDate: number;
-}
-
-export interface PlayerLeaderboardEntry {
-    name: string;
-    rank: number;
-    gil: string;
-    lastActiveDate: string;
-    percentageOfGlobalGil: string;
-    allegiance: Allegiance;
 }

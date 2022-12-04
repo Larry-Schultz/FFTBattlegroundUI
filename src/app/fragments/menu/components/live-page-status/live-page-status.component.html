@@ -1,0 +1,12 @@
+<span style="text-decoration: underline; color: black;">Live Feed</span>
+<ng-container *ngIf="isBettingBeginsEvent(event) || isBettingEndsEvent(event)">
+  <span style="color: black;">(</span>
+  <span *ngIf="isBettingBeginsEvent(event)" style="color: black;">Betting&#160;</span>
+  <span [style.color]="getTeamColor(extractTeam1Allegiance(event))">{{extractTeam1Name(event)}}</span>
+  <span style="color: black;">&#160;vs&#160;</span>
+  <span [style.color]="getTeamColor(extractTeam2Allegiance(event))">{{extractTeam2Name(event)}}</span>
+  <span style="color: black;">)</span>
+</ng-container>
+<span *ngIf="isFightBegins(event)" style="color: black;">
+  (!fight)
+</span>

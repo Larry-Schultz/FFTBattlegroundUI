@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { capitalize } from 'src/app/util/util';
-import { Notice } from '../notice/model/notice';
+import { Notice } from '../phase/model/notice';
 
 @Component({
   selector: 'app-meme-tournament-settings',

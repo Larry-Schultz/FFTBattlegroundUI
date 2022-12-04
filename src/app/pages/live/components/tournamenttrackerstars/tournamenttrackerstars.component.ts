@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { faStar, faCrown, faTimes} from '@fortawesome/free-solid-svg-icons';
-import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
+import { faStar, faCrown, faTimes, IconDefinition as SolidIconDefinition} from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle, IconDefinition as RegularIconDefinition } from '@fortawesome/free-regular-svg-icons';
 import { getColor } from 'src/app/util/colorsetter';
 import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { TournamentWinData } from '../../model/tournamentwindata';
@@ -18,10 +18,10 @@ export class TournamentTrackerStarsComponent implements OnInit, OnChanges {
   @Input()
   public team: Allegiance;
 
-  public star = faStar;
-  public circleX = faTimesCircle ;
-  public crown = faCrown;
-  public times = faTimes;
+  public star: SolidIconDefinition = faStar;
+  public circleX: RegularIconDefinition = faTimesCircle ;
+  public crown: SolidIconDefinition = faCrown;
+  public times: SolidIconDefinition = faTimes;
 
   constructor() { }
 

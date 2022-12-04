@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { EventWebSocketAPI } from 'src/app/util/websocketapi';
-import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
+import { MyChartData } from "src/app/fragments/mychartcomponent/model/MyChartData";
 import { PlayerBalanceHistoryService } from 'src/app/service/playerbalancehistory.service';
 
 import { BotlandDataService, CleanedBotlandData } from './service/botlanddata.service';
@@ -36,7 +36,7 @@ export class BotlandComponent implements OnInit, OnChanges, AfterViewInit {
 
   constructor(private botlandDataService: BotlandDataService, private playerBalanceHistoryService: PlayerBalanceHistoryService,
               private eventWebSocketAPI: EventWebSocketAPI, private activatedRoute: ActivatedRoute,
-              private botlandLeaderboardService: BotlandleaderboardService) { 
+              private botlandLeaderboardService: BotlandleaderboardService) {
       this.activatedRoute.params.subscribe(params => {
       if (params.refresh) {
         this.refresh = params.refresh;

@@ -10,7 +10,7 @@ import 'chartjs-plugin-colorschemes/src/plugins/plugin.colorschemes';
 import { Paired12 } from 'chartjs-plugin-colorschemes/src/colorschemes/colorschemes.brewer';
 
 import { BalanceHistoryData } from "src/app/model/BalanceHistory/BalanceHistoryData";
-import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
+import { MyChartData } from "src/app/fragments/mychartcomponent/model/MyChartData";
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
 
@@ -51,7 +51,11 @@ export class PlayerBalanceHistoryService {
   }
 
   generateMyChartData(balanceHistoryData: BalanceHistoryData, chartTitle: string): MyChartData {
-    const result: MyChartData = this._generateChartData(balanceHistoryData, 10, chartTitle);
+    let count = balanceHistoryData.standardSize;
+    if(!count || count == 0) {
+      count = 10;
+    }
+    const result: MyChartData = this._generateChartData(balanceHistoryData, count, chartTitle);
     return result;
   }
 

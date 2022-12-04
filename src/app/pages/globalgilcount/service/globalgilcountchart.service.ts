@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { ChartData, ChartDataSets, ChartOptions, ChartTooltipItem} from 'chart.js';
 import { Label } from 'ng2-charts';
 
-import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
+import { MyChartData } from "src/app/fragments/mychartcomponent/model/MyChartData";
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
 import { GilDateGraphEntry } from '../model/GilDateGraphEntry';

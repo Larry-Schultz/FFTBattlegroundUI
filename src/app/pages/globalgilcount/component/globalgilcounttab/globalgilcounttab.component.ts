@@ -3,7 +3,7 @@ import { Component, OnInit, Input, AfterViewInit, OnChanges } from '@angular/cor
 import { TodaysCount } from '../../service/globalgilcountdata.service';
 import { GlobalGilCountChartService } from 'src/app/pages/globalgilcount/service/globalgilcountchart.service';
 import { GilDateGraphEntry } from "src/app/pages/globalgilcount/model/GilDateGraphEntry";
-import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
+import { MyChartData } from "src/app/fragments/mychartcomponent/model/MyChartData";
 import { GenericResponse } from 'src/app/util/genericresponse';
 
 @Component({

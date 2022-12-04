@@ -1,51 +1,43 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, OnChanges} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { EventWebSocketAPI } from '../../util/websocketapi';
 import { PlayerSkill } from "src/app/model/PlayerRecord/PlayerSkill";
 import { SkillType } from "src/app/model/PlayerRecord/SkillType";
-import { SkillCategory } from "src/app/model/PlayerRecord/SkillCategory";
-import { PlayerDataService, PlayerData } from './service/playerdata.service';
-import { PlayerListService} from './service/playerlist.service';
-import { PlayerBalanceHistoryService } from 'src/app/service/playerbalancehistory.service';
-import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
+import { PlayerDataService } from './service/playerdata.service';
+import { PlayerData } from "./model/PlayerData";
 import { BattleGroundEvent } from '../live/model/BattleGroundEvents/battlegroundevent';
+import { PlayerOptionsLocalStorageServiceService } from '../options/service/PlayerOptionsLocalStorageService/player-options-local-storage-service.service';
+import { skillCategoryOrderingMap } from './util/skillsUtils';
 
 @Component({
   selector: 'app-playerrecord',
   templateUrl: './playerrecord.component.html',
   styleUrls: ['./playerrecord.component.scss']
 })
-export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
-
-  protected static skillCategoryOrderingMap: Map<SkillCategory, number> = new Map<SkillCategory, number>([
-    [SkillCategory.ELITE_MONSTER, 1], [SkillCategory.STRONG_MONSTER, 2], [SkillCategory.MONSTER, 3], [SkillCategory.JOB, 4],
-    [SkillCategory.EQUIPMENT, 5], [SkillCategory.ENTRY, 6], [SkillCategory.MOVEMENT, 7], [SkillCategory.REACTION, 8],
-    [SkillCategory.SUPPORT, 9], [SkillCategory.PRESTIGE, 10], [SkillCategory.LEGENDARY, 11], [SkillCategory.NORMAL, 12],
-    [SkillCategory.NONE, 13]
-  ]);
-
-  @ViewChild('lineChart', {static: false})
-  public lineChartElement: ElementRef;
+export class PlayerRecordComponent implements OnInit {
 
   public playerData: PlayerData;
 
-  public playerList: string[];
   public playerName: string = null;
   public refresh = false;
   public currentSelectBoxSelection: string;
-  public chartData: MyChartData = null;
 
   public userSkills: PlayerSkill[];
   public prestigeSkills: PlayerSkill[];
 
-  public constructor(private playerRecordService: PlayerDataService, private playerListService: PlayerListService,
-    private playerBalanceHistoryService: PlayerBalanceHistoryService, private router: Router,
-    private activatedRoute: ActivatedRoute, private eventWebSocketAPI: EventWebSocketAPI) {
+  public constructor(private readonly playerRecordService: PlayerDataService,
+    private readonly activatedRoute: ActivatedRoute, private readonly eventWebSocketAPI: EventWebSocketAPI,
+    private readonly playerOptionsLocalStorageServiceService: PlayerOptionsLocalStorageServiceService) {
+
+    const primaryPlayer = this.playerOptionsLocalStorageServiceService.getPrimaryPlayer();
     this.activatedRoute.params.subscribe(params => {
       this.playerName = params.player;
       if(params.refresh) {
         this.refresh = params.refresh;
+      }
+      if(!params.player) {
+        this.playerName = primaryPlayer?.player;
       }
     });
   }
@@ -59,37 +51,13 @@ export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
         this.userSkills = this.generateUserSkillsList();
         this.prestigeSkills = this.generatePrestigeSkillList();
       });
-
-      this.playerBalanceHistoryService.find(this.playerName, 'api/players/balanceHistory', 10, 1).subscribe(data => {
-        const title = 'Player balance based on past participated tournaments (data where available)';
-        this.chartData = this.playerBalanceHistoryService.generateMyChartData(data.data, title);
-      });
     }
-
-  }
-
-  public ngAfterViewInit(): void {
-    this.playerListService.find().subscribe(data => {
-        this.playerList = data.data;
-      });
-  }
-
-  public ngOnChanges(): void  {
 
   }
 
   public isPlayerPageRequest(): boolean {
     const result = !(this.playerName == null || typeof this.playerName === undefined);
     return result;
-  }
-
-  public playerSearch(): void {
-    const playerName = this.currentSelectBoxSelection.toString();
-    if (playerName.length > 0) {
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this.router.onSameUrlNavigation = 'reload';
-      this.router.navigateByUrl('/player/' + playerName + '?refresh=true');
-    }
   }
 
   public parseEvents(event: BattleGroundEvent, classRef: PlayerRecordComponent): void {
@@ -144,8 +112,8 @@ export class PlayerRecordComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   protected sortPlayerSkillsByCategory(playerSkill1: PlayerSkill, playerSkill2: PlayerSkill): number {
-      const playerSkill1CategoryNumber: number = PlayerRecordComponent.skillCategoryOrderingMap.get(playerSkill1.skillCategory);
-      const playerSkill2CategoryNumber: number = PlayerRecordComponent.skillCategoryOrderingMap.get(playerSkill2.skillCategory);
+      const playerSkill1CategoryNumber: number = skillCategoryOrderingMap.get(playerSkill1.skillCategory);
+      const playerSkill2CategoryNumber: number = skillCategoryOrderingMap.get(playerSkill2.skillCategory);
 
       let sortResult = 0;
       if (playerSkill1CategoryNumber < playerSkill2CategoryNumber) {

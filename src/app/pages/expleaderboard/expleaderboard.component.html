@@ -18,7 +18,7 @@
                             <th>Prestige Level*</th>
                             <th>Allegiance</th>
                             <th>Last Active</th>
-                        </tr>	
+                        </tr>
                     </thead>
                     <tbody >
                         <tr *ngFor="let player of leaderboard">
@@ -27,6 +27,7 @@
                                 <a [id]="player.player + 'Link'" [href]="'/player/' + player.player" target="_blank" style="color: inherit;" >
                                     <span style="text-decoration: underline;" [id]="player.player + 'Name'" >{{player.player}}</span>
                                 </a>
+                                <app-favorite-player-star [player]="player.player"></app-favorite-player-star>
                             </td>
                             <td [id]="player.player + 'Level'" >{{player.level | number:'1.0':'en-US'}}</td>
                             <td [id]="player.player + 'Exp'" >{{player.exp}}</td>
@@ -44,7 +45,7 @@
                             <th>Prestige Level*</th>
                             <th>Allegiance</th>
                             <th>Last Active</th>
-                        </tr>	
+                        </tr>
                     </tfoot>
                 </table>
             </div>

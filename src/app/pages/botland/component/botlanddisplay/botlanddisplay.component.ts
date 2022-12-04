@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
+import { MyChartData } from "src/app/fragments/mychartcomponent/model/MyChartData";
 import { CleanedBotlandData } from '../../service/botlanddata.service';
 import { Subject } from 'rxjs';
 
@@ -14,7 +14,7 @@ export class BotlandDisplayComponent implements OnInit, OnChanges {
   public chartData: MyChartData;
   @Input()
   public botlandData: CleanedBotlandData;
-  @Input() 
+  @Input()
   public botlandDataTrigger: Subject<any>;
 
   constructor() { }

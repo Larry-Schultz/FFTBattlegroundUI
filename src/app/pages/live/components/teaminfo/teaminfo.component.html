@@ -50,5 +50,18 @@
             <div class="cell small-1"></div>
         </div>
     </div>
-    <div class="cell small-2"></div>
+    <div class="cell small-2">
+      <div class="grid-x">
+        <div class="cell small-1"></div>
+        <div class="cell small-4 text-left">
+          <app-team-value [team]="liveData.team1" [teamValue]="liveData.getTeam1TeamValue()"></app-team-value>
+        </div>
+        <div class="cell small-2"></div>
+        <div class="cell small-4 text-right">
+          <app-team-value [team]="liveData.team2" [teamValue]="liveData.getTeam2TeamValue()"></app-team-value>
+        </div>
+        <div class="cell small-1"></div>
+    </div>
+
+    </div>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { PlayerData } from '../../service/playerdata.service';
+import { PlayerData } from "../../model/PlayerData";
 import { getBackendUrl } from 'src/app/util/getbackendurl';
 
 @Component({

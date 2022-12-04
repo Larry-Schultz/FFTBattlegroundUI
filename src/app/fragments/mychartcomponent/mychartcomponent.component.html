@@ -1,5 +1,5 @@
-<div style="display: block;" *ngIf="chartData != null && chartData !== undefined && chartData.chartData != null && chartData.chartData !== undefined && chartData.chartData.length > 0">
-  <canvas baseChart 
+<div style="display: block;" *ngIf="chartData != null && chartData !== undefined && chartData.chartData != null && chartData.chartData !== undefined && chartData.chartData.length > 0; else loading">
+  <canvas baseChart
     [datasets]="chartData.chartData"
     [labels]="chartData.chartLabels"
     [options]="chartData.chartOptions"
@@ -13,3 +13,10 @@
     >
   </canvas>
 </div>
+<ng-template #loading>
+  <img class="fightLoading rightPlayerImageLoading"
+    [width]="width != null && width > 0 ? width/2 : 100"
+    [height]="height != null && height > 0 ? height/2 : 100"
+    src="assets/Spinner-1s-200px.gif"
+  />
+</ng-template>

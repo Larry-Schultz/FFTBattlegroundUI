@@ -18,22 +18,16 @@ export class TeamInfoComponent implements OnInit, OnChanges {
   @Input()
   public liveData: LiveData;
 
-  @Input()
-  public team1: Allegiance;
-
-  @Input()
-  public team2: Allegiance;
-
   public alive = true;
 
 
   constructor() { }
 
-  public ngOnInit() {
+  public ngOnInit(): void {
 
   }
 
-  public ngOnChanges() {
+  public ngOnChanges(): void {
 
   }
 

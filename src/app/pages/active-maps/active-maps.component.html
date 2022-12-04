@@ -1,0 +1,35 @@
+<app-menu></app-menu>
+<div class="grid-y fluid">
+    <div class="cell small-2">
+        <br />
+    </div>
+    <div class="cell small-8">
+        <div class="grid-x fluid">
+            <div class="cell small-3"></div>
+            <div class="cell small-6">
+              <div class="options-page">
+                <h1>Active Maps</h1>
+                <p>Maps actively used in the stream.  I also use this page to see if the Viewer is missing any map images.  For now I know some maps are missing, and those have been logged into a Bug.</p>
+                <br />
+                <br />
+                <ol>
+                  <li *ngFor="let activeMap of activeMaps" style="display:inline">
+                    <span>{{activeMap.number}}){{activeMap.name}}</span>
+                    <br />
+                    <a [href]="getMapUrl(activeMap.number)">
+                      <img id="mapIcon" title="click to go to ffhacktics" [src]="getMapIconSrc(activeMap.number)" style="height: 125px" class="mapimage" />
+                    </a>
+                    <br />
+                    <br />
+                  </li>
+                </ol>
+              </div>
+            </div>
+            <div class="cell small-3">
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="cell small-2">
+    </div>
+</div>

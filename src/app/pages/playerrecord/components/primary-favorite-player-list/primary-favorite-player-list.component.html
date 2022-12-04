@@ -1,0 +1,23 @@
+<div class="primary-and-favorite">
+  <br />
+  <div *ngIf="primaryPlayer">
+    <span>
+      <span>Primary Player: </span>
+      <span class="primary-player">
+        <a href="{{'/player/' + primaryPlayer.player}}" target="_blank" style="color: inherit;" >{{primaryPlayer.player}}</a>
+      </span>
+      <app-favorite-player-star [player]="primaryPlayer.player"></app-favorite-player-star>
+    </span>
+  </div>
+  <div *ngIf="favoritePlayers && favoritePlayers.length > 0" class="favorite players">
+    <span>Favorite Players: </span>
+    <ol>
+      <li *ngFor="let favoritePlayer of favoritePlayers">
+        <span class="favorite-player">
+          <a href="{{'/player/' + favoritePlayer.player}}" target="_blank" style="color: inherit;" >{{favoritePlayer.player}}</a>
+        </span>
+        <app-favorite-player-star [player]="favoritePlayer.player"></app-favorite-player-star>
+      </li>
+    </ol>
+  </div>
+</div>

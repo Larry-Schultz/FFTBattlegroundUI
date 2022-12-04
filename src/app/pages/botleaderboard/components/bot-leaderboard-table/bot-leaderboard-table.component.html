@@ -16,6 +16,7 @@
                 <a [id]="bot.name + 'Link'" [href]="'/player/' + bot.name" target="_blank" style="color: inherit;" >
                     <span style="text-decoration: underline;" [id]="bot.name + 'Name'">{{bot.name}}</span>
                 </a>
+                <app-favorite-player-star [player]="bot.name"></app-favorite-player-star>
             </td>
             <td [id]="bot.name + 'Amount'">{{bot.gil}}</td>
             <td [id]="bot.name + 'PercentageOfGlobalGil'">{{bot.percentageOfGlobalGil + '%'}}</td>

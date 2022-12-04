@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
+import { MusicOptionsLocalStorageServiceService } from '../options/service/MusicOptionsLocalStorageService/music-options-local-storage-service.service';
 import { LiveService } from './service/liveservice';
 
 
@@ -14,10 +14,8 @@ export class LivePageComponent implements OnInit {
 
   public searchEnabled;
 
-	public constructor(public liveService: LiveService, public activatedRoute: ActivatedRoute) {
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.searchEnabled = params?.search === 'true';
-    });
+	public constructor(public liveService: LiveService, private readonly musicOptionService: MusicOptionsLocalStorageServiceService) {
+    this.searchEnabled = this.musicOptionService.isSearch();
   }
 
     public ngOnInit(): void {

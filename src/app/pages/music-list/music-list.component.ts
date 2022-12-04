@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
+import { MusicOptionsLocalStorageServiceService } from '../options/service/MusicOptionsLocalStorageService/music-options-local-storage-service.service';
 import { MusicService } from './service/music.service';
 
 @Component({
@@ -10,23 +10,21 @@ import { MusicService } from './service/music.service';
 })
 export class MusicListComponent implements OnInit {
 
-  databaseOptions: any = null;
-  displayTable = false;
-  songCount = 0;
-  firstOccurenceString = '';
-  totalOccurences = 0;
-  totalSongsWithOccurences = 0;
-  totalSongsWithoutOccurences = 0;
+  public databaseOptions: any = null;
+  public displayTable = false;
+  public songCount = 0;
+  public firstOccurenceString = '';
+  public totalOccurences = 0;
+  public totalSongsWithOccurences = 0;
+  public totalSongsWithoutOccurences = 0;
 
-  searchEnabled = false;
+  public searchEnabled = false;
 
-  constructor(private musicService: MusicService, private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.searchEnabled = params?.search === 'true';
-    });
+  public constructor(private musicService: MusicService, private readonly musicOptionService: MusicOptionsLocalStorageServiceService) {
+    this.searchEnabled = musicOptionService.isSearch();
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.musicService.find().subscribe(musicData => {
       this.displayTable = true;
       this.databaseOptions = {

@@ -9,11 +9,12 @@ import { BadFightEvent } from './FightEvents/badfightevent';
 import { TournamentWinData } from './tournamentwindata';
 import { BetEntry } from '../components/betentry/model/betentry';
 import { FightEntry } from '../components/fightentry/model/fightentry';
-import { Notice } from '../components/notice/model/notice';
+import { Notice } from '../components/phase/model/notice';
 import { TournamentTracker } from '../components/tournamenttracker/model/tournamenttracker';
 import { TournamentTrackerBlank } from '../components/tournamenttracker/model/tournamenttrackerblank';
 import { TeamInfoEntry } from '../components/teaminfo/model/teaminfoentry';
 import { TournamentTrackerData } from '../components/tournamenttracker/model/tournamenttrackerdata';
+import { Hype } from './MusicEvents/hype';
 
 const TEAM_INFO_COUNT = 4;
 
@@ -25,7 +26,7 @@ export class LiveData {
     public fightEntries: FightEntry[] = new Array<FightEntry>();
     public loading = true;
     public musicEvent: MusicEvent;
-    public hypeCount: number = 0;
+    public hypeEmotes: Hype[] = new Array<Hype>();
     public skillDropEvent: SkillDropEvent;
     public currentNotice = Notice.LOADING_NOTICE;
     public matchInfo: MatchInfoEvent;
@@ -37,6 +38,8 @@ export class LiveData {
     private team2TeamInfo: TeamInfoEntry[];
     private team1UnitInfo: UnitInfoEvent[] = new Array<UnitInfoEvent>();
     private team2UnitInfo: UnitInfoEvent[]
+    private team1TeamValue: number;
+    private team2TeamValue: number;
 
     public constructor() {
         this.team1BetEntries = new Array<BetEntry>();
@@ -129,13 +132,13 @@ export class LiveData {
 
     public addTeamInfo(side: Allegiance, entries: TeamInfoEntry[]): void {
         if (side === Allegiance.LEFT) {
-            for (let i = 0; i < entries.length; i++) {
-                this.team1TeamInfo[i] = entries[i];
-            }
+          for (let i = 0; i < entries.length; i++) {
+              this.team1TeamInfo[i] = entries[i];
+          }
         } else if (side === Allegiance.RIGHT) {
-            for (let i = 0; i < entries.length; i++) {
-                this.team2TeamInfo[i] = entries[i];
-            }
+          for (let i = 0; i < entries.length; i++) {
+              this.team2TeamInfo[i] = entries[i];
+          }
         }
     }
 
@@ -150,8 +153,24 @@ export class LiveData {
         return this.team1TeamInfo[index];
     }
 
+    public getTeam1TeamValue(): number {
+      return this.team1TeamValue;
+    }
+
+    public setTeam1TeamValue(teamValue: number): void {
+      this.team1TeamValue = teamValue;
+    }
+
     public getTeam2TeamInfo(index: number) {
         return this.team2TeamInfo[index];
+    }
+
+    public getTeam2TeamValue(): number {
+      return this.team2TeamValue;
+    }
+
+    public setTeam2TeamValue(teamValue: number): void {
+      this.team2TeamValue = teamValue;
     }
 
     public addUnitInfo(side: Allegiance, entry: UnitInfoEvent): void {

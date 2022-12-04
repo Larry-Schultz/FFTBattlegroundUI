@@ -4,7 +4,8 @@ import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";
 import { GenericPairing } from 'src/app/util/genericresponse';
 
 export interface TeamInfoEvent extends BattleGroundEvent {
-    team: Allegiance;
+  team: Allegiance;
 	playerUnitPairs: GenericPairing<string, string>[];
-    metaData: PlayerRecord[];
+  metaData: PlayerRecord[];
+  teamValue: number;
 }

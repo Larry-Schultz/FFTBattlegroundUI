@@ -1,0 +1,14 @@
+<div>
+  <h3>Favorite Players</h3>
+  <p>Favorite players show up at the top of the player page, and will have custom stars that appear by their name through the Viewer.</p>
+  <app-player-option-selector playerTextboxLabel="Favorite Player" (selected)="newFavoritePlayerSubmitted($event)"></app-player-option-selector>
+  <br />
+  <p *ngFor="let playerOption of favoritePlayersArray">
+    <span>{{playerOption.player}}</span>
+    <app-favorite-player-star #primaryStar [relevantPlayerOptions]="playerOption"></app-favorite-player-star>
+    <span>&nbsp;</span>
+    <span class="remove-button" title="remove favorite player">
+      <fa-icon [icon]="times" (click)="removeFavoritePlayer(playerOption.player)"></fa-icon>
+    </span>
+  </p>
+</div>

@@ -1,0 +1,48 @@
+<div class="grid-x fluid">
+  <div class="cell small 5"></div>
+  <div class="cell small 2">
+    <div class="grid-y" *ngIf="playerData != null && !playerData.notFound" style="border-style: solid; word-wrap: break-word; color: black; border-radius: 25px; background-color: white; width: 1200px">
+      <div class="cell small-3"></div>
+      <div class="cell small-3">
+        <div class="grid-x">
+          <div class="cell small-3"></div>
+          <div class="cell small-2">
+            <app-playerportrait [playerData]="playerData"></app-playerportrait>
+          </div>
+          <div class="cell small-1"></div>
+          <div class="cell small-5">
+            <app-playerdata [playerData]="playerData" [prestigeLevel]="playerData.prestigeLevel"></app-playerdata>
+          </div>
+          <div class="cell small-3"></div>
+        </div>
+      </div>
+      <div class="cell small-2">
+        <div class="grid-x">
+          <div class="cell small-3"></div>
+          <div class="cell small-7">
+            <app-player-record-chart [playerName]="playerData.playerRecord.player"></app-player-record-chart>
+            <br />
+          </div>
+          <div class="cell small-2"></div>
+        </div>
+      </div>
+      <div class="cell small-3">
+        <div class="grid-x">
+          <div class="cell small-3"></div>
+          <div class="cell small-8">
+            <app-classbonus [userSkills]="userSkills" [classBonuses]="playerData.classBonuses" [skillBonuses]="playerData.skillBonuses"></app-classbonus>
+            <app-skillbonus [userSkills]="userSkills" [skillBonuses]="playerData.skillBonuses"></app-skillbonus>
+            <app-skillcooldown [userSkills]="userSkills"></app-skillcooldown>
+            <app-prestigeskills [containsPrestige]="playerData.containsPrestige" [prestigeSkills]="prestigeSkills"></app-prestigeskills>
+            <app-userskills [userSkills]="userSkills"></app-userskills>
+
+            <app-skillcolorlegend [playerSkills]="playerData.playerRecord.playerSkills" [classBonuses]="playerData.classBonuses"></app-skillcolorlegend>
+          </div>
+          <div class="cell small-2"></div>
+        </div>
+      </div>
+      <div class="cell small-1"></div>
+    </div>
+  </div>
+  <div class="cell small 5"></div>
+</div>

@@ -1,0 +1,10 @@
+<div class="grid-x fluid grid-padding-x">
+  <div class="cell small-2">
+    <app-player-list-autocomplete></app-player-list-autocomplete>
+    <div *ngIf="playerData != null && playerData.notFound">
+      <br />
+      <h3>Player {{playerData.playerRecord.player}} not found</h3>
+    </div>
+    <app-primary-favorite-player-list></app-primary-favorite-player-list>
+  </div>
+</div>

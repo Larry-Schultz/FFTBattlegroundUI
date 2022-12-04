@@ -26,7 +26,7 @@ import { SkillDropEvent } from '../model/MatchEvents/skilldropevent';
 import { BadBetEvent } from '../model/BetEvents/badbetevent';
 import { BadFightEvent } from '../model/FightEvents/badfightevent';
 import { MusicEvent } from '../model/MusicEvents/musicevent';
-import { Notice } from '../components/notice/model/notice';
+import { Notice } from '../components/phase/model/notice';
 import { TournamentWinData } from '../model/tournamentwindata';
 import { FightEntry } from '../components/fightentry/model/fightentry';
 import { BetEntry } from '../components/betentry/model/betentry';
@@ -34,6 +34,7 @@ import { BetEntryFactory } from '../components/betentry/model/betentryfactory';
 import { TeamInfoEntry } from '../components/teaminfo/model/teaminfoentry';
 import { TournamentTrackerData } from '../components/tournamenttracker/model/tournamenttrackerdata';
 import { HypeEvent } from '../model/MusicEvents/hypeevent';
+import { Hype } from '../model/MusicEvents/hype';
 
 @Injectable({
   providedIn: 'root'
@@ -214,13 +215,13 @@ export class LiveService {
 
 	protected handleMusicEvent(event: MusicEvent): void {
 		if(!this.liveData.musicEvent || this.liveData.musicEvent.songName !== event.songName) {
-      this.liveData.hypeCount = 0;
+      this.liveData.hypeEmotes = new Array<Hype>();
     }
     this.liveData.musicEvent = event;
 	}
 
   protected handleHypeEvent(event: HypeEvent): void {
-    this.liveData.hypeCount+= event.hypeEmotes.length;
+    this.liveData.hypeEmotes = this.liveData.hypeEmotes.concat(event.hypeEmotes);
   }
 
 	protected generatePlayerRecordFromBetEvent(event: BetEvent): BetEntry {
@@ -254,8 +255,10 @@ export class LiveService {
 	protected handleTeamInfo(event: TeamInfoEvent): void {
 		if (event.team === this.liveData.team1) {
 			this.liveData.addTeamInfo(Allegiance.LEFT, TeamInfoEntry.generateTeamInfoEntries(event));
+      this.liveData.setTeam1TeamValue(event.teamValue);
 		} else if (event.team === this.liveData.team2) {
 			this.liveData.addTeamInfo(Allegiance.RIGHT, TeamInfoEntry.generateTeamInfoEntries(event));
+      this.liveData.setTeam2TeamValue(event.teamValue);
 		}
 	}
 

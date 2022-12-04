@@ -136,12 +136,14 @@ export class SkillCooldownComponent implements OnInit, OnChanges {
   public getCooldownString(userSkill: PlayerSkill): string {
     let newCooldownString = ''
 
-    if (userSkill.cooldown >= 4) {
+    if (userSkill.cooldown >= 5) {
       newCooldownString = '(cannot use)';
-    } else if (userSkill.cooldown === 3) {
+    } else if (userSkill.cooldown === 4) {
       newCooldownString = '(-4 EXP, -10 priority)';
+    } else if (userSkill.cooldown === 3) {
+      newCooldownString = '(-3 EXP, -7 priority)';
     } else if (userSkill.cooldown === 2) {
-      newCooldownString = '(-2 EXP -5 priority)';
+      newCooldownString = '(-2 EXP, -5 priority)';
     } else if (userSkill.cooldown === 1) {
       newCooldownString = '(-1 EXP, -3 priority)';
     }

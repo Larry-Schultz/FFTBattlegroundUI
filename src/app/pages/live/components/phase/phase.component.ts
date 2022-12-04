@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 import { FightEntry } from '../fightentry/model/fightentry';
-import { Notice } from '../notice/model/notice';
+import { Notice } from './model/notice';
 
 @Component({
   selector: 'app-phase',

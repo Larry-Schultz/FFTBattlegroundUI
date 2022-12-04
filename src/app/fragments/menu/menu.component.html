@@ -5,18 +5,7 @@
 			<li class="menu-text">FFTB Viewer</li>
 			<li class="is-active">
 				<a href="/">
-					<span style="text-decoration: underline; color: black;">Live Feed</span>
-					<ng-container *ngIf="isBettingBeginsEvent(event) || isBettingEndsEvent(event)">
-						<span style="color: black;">(</span>
-						<span *ngIf="isBettingBeginsEvent(event)" style="color: black;">Betting&#160;</span>
-						<span [style.color]="getTeamColor(extractTeam1Allegiance(event))">{{extractTeam1Name(event)}}</span>
-						<span style="color: black;">&#160;vs&#160;</span>
-						<span [style.color]="getTeamColor(extractTeam2Allegiance(event))">{{extractTeam2Name(event)}}</span>
-						<span style="color: black;">)</span>
-					</ng-container>
-					<span *ngIf="isFightBegins(event)" style="color: black;">
-						(!fight)
-					</span>
+          <app-live-page-status></app-live-page-status>
 				</a>
 			</li>
 			<li>
@@ -49,6 +38,15 @@
 			<li>
 				<a class="menuLink" href="/botland"><span class="menuItem">Botland</span></a>
 			</li>
+      <li>
+        <a class="menuLink" href="/options"><span class="menuItem">Options</span></a>
+      </li>
+      <li>
+        <a class="menuLink" href="/portraits"><span class="menuItem">Portraits</span></a>
+      </li>
+      <li>
+        <a class="menuLink" href="/maps"><span class="menuItem">Maps</span></a>
+      </li>
 		</ul>
 	</div>
 	<div class="top-bar-right">
@@ -62,12 +60,19 @@
 			<li>
 				<a class="menuLink" href="https://www.mustad.io/"><span class="menuItem">Mustadio.io</span></a>
 			</li>
+      <li>
+        <a class="menuLink" href="https://wiznaib.us/"><span class="menuItem">wiznaib.us</span></a>
+
+      </li>
 			<li>
 				<a class="menuLink" href="https://fftbg.help/"><span class="menuItem">FFTBG Help</span></a>
 			</li>
 			<li>
 				<a class="menuLink" href="https://birb-brains-bot.app/#!/home"><span class="menuItem">BirbBrainsBot</span></a>
 			</li>
+      <li>
+        <a class="menuLink" href="http://fft-bot.herokuapp.com"><span class="menuItem">smokebowlingbot</span></a>
+      </li>
 		</ul>
 	</div>
 </div>

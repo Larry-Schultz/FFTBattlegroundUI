@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { BotResponseData } from './model/botresponsedata';
 import { BotDataService } from './service/botdata.service';
-import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
+import { MyChartData } from "src/app/fragments/mychartcomponent/model/MyChartData";
 import { GenericElementOrdering, convertGenericElementListToMap } from 'src/app/util/genericresponse';
 import { BotHourlyData } from '../botland/model/bothourlydata';
 import { Label } from 'ng2-charts';

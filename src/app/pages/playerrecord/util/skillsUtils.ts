@@ -1,6 +1,13 @@
 import { PlayerSkill } from "src/app/model/PlayerRecord/PlayerSkill";
 import { SkillCategory } from "src/app/model/PlayerRecord/SkillCategory";
 
+export const skillCategoryOrderingMap: Map<SkillCategory, number> = new Map<SkillCategory, number>([
+  [SkillCategory.ELITE_MONSTER, 1], [SkillCategory.STRONG_MONSTER, 2], [SkillCategory.MONSTER, 3], [SkillCategory.JOB, 4],
+  [SkillCategory.EQUIPMENT, 5], [SkillCategory.ENTRY, 6], [SkillCategory.MOVEMENT, 7], [SkillCategory.REACTION, 8],
+  [SkillCategory.SUPPORT, 9], [SkillCategory.PRESTIGE, 10], [SkillCategory.LEGENDARY, 11], [SkillCategory.NORMAL, 12],
+  [SkillCategory.NONE, 13]
+]);
+
 export function getColorForSkill(playerSkill: PlayerSkill): string {
     if (playerSkill.skillCategory === SkillCategory.ELITE_MONSTER) {
         return 'darkblue';

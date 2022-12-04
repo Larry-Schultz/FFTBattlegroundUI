@@ -3,14 +3,13 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { PlayerBalanceHistoryService } from 'src/app/service/playerbalancehistory.service';
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { getColor } from 'src/app/util/colorsetter';
-import { MyChartData } from 'src/app/fragments/mychartcomponent/mychartcomponent.component';
+import { MyChartData } from "src/app/fragments/mychartcomponent/model/MyChartData";
 import { BalanceHistoryData } from "src/app/model/BalanceHistory/BalanceHistoryData";
 
-import {
-  PlayerLeaderboardDataService,
-  PlayerLeaderboardData,
-  PlayerLeaderboard,
-  PlayerLeaderboardEntry } from './service/playerleaderboarddata.service';
+import { PlayerLeaderboardDataService } from './service/playerleaderboarddata.service';
+import { PlayerLeaderboardData } from "./model/PlayerLeaderboardData";
+import { PlayerLeaderboard } from "./model/PlayerLeaderboard";
+import { PlayerLeaderboardEntry } from "./model/PlayerLeaderboardEntry";
 
 @Component({
   selector: 'app-playerleaderboard',

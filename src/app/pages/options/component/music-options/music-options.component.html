@@ -1,0 +1,10 @@
+<span>
+  <h2>Music Options</h2>
+  <p>Enabled search links for the playlist and the active song on the home page.</p>
+  <mat-slide-toggle
+      [checked]="checked"
+      (change)="changeSearchOption($event)"
+    >
+      Music Search Links Enabled: {{checked}}
+    </mat-slide-toggle>
+</span>

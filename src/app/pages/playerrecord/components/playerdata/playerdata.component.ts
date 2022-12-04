@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
-import { PlayerData } from '../../service/playerdata.service';
+import { PlayerData } from "../../model/PlayerData";
 import { getColor } from 'src/app/util/colorsetter';
 import { PlayerSkill } from "src/app/model/PlayerRecord/PlayerSkill";
 import { Allegiance } from "src/app/model/PlayerRecord/Allegiance";

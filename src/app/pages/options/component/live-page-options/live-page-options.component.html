@@ -1,0 +1,10 @@
+<span>
+  <h2>Live Page Options</h2>
+  <p>Options for the Live Page (Home Page)</p>
+  <mat-slide-toggle
+      [checked]="showTwitchEmbed"
+      (change)="changeShowTwitchEmbedOption($event)"
+  >
+      Show Twitch Embed: {{showTwitchEmbed}}
+  </mat-slide-toggle>
+</span>

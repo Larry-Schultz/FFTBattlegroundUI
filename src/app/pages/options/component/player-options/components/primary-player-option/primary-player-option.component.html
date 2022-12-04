@@ -1,0 +1,8 @@
+<span>
+  <h3>Primary Player</h3>
+  <p>The primary player will be the default Player Page that shows up.  A custom star will be displayed by their name</p>
+  <app-player-option-selector playerTextboxLabel="Primary Player" (selected)="newPrimaryPlayerSelected($event)"></app-player-option-selector>
+  <p>
+    <span>Current Primary Player is: {{currentPrimaryPlayer?.player}}</span><app-favorite-player-star #primaryStar [relevantPlayerOptions]="currentPrimaryPlayer"></app-favorite-player-star>
+  </p>
+</span>

@@ -26,6 +26,7 @@
 								<a [id]="player.name + 'Link'" [href]="'/player/' + player.name" target="_blank" style="color: inherit;" >
 									<span style="text-decoration: underline;" [id]="player.name + 'Name'">{{player.name}}</span>
 								</a>
+                <app-favorite-player-star [player]="player.name"></app-favorite-player-star>
 							</td>
 							<td [id]="player.name + 'Amount'">{{player.gil}}</td>
 							<td [id]="player.name + 'PercentageOfGlobalGil'">{{player.percentageOfGlobalGil + '%'}}</td>
@@ -54,7 +55,9 @@
 		<div class="grid-x fluid">
 			<div class="cell small-3"></div>
 			<div class="cell small-6">
-				<app-mychartcomponent [chartData]="chartData"  [width]="700" [height]="350"></app-mychartcomponent>
+        <div class="balance-history-graph">
+				  <app-mychartcomponent [chartData]="chartData" [width]="700" [height]="350"></app-mychartcomponent>
+        </div>
 			</div>
 			<div class="cell small-3">
 			</div>
@@ -83,6 +86,7 @@
 								<a [id]="player.name + 'Link'" [href]="'/player/' + player.name" target="_blank" style="color: inherit;" >
 									<span style="text-decoration: underline;" [id]="player.name + 'Name'">{{player.name}}</span>
 								</a>
+                <app-favorite-player-star [player]="player.name"></app-favorite-player-star>
 							</td>
 							<td [id]="player.name + 'Amount'">{{player.gil}}</td>
 							<td [id]="player.name + 'PercentageOfGlobalGil'">{{player.percentageOfGlobalGil + '%'}}</td>

@@ -1,0 +1,14 @@
+<span>
+  <mat-form-field appearance="fill" hintLabel="Player Name" floatLabel="always">
+    <mat-label>{{playerTextboxLabel}}</mat-label>
+    <input matInput placeholder="player name" [(ngModel)]="playerName"  />
+  </mat-form-field>
+  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <mat-form-field appearance="fill" hintLabel="Star Color">
+    <mat-label>Color</mat-label>
+    <input matInput [ngxMatColorPicker]="picker" [formControl]="colorCtr" [disabled]="disabled">
+    <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+    <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color"></ngx-mat-color-picker>
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="submit()">Submit</button>
+</span>
