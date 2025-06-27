@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { DumpActiveMap } from './model/DumpActiveMap';
 import { ActiveMapsService } from './services/ActiveMaps/active-maps.service';
+import { MapPageService } from './services/MapsPageService/map-page.service';
 
 @Component({
   selector: 'app-active-maps',
@@ -12,9 +13,11 @@ export class ActiveMapsComponent implements OnInit {
 
   public activeMaps: DumpActiveMap[];
 
-  public constructor(private readonly activeMapsService: ActiveMapsService) { }
+  public constructor(private readonly activeMapsService: ActiveMapsService,
+    private readonly mapPageService: MapPageService) { }
 
   public ngOnInit(): void {
+    this.mapPageService.log();
     this.activeMapsService.find().subscribe((genericResponse) => {
       this.activeMaps = genericResponse.data;
     });

@@ -36,8 +36,7 @@ export class PlayerLeaderboardComponent implements OnInit, AfterViewInit {
       componentRef.topPlayerCommaDelimitedString = genericResponse.data.topPlayerCommaSplitString;
       componentRef.generationDateString = genericResponse.data.generationDateString;
 
-      componentRef.playerBalanceHistoryService.find(componentRef.topPlayerCommaDelimitedString,
-        'api/players/playerLeaderboardBalanceHistory', componentRef.chartResultsCount, componentRef.leaderboard.highestPlayers.length)
+      componentRef.playerBalanceHistoryService.findPlayerLeaderboardData()
         .subscribe((data: GenericResponse<BalanceHistoryData>) => {
           const title = 'Top Player balance based on past participated tournaments (data where available)';
           componentRef.chartData = this.playerBalanceHistoryService.generateMyChartData(data.data, title);

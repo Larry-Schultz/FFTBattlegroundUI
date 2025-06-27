@@ -2,9 +2,9 @@ import { Component, OnInit, Input, OnChanges, ViewChild, AfterViewInit } from '@
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 
 import { CountdownComponent, CountdownConfig } from 'ngx-countdown';
-import { Hype } from '../../model/MusicEvents/hype';
 import { MusicEvent } from '../../model/MusicEvents/musicevent';
 import { GaugeSetting } from './model/GaugeSetting';
+import { countdownConfigFactory } from './../../util/CountdownUtils';
 
 @Component({
   selector: 'app-song',
@@ -17,7 +17,7 @@ export class SongComponent implements OnInit, OnChanges, AfterViewInit {
   public musicEvent: MusicEvent;
 
   @Input()
-  public hypeEmotes: Hype[];
+  public hypeEmotes: string[];
 
   @Input()
   public searchEnabled: boolean;
@@ -46,8 +46,8 @@ export class SongComponent implements OnInit, OnChanges, AfterViewInit {
 
   public ngOnInit() {
     this.songName = null;
-    this.hypeEmotes = new Array<Hype>();
-    this.countdownConfig = this.countdownConfigFactory(0);
+    this.hypeEmotes = new Array<string>();
+    this.countdownConfig = countdownConfigFactory(0);
 
   }
 
@@ -64,7 +64,7 @@ export class SongComponent implements OnInit, OnChanges, AfterViewInit {
       }
       if (this.songName !== this.musicEvent.songName || this.duration !== this.musicEvent.durationInSeconds) {
         this.duration = this.musicEvent.durationInSeconds;
-        this.countdownConfig = this.countdownConfigFactory(this.duration);
+        this.countdownConfig = countdownConfigFactory(this.duration);
         this.countdown.begin();
       }
     }
@@ -79,9 +79,7 @@ export class SongComponent implements OnInit, OnChanges, AfterViewInit {
     return hypeTitle;
   }
 
-  public countdownConfigFactory(leftTime: number): CountdownConfig {
-    return { format: `mm:ss`, leftTime: leftTime };
-  }
+
 
   private setHypeGuageColorBasedOnCount(count: number): void {
     let color: string = 'blue';

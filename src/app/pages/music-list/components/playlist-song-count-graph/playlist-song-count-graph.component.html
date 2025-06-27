@@ -1,0 +1,9 @@
+<h2>Playlist History Graphs</h2>
+<tabset *ngIf="showCharts">
+  <tab heading="Song Count" >
+    <app-mychartcomponent [chartData]="playlistSongCountChartData" [height]="250" [width]="500"></app-mychartcomponent>
+  </tab>
+  <tab heading="Song Occurence Count">
+    <app-mychartcomponent [chartData]="playlistSongOccurenceCountChartData" [height]="250" [width]="500"></app-mychartcomponent>
+  </tab>
+</tabset>

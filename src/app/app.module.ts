@@ -113,6 +113,12 @@ import { PrimaryFavoritePlayerListComponent } from './pages/playerrecord/compone
 import { PlayerRecordHeaderComponent } from './pages/playerrecord/components/player-record-header/player-record-header.component';
 import { PlayerRecordCoreComponent } from './pages/playerrecord/components/player-record-core/player-record-core.component';
 import { PlayerRecordChartComponent } from './pages/playerrecord/components/player-record-chart/player-record-chart.component';
+import { PlaylistSongCountGraphComponent } from './pages/music-list/components/playlist-song-count-graph/playlist-song-count-graph.component';
+import { LoadingPhaseComponent } from './pages/live/components/phase/components/loading-phase/loading-phase.component';
+import { MatchPhaseComponent } from './pages/live/components/phase/components/match-phase/match-phase.component';
+import { FightPhaseComponent } from './pages/live/components/phase/components/fight-phase/fight-phase.component';
+import { BettingPhaseComponent } from './pages/live/components/phase/components/betting-phase/betting-phase.component';
+import { ResultsPhaseComponent } from './pages/live/components/phase/components/results-phase/results-phase.component';
 
 
 @NgModule({
@@ -141,7 +147,9 @@ import { PlayerRecordChartComponent } from './pages/playerrecord/components/play
     GeneFileComponent, TournamentTrackerUnitItemComponent, FoundationGridContainerComponent, FoundationGridYComponent,
     FoundationGridXComponent, FoundationcellComponent, MustadioDataComponent, PhaseComponent, MemeTournamentSettingsComponent,
     BotLeaderboardTableComponent, OptionsComponent, MusicOptionsComponent, PlayerOptionsComponent, PrimaryPlayerOptionComponent,
-    FavoritePlayerOptionComponent, PlayerOptionSelectorComponent, FavoritePlayerStarComponent, LivePageOptionsComponent, TeamValueComponent, ActivePortraitsComponent, ActiveMapsComponent, LivePageStatusComponent, PlayerListAutocompleteComponent, PrimaryFavoritePlayerListComponent, PlayerRecordHeaderComponent, PlayerRecordCoreComponent, PlayerRecordChartComponent
+    FavoritePlayerOptionComponent, PlayerOptionSelectorComponent, FavoritePlayerStarComponent, LivePageOptionsComponent, TeamValueComponent,
+    ActivePortraitsComponent, ActiveMapsComponent, LivePageStatusComponent, PlayerListAutocompleteComponent, PrimaryFavoritePlayerListComponent,
+    PlayerRecordHeaderComponent, PlayerRecordCoreComponent, PlayerRecordChartComponent, PlaylistSongCountGraphComponent, LoadingPhaseComponent, MatchPhaseComponent, FightPhaseComponent, BettingPhaseComponent, ResultsPhaseComponent
   ],
   imports: [
     BrowserModule,

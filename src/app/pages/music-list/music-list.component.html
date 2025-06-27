@@ -12,8 +12,16 @@
           <span *ngIf="totalSongsWithoutOccurences >= 0">{{totalSongsWithoutOccurences | number}} songs have yet to be played.</span>
         </p>
         <br />
+        <br />
         <div *ngIf="displayTable">
             <table datatable [dtOptions]="databaseOptions" class="row-border hover" id="playlistTable"></table>
+        </div>
+        <div *ngIf="!displayTable">
+            <p>Loading playlist...</p>
+            <img src="assets/Spinner-1s-200px.gif" />
+        <br />
+        <div>
+          <app-playlist-song-count-graph showCharts="true"></app-playlist-song-count-graph>
         </div>
         <br />
         <div *ngIf="searchEnabled">

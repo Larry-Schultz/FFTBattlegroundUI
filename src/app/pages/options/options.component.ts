@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OptionsPageService } from './service/OptionsPageService/options-page-service.service';
 
 @Component({
   selector: 'app-options',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OptionsComponent implements OnInit {
 
-  constructor() { }
+  public constructor(private readonly optionsPageService: OptionsPageService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.optionsPageService.log();
   }
 
 }

@@ -30,8 +30,14 @@ export class PlayerBalanceHistoryService {
     return response;
   }
 
+  findPlayerLeaderboardData(): Observable<GenericResponse<BalanceHistoryData>> {
+    const url = getBackendUrl() + 'playerLeaderboardBalanceHistory';
+    const response: Observable<GenericResponse<BalanceHistoryData>> = this.http.get<GenericResponse<BalanceHistoryData>>(url);
+    return response;
+  }
+
   findBotLeaderboardData(): Observable<GenericResponse<BalanceHistoryData>> {
-    const url = getBackendUrl() + 'api/players/botLeaderboardBalanceHistory?count=10&bots=10';
+    const url = getBackendUrl() + 'botLeaderboardBalanceHistory?count=10&bots=10';
     const response: Observable<GenericResponse<BalanceHistoryData>> = this.http.get<GenericResponse<BalanceHistoryData>>(url);
     return response;
   }
@@ -113,7 +119,7 @@ export class PlayerBalanceHistoryService {
                 scales: {
                   yAxes: [{
                     ticks: {
-                      beginAtZero:true,
+                      beginAtZero:false,
                       callback: (value: number, index: number, values: number[]) => {
                         // Convert the number to a string and splite the string every 3 charaters from the end
                         return value.toLocaleString();

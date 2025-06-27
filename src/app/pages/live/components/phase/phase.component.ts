@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { FightEntry } from '../fightentry/model/fightentry';
 import { Notice } from './model/notice';
@@ -19,16 +19,13 @@ export class PhaseComponent implements OnInit, OnChanges {
   @Input()
   public eventTime: number;
 
-  public fightEntryCount: number;
-
   public constructor() { }
 
   public ngOnInit(): void {
     this.notice = Notice.LOADING_NOTICE;
-    this.fightEntryCount = 0;
   }
 
-  public ngOnChanges() {
+  public ngOnChanges(changes: SimpleChanges): void {
 
   }
 

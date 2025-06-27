@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MusicOptionsLocalStorageServiceService } from '../options/service/MusicOptionsLocalStorageService/music-options-local-storage-service.service';
-import { MusicService } from './service/music.service';
+import { MusicService } from './service/MusicService/music.service';
 
 @Component({
   selector: 'app-music-list',

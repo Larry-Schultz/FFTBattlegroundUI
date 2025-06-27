@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { GenericResponse } from 'src/app/util/genericresponse';
 import { getBackendUrl } from 'src/app/util/getbackendurl';
-import { MusicPayload } from '../model/musicpayload';
+import { MusicPayload } from '../../model/musicpayload';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class MusicService {
 
   protected serviceUrl: string = getBackendUrl() + 'music';
 
-    constructor(private http: HttpClient) {
+  public constructor(private http: HttpClient) {
 
   }
 

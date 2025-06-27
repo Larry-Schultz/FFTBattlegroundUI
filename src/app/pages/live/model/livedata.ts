@@ -14,7 +14,6 @@ import { TournamentTracker } from '../components/tournamenttracker/model/tournam
 import { TournamentTrackerBlank } from '../components/tournamenttracker/model/tournamenttrackerblank';
 import { TeamInfoEntry } from '../components/teaminfo/model/teaminfoentry';
 import { TournamentTrackerData } from '../components/tournamenttracker/model/tournamenttrackerdata';
-import { Hype } from './MusicEvents/hype';
 
 const TEAM_INFO_COUNT = 4;
 
@@ -26,7 +25,7 @@ export class LiveData {
     public fightEntries: FightEntry[] = new Array<FightEntry>();
     public loading = true;
     public musicEvent: MusicEvent;
-    public hypeEmotes: Hype[] = new Array<Hype>();
+    public hypeEmotes: string[] = new Array<string>();
     public skillDropEvent: SkillDropEvent;
     public currentNotice = Notice.LOADING_NOTICE;
     public matchInfo: MatchInfoEvent;

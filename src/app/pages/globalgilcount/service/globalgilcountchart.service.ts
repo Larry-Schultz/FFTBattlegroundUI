@@ -18,7 +18,7 @@ export class GlobalGilCountChartService {
   constructor(private http: HttpClient) { }
 
   public findGlobalGilChartData(unit: string): Observable<GenericResponse<GilDateGraphEntry[]>> {
-    const url = getBackendUrl() + 'api/players/globalGilHistoryGraphData?timeUnit=' + unit;
+    const url = getBackendUrl() + 'globalGilHistoryGraphData?timeUnit=' + unit;
     const response: Observable<GenericResponse<GilDateGraphEntry[]>> = this.http.get<GenericResponse<GilDateGraphEntry[]>>(url);
     return response;
   }
@@ -71,7 +71,7 @@ export class GlobalGilCountChartService {
                 scales: {
                   yAxes: [{
                     ticks: {
-                      beginAtZero:true,
+                      beginAtZero:false,
                       callback: (value: number, index: number, values: number[]) => {
                         // Convert the number to a string and splite the string every 3 charaters from the end
                         return value.toLocaleString();

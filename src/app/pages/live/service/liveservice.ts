@@ -34,7 +34,6 @@ import { BetEntryFactory } from '../components/betentry/model/betentryfactory';
 import { TeamInfoEntry } from '../components/teaminfo/model/teaminfoentry';
 import { TournamentTrackerData } from '../components/tournamenttracker/model/tournamenttrackerdata';
 import { HypeEvent } from '../model/MusicEvents/hypeevent';
-import { Hype } from '../model/MusicEvents/hype';
 
 @Injectable({
   providedIn: 'root'
@@ -215,7 +214,7 @@ export class LiveService {
 
 	protected handleMusicEvent(event: MusicEvent): void {
 		if(!this.liveData.musicEvent || this.liveData.musicEvent.songName !== event.songName) {
-      this.liveData.hypeEmotes = new Array<Hype>();
+      this.liveData.hypeEmotes = new Array<string>();
     }
     this.liveData.musicEvent = event;
 	}
